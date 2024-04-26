@@ -1,0 +1,100 @@
+#dropdown-container > div > h6 {
+    padding-top: 1em;
+}
+
+.party {
+    min-height: 75px;
+    min-width: 100px;
+    max-width: 200px;
+    /* background-color: #c4dd88; */
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+.partyDnDName {
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+}
+.component-holder > div > .party {
+    width: 100px;
+}
+.deleteParty {
+    position: absolute;
+    bottom: 12px;
+    left: 10px;
+}
+
+.partyoptions {
+    font-size: small;
+    position: absolute;    
+    border: none;
+    top: 2px;
+    right: 2px;
+    
+}
+
+.partyoptions:hover{
+    cursor: pointer;
+}
+
+.partynameandcolor{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+    
+}
+.partycolorComp{
+    padding-left: 5px;
+    padding-inline: 10px;
+}
+.partynameComp{
+    padding:0px;
+    top: 20px;
+    padding-top: 15px;
+}
+.partycolorvisuals{
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+    padding: 10px;
+}
+.partycolorPad{
+    padding-left: 5px;
+}
+.partytempcolordiv{
+    
+    display: flex;
+    flex-direction: row;
+}
+.partytempColor{
+    color: black;
+    size: 25px;
+    height: 28px;
+    width: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.partytempColor:hover{
+    cursor: default;
+}
+.partycurrentcolordiv{
+    padding-left: 25px;
+    display: flex;
+    flex-direction: row;
+}
+.partycurColor{
+    color: black;
+    height: 28px;
+    width: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.partycurColor:hover{
+    cursor: default;
+}

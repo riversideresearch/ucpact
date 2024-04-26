@@ -1,0 +1,51 @@
+#dropdown-container > div > h6 {
+    padding-top: 1em;
+}
+
+.idealFunc {
+    min-height: 75px;
+    min-width: 100px; 
+    max-width: 200px;
+    /* background-color: #267aba;  */
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+}
+.idealFuncDnDName{
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+
+}
+.idwoptions {
+    font-size: small;
+    position: absolute;    
+    border: none;
+    top: 2px;
+    right: 2px;
+    
+}
+.idwoptions:hover{
+    cursor: pointer;
+}
+
+.idwnameandcolor{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+}
+.idwcolorComp{
+    padding-left: 5px;
+}
+.idwnameComp{
+    padding:0px;
+    top: 20px;
+    padding-top: 30px;
+}
+
+

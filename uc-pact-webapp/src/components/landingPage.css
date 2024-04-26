@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    height: 100vh; /* Set a height for the container */
+    margin-bottom: 100px;
+  }
+
+.title {
+  text-align: center;
+  font-size: 7rem; /* Adjust the value as needed */
+  margin-bottom: 100px;
+}
+
+.inner-flex {
+  display: flex;
+  flex-direction: row; /* Stack items horizontally */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: left; /* Center items horizontally */
+  align-items: left; /* Center items vertically */
+  text-align: left;
+  margin: 50px;
+}
+
+.list-item {
+  padding: 5px;
+  font-size: 18px;
+}
+
+.button-item {
+  display: flex; /* Make this container a flex container */
+  justify-content: center; /* Center the content horizontally */
+  text-decoration: none;
+}
+
+.new-model-name {
+  margin-bottom: 0.25em;
+}

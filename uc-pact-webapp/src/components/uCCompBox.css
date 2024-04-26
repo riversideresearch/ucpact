@@ -1,0 +1,10 @@
+.dB {
+    margin: 20px;
+    border: 2px solid black;
+    width: 300px;
+    float: left;
+}
+
+.component-holder > * {
+    margin: 2em;
+}

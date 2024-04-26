@@ -1,0 +1,46 @@
+#dropdown-container > div > h6 {
+    padding-top: 1em;
+}
+
+.sim {
+    min-height: 200px;
+    min-width: 100px;
+    max-width: 200px;
+    /* background-color: bisque; */
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+.simDnDName {
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+}
+.simoptions {
+    font-size: small;
+    position: absolute;    
+    border: none;
+    top: 2px;
+    right: 2px;
+    
+}
+.simoptions:hover{
+    cursor: pointer;
+}
+
+.simnameandcolor{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+}
+.simcolorComp{
+    padding-left: 5px;
+}
+.simnameComp{
+    top: 20px;
+    padding-top: 30px;
+}

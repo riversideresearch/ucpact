@@ -1,0 +1,37 @@
+.env {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 115px;
+  left: 450px;
+}
+
+.rectangleUpper {
+    width: 775px;
+    height: 35px;
+    background: #33AFFF;
+    border:1px solid #045f9b;
+    border-right: none;
+    z-index: 1;
+    text-align: center;
+    font-weight: bold;
+  }
+
+.rectangleRight {
+    display: flex;
+    width: 35px;
+    height: 500px;
+    background:#33AFFF;
+    float: right;
+    border:1px solid #045f9b;
+    border-top: none;
+    z-index: -1;
+    text-align: center;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.advText {
+  transform: rotate(90deg);
+}

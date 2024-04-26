@@ -1,0 +1,26 @@
+.rw {
+    width: 950px;
+    height: 600px;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 20px;
+    float: left;
+}
+
+.rwTitle {
+    font-weight: bold;
+    padding-bottom: 1em;
+    float: left;
+}
+.realfuncoptions {
+    font-size: x-large;
+    float: right;
+}
+
+.realfuncoptions:hover{
+    cursor: pointer;
+}
+
+.rwHeader {
+    display: block;
+}

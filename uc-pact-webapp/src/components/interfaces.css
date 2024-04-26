@@ -1,0 +1,173 @@
+.interBox {
+    position: relative;
+    top: 20px;
+    right: -50px;
+    height: 600px;
+    width: 1100px;
+    padding: 5px;
+}
+
+.interForm {
+    display: inline-block;
+    padding: 20px;
+}
+
+.interTitle {
+    font-weight: bold;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.interAdd {
+    display: inline;
+    border: none;
+    height: 40px;
+    width: 35px;
+    padding-left: 0.5em;
+}
+
+.interAdd:hover {
+    cursor:pointer;
+}
+
+.interAdd-toggle {
+    border: none;
+}
+
+.interAdd-toggle::after {
+    display: none;
+}
+
+.interSave {
+    border: none;
+    background-color: white;
+    height: 40px;
+    width: 35px;
+    padding-left: 0.5em;
+}
+
+.accordion {
+    width: 500px;
+}
+
+.accordion-header {
+    width: 200px;
+    border: none;
+}
+
+.accordion-button {
+    height: 10px;
+    width: 498px;
+}
+
+.accordion-button:not(.collapsed) {
+    width: 500px;
+    height: 10px;
+}
+
+.form-control {
+    width: 200px;
+}
+
+.messageTitle {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.messageAdd {
+    border-radius: 50% !important;
+    border: none;
+    height: 30px;
+    width: 25px;
+    padding-left: 0.5em;
+}
+
+.messageAdd:hover {
+    cursor: pointer;
+}
+
+.messageDelCol {
+    max-width: 2em;
+}
+
+.messageDel {
+    padding-right: 0.5em;
+}
+.messageDel:hover {
+    cursor: pointer;
+}
+
+.interfaceDel {
+    padding-right: 0.5em;
+}
+
+.interfaceDel:hover {
+    cursor: pointer;
+}
+
+.accordion-basic-interface .accordion-button {
+    background-color: rgb(231, 241, 255);
+}
+
+.accordion-composite-interface .accordion-button {
+    background-color: lightgreen; 
+    color: darkgreen;
+}
+.accordion-message{
+    width: 455px;
+}
+.accordion-message .accordion-button{
+    width: 455px;
+    background-color: rgb(183, 203, 201);
+}
+.allInterfaces{
+    flex-direction: row-reverse;
+    display: flex;
+}
+.BasicInterfacesCol{
+    width: 500px;
+    padding-right: 0px;
+    padding-left: 20px;
+}
+.CompositeInterfaceCol{
+    width: 500px;
+    padding-right: 20px;
+    padding-left: 0px;
+}
+.parameterTitle {
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+}
+.parameterAdd {
+    border-radius: 50% !important;
+    border: none;
+    height: 25px;
+    width: 18px;
+    padding-left: 0.5em;
+}
+
+.parameterAdd:hover {
+    cursor: pointer;
+}
+
+.parameterDelCol {
+    max-width: 2em;
+}
+
+.parameterDel:hover {
+    cursor: pointer;
+}
+.parametertextbox{
+    width: 150px;
+}
+.portnamebox{
+    width: 125px;
+}
+.messagenamebox{
+    width: 150px;
+}
+.messageNamingRow > .col {
+    padding-right: 0px;
+}

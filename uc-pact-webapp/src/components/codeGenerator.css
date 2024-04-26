@@ -1,0 +1,15 @@
+.copyCode {
+    left: 703px;
+    top: 43px;
+    z-index: 1;
+    position: absolute;
+    width: 44px;
+}
+
+.exportCode {
+    left: 703px;
+    top: 82px;
+    z-index: 1;
+    position: absolute;
+    width: 44px;
+}

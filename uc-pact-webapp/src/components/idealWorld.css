@@ -1,0 +1,21 @@
+.ideal-world {
+    width: 800px;
+    height: 600px;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 20px;
+    position: relative;
+}
+
+.ideal-world > .env > .rectangleUpper {
+    width: 600px;
+}
+
+.ideal-world > .env {
+    top: 50px;
+    left: 120px;
+}
+
+.idwTitle {
+    font-weight: bold;
+}

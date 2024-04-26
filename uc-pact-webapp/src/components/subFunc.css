@@ -1,0 +1,91 @@
+#dropdown-container > div > h6 {
+    padding-top: 1em;
+}
+
+.subFunc {
+    min-height: 75px;
+    min-width: 150px;
+    max-width: 225px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.subFuncDnDName {
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+}
+.component-holder > .subFunc {
+    width: 150px;
+}
+.deleteSubFunc {
+    position: absolute;
+    bottom: 12px;
+    left: 10px;
+}
+.subfuncoptions {
+    font-size: small;
+    position: absolute;    
+    border: none;
+    top: 2px;
+    right: 2px;
+    
+}
+.subfuncoptions:hover{
+    cursor: pointer;
+}
+
+.subfuncnameandcolor{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+}
+.subfunccolorcomp{
+    padding-left: 5px;
+    padding-top: 10px;
+}
+.subfuncnamecomp{
+    padding:0px;
+    top: 20px;
+    padding-top: 25px;
+}
+.subFunccolorvisuals{
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+    padding-top: 15px;
+    
+}
+.subfunccolorPad{
+    padding-left: 5px;
+}
+.subFunctempColor{
+    color:black;
+    size: 25px;
+    height: 28px;
+    width: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.subFunctempColor:hover{
+    cursor: default;
+}
+.subfunccurrentcolordiv{
+    display: flex;
+    flex-direction: row;
+    padding-left: 25px;
+}
+.subFunccurColor{
+    color:black;
+    height: 28px;
+    width: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.subFuncurColor:hover{
+    cursor: default;
+}

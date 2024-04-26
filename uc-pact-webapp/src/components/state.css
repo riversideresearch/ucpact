@@ -1,0 +1,172 @@
+/* #dropdown-container > div > h6 {
+    padding-top: 1em;
+} */
+
+.state {
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.stateDnDName {
+    margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    overflow-wrap: anywhere;
+}
+
+.deleteState {
+    position: absolute;
+    bottom: 12px;
+    left: 10px;
+}
+
+.stateOptions {
+    font-size: small;
+    position: absolute;    
+    border: none;
+    top: 16px;
+    right: 16px;
+    
+}
+
+.stateOptions:hover{
+    cursor: pointer;
+}
+
+.statenameandcolor{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+    
+}
+
+.statecolorComp{
+    padding-left: 5px;
+    padding-inline: 10px;
+}
+
+.statenameComp{
+    padding:0px;
+    top: 20px;
+    padding-top: 15px;
+}
+
+.statecolorvisuals{
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+    padding: 10px;
+}
+
+.statecolorPad{
+    padding-left: 5px;
+}
+
+.statetempcolordiv{
+    display: flex;
+    flex-direction: row;
+}
+
+.statetempColor{
+    color: black;
+    size: 25px;
+    height: 28px;
+    width: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.statetempColor:hover{
+    cursor: default;
+}
+
+.statecurrentcolordiv{
+    padding-left: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+.statecurColor{
+    color: black;
+    height: 28px;
+    width: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.statecurColor:hover{
+    cursor: default;
+}
+
+.stateaccordion {
+    width: 470px;
+}
+
+.stateaccordion-header {
+    width: 200px;
+    border: none;
+}
+
+#paramAccordion > div > h2 > button {
+    height: 10px;
+    width: 468px;
+    background-color: rgb(231, 241, 255);
+}
+
+.stateaccordion-parameter .stateaccordion-button {
+    background-color: rgb(231, 241, 255);
+}
+
+.stateaccordion-button:not(.collapsed) {
+    width: 468px;
+    height: 10px;
+} 
+
+/* .form-control {
+    width: 200px;
+} */
+
+.paramTitle {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.paramAdd {
+    border-radius: 50% !important;
+    border: none;
+    height: 25px;
+    width: 18px;
+    padding-left: 0.5em;
+}
+
+.paramAdd:hover {
+    cursor: pointer;
+}
+
+.paramDelCol {
+    max-width: 2em;
+}
+
+.paramDel {
+    padding-right: 0.5em;
+}
+.paramDel:hover {
+    cursor: pointer;
+}
+.stateParamName {
+    width: 175px;
+}
+.stateParamType {
+    width: 175px
+}
+.stateParamTitle {
+    font-weight: bold;
+    font-size: 16px;
+}

@@ -1,0 +1,31 @@
+.modelNameComponent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.refreshBtn {
+    margin-right: 50px;
+    width: 150px;
+}
+
+.readOnlyText {
+    color: red;
+}
+
+.writableText {
+    color: green;
+}
+.returnModelConfirm {
+    position: absolute;
+    bottom: 12px;
+    left: 10px;
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-link[id*="null"] {
+    padding: 5px;
+}

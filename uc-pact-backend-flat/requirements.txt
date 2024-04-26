@@ -1,0 +1,7 @@
+flask==2.2.5
+flask_cors
+Flask-API
+Werkzeug==2.2.2
+requests
+gunicorn
+PyJWT[crypto]

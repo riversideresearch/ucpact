@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+}
+
+.rwTab {
+    width: 1350px;
+}
+
+.logout {
+  display: flex; /* Make this container a flex container */
+  justify-content: center; /* Center the content horizontally */
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  right: 5px;
+}
+
+.logoutBtn:hover {
+  cursor: pointer;
+}
+
+.modelSettings {
+  display: flex; /* Make this container a flex container */
+  justify-content: center; /* Center the content horizontally */
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  right: 50px;
+}
+
+.modelSettingsBtn:hover {
+  cursor: pointer;
+}
+
+.readOnlyIndicator {
+  display: flex; /* Make this container a flex container */
+  justify-content: center; /* Center the content horizontally */
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  right: 100px;
+}
+
+.ifReadOnly {
+  color: red;
+  font-weight: bold;
+}
+
+.ifWritable {
+  color: green;
+  font-weight: bold;
+}

@@ -1,0 +1,445 @@
+{
+    "models" : [
+        {
+            "id" : 1,
+            "name" : "ABC",
+            "data" : {
+                "interfaces": {
+                    "compInters": [
+                    {
+                        "id": "dcf0ce3d-4385-407f-3aad-d8edf868ff87",
+                        "name": "Comp",
+                        "type": "adversarial",
+                        "basicInterfaces": [
+                        {
+                            "name": "Bass",
+                            "idOfBasic": "116ab81b-0c60-e258-5f5b-b5a73a2a1307",
+                            "idOfInstance": "bbb63e4e-0850-a2cf-588f-2593b850157a"
+                        }
+                        ]
+                    }
+                    ],
+                    "basicInters": [
+                    {
+                        "id": "116ab81b-0c60-e258-5f5b-b5a73a2a1307",
+                        "name": "Bas",
+                        "type": "adversarial",
+                        "messages": []
+                    }
+                    ],
+                    "messages": []
+                },
+                "parties": {
+                    "parties": [
+                    {
+                        "id": "63a2098b-f718-e62e-59c9-848cf27afaa1",
+                        "name": "party1",
+                        "basicAdversarialInterface": "bbb63e4e-0850-a2cf-588f-2593b850157a",
+                        "basicDirectInterface": "",
+                        "stateMachine": "4938922e-31ed-2055-77ab-14968ade6add",
+                        "color": "#c4dd88",
+                        "left": 555,
+                        "top": 325
+                    }
+                    ]
+                },
+                "subfunctionalities": {
+                    "subfunctionalities": [
+                      {
+                        "id": "d96b8a48-d03d-a07e-731c-15c0cc076130",
+                        "name": "sbu",
+                        "idealFunctionality": "",
+                        "color": "#8a6996",
+                        "left": 704,
+                        "top": 238
+                      }
+                    ]
+                  },
+                "realFunctionality": {
+                    "parties": [
+                    "63a2098b-f718-e62e-59c9-848cf27afaa1"
+                    ],
+                    "subfunctionalities": ["d96b8a48-d03d-a07e-731c-15c0cc076130"],
+                    "id": "b0d1056d-099e-0717-563d-dc2d21f0e7ea",
+                    "name": "Real Functionality",
+                    "compositeDirectInterface": "",
+                    "compositeAdversarialInterface": "dcf0ce3d-4385-407f-3aad-d8edf868ff87"
+                },
+                "simulator": {
+                    "id": "b2edbd00-2311-a3cf-8595-9b83df5a3682",
+                    "name": "Sim",
+                    "basicAdversarialInterface": "",
+                    "realFunctionality": "b0d1056d-099e-0717-563d-dc2d21f0e7ea",
+                    "stateMachine": "59b7b665-b981-49b7-743e-50e576fe8451",
+                    "color": "#6bb45c",
+                    "left": 450,
+                    "top": 201
+                },
+                "idealFunctionality": {
+                    "id": "546e9c96-34d5-c6fe-58ac-51d4e02ab3a0",
+                    "name": "IF",
+                    "basicAdversarialInterface": "",
+                    "compositeDirectInterface": "",
+                    "stateMachine": "2c2bca48-3ce1-75d5-5ed2-1650e9d83c5e",
+                    "color": "#3e88c7",
+                    "left": 250,
+                    "top": 250
+                },
+                "idealWorld": {
+                    "id": "cbfb7705-bdf1-0e0f-af6d-2ea3e4740603",
+                    "name": "ideal-world",
+                    "idealFunctionality": "895acb7a-10b7-9e54-88fd-1b42826e12ce",
+                    "simulator": "0e4e97d0-9dbb-11d5-fe0c-9ea2d632f29b"
+                },
+                "stateMachines": {
+                    "stateMachines": [
+                    {
+                        "id": "2c2bca48-3ce1-75d5-5ed2-1650e9d83c5e",
+                        "states": [
+                        "15563178-511a-68c6-bca2-3da208bc516d"
+                        ],
+                        "transitions": [],
+                        "initState": "15563178-511a-68c6-bca2-3da208bc516d"
+                    },
+                    {
+                        "id": "59b7b665-b981-49b7-743e-50e576fe8451",
+                        "states": [
+                        "6a21903e-8856-fa59-4b8d-158a7412b63f"
+                        ],
+                        "transitions": ["df6fa3d6-5591-1dd8-8b33-6f363cabbac7"],
+                        "initState": "6a21903e-8856-fa59-4b8d-158a7412b63f"
+                    },
+                    {
+                        "id": "4938922e-31ed-2055-77ab-14968ade6add",
+                        "states": [
+                        "5675f08d-252f-1156-f8d3-97d1ab007578"
+                        ],
+                        "transitions": [],
+                        "initState": "5675f08d-252f-1156-f8d3-97d1ab007578"
+                    }
+                    ],
+                    "states": [
+                    {
+                        "id": "15563178-511a-68c6-bca2-3da208bc516d",
+                        "name": "InitState",
+                        "left": 270,
+                        "top": 150,
+                        "color": "#e3c85b",
+                        "parameters": []
+                    },
+                    {
+                        "id": "6a21903e-8856-fa59-4b8d-158a7412b63f",
+                        "name": "InitState",
+                        "left": 270,
+                        "top": 150,
+                        "color": "#e3c85b",
+                        "parameters": []
+                    },
+                    {
+                        "id": "5675f08d-252f-1156-f8d3-97d1ab007578",
+                        "name": "InitState",
+                        "left": 270,
+                        "top": 150,
+                        "color": "#e3c850",
+                        "parameters": []
+                    }
+                    ],
+                    "transitions": [
+                        {
+                            "id": "df6fa3d6-5591-1dd8-8b33-6f363cabbac7",
+                            "fromState": "6a21903e-8856-fa59-4b8d-158a7412b63f",
+                            "toState": "",
+                            "toStateArguments": [],
+                            "outMessageArguments": [],
+                            "guard": "hellllo",
+                            "outMessage": "",
+                            "inMessage": ""
+                          }
+                    ]
+                }
+            }
+        },
+        {
+            "id" : 2,
+            "name" : "DEF",
+            "data":
+                {
+                    "interfaces": {
+                    "compInters": [
+                        {
+                        "id": "68ddd69c-8888-bfef-7022-fe8349fba8f0",
+                        "name": "Comp1",
+                        "type": "direct",
+                        "basicInterfaces": [
+                            {
+                            "name": "Bas1",
+                            "idOfBasic": "440fe2c2-5944-536a-e831-978e57acc909",
+                            "idOfInstance": "590c9081-69ef-f78d-5dd8-1957bd0e14c5"
+                            }
+                        ]
+                        },
+                        {
+                        "id": "d2aaaf21-8cb8-7a9a-040b-799b21735195",
+                        "name": "Comp2",
+                        "type": "adversarial",
+                        "basicInterfaces": [
+                            {
+                            "name": "Bas2",
+                            "idOfBasic": "72b23a38-2bc9-c5b3-44cf-9df721f95402",
+                            "idOfInstance": "57cfbf6b-82e4-9d3b-176a-b7ae849d69c4"
+                            }
+                        ]
+                        }
+                    ],
+                    "basicInters": [
+                        {
+                        "id": "440fe2c2-5944-536a-e831-978e57acc909",
+                        "name": "Basic1",
+                        "type": "direct",
+                        "messages": [
+                            "18b710ab-8a8e-4574-901b-1f3a3879da12",
+                            "74cc848f-3d17-0626-edab-466d9582e5a6"
+                        ]
+                        },
+                        {
+                        "id": "72b23a38-2bc9-c5b3-44cf-9df721f95402",
+                        "name": "Basic2",
+                        "type": "adversarial",
+                        "messages": []
+                        }
+                    ],
+                    "messages": [
+                        {
+                        "id": "18b710ab-8a8e-4574-901b-1f3a3879da12",
+                        "name": "Message1",
+                        "type": "in",
+                        "port": "pt",
+                        "parameters": [
+                            {
+                            "id": "1b1f7d53-2e2b-2003-180c-6df28f5a5f06",
+                            "name": "param1",
+                            "type": "bool"
+                            }
+                        ]
+                        },
+                        {
+                        "id": "74cc848f-3d17-0626-edab-466d9582e5a6",
+                        "name": "Message2",
+                        "type": "out",
+                        "port": "pt",
+                        "parameters": [
+                            {
+                            "id": "4a67fba0-60dc-de72-f85d-3e4fc54b2e15",
+                            "name": "param2",
+                            "type": "bool"
+                            }
+                        ]
+                        }
+                    ]
+                    },
+                    "parties": {
+                    "parties": [
+                        {
+                        "id": "52719236-fe7f-f1ec-6ca3-54253bbc3dd4",
+                        "name": "Party1",
+                        "basicAdversarialInterface": "57cfbf6b-82e4-9d3b-176a-b7ae849d69c4",
+                        "basicDirectInterface": "590c9081-69ef-f78d-5dd8-1957bd0e14c5",
+                        "stateMachine": "5559c59a-8d76-ee08-4716-12b34816ad11",
+                        "color": "#c4dd88",
+                        "left": 549,
+                        "top": 341
+                        }
+                    ]
+                    },
+                    "subfunctionalities": {
+                    "subfunctionalities": [
+                        {
+                        "id": "c565c1ea-a593-4879-708b-cc57dc9e6a6a",
+                        "name": "Sub",
+                        "idealFunctionality": "",
+                        "color": "#8a6996",
+                        "left": 783,
+                        "top": 428
+                        }
+                    ]
+                    },
+                    "realFunctionality": {
+                    "parties": [
+                        "52719236-fe7f-f1ec-6ca3-54253bbc3dd4"
+                    ],
+                    "subfunctionalities": [
+                        "c565c1ea-a593-4879-708b-cc57dc9e6a6a"
+                    ],
+                    "id": "cea3e3c9-13fc-878b-3b13-ef8cb0c5714b",
+                    "name": "Real Functionality",
+                    "compositeDirectInterface": "68ddd69c-8888-bfef-7022-fe8349fba8f0",
+                    "compositeAdversarialInterface": "d2aaaf21-8cb8-7a9a-040b-799b21735195"
+                    },
+                    "simulator": {
+                    "id": "7e4198b3-89ae-e62d-3aac-fc664344d91c",
+                    "name": "Sim",
+                    "basicAdversarialInterface": "72b23a38-2bc9-c5b3-44cf-9df721f95402",
+                    "realFunctionality": "cea3e3c9-13fc-878b-3b13-ef8cb0c5714b",
+                    "stateMachine": "faf6b1fb-c94a-175b-0450-6cd63ac0930d",
+                    "color": "#6bb45c",
+                    "left": 450,
+                    "top": 201
+                    },
+                    "idealFunctionality": {
+                    "id": "b7465c7c-4786-32a2-b912-2fdd2cf39a1a",
+                    "name": "IF",
+                    "basicAdversarialInterface": "72b23a38-2bc9-c5b3-44cf-9df721f95402",
+                    "compositeDirectInterface": "68ddd69c-8888-bfef-7022-fe8349fba8f0",
+                    "stateMachine": "3728db27-37c3-dcbb-1eec-c50a32c51d82",
+                    "color": "#3e88c7",
+                    "left": 250,
+                    "top": 250
+                    },
+                    "idealWorld": {
+                    "id": "eda4bfc5-6435-61b4-fd1f-1dc4698e739f",
+                    "name": "ideal-world",
+                    "idealFunctionality": "169d41df-e8f2-c2b3-4858-2c0c8bc6f74a",
+                    "simulator": "232c545a-4e1f-433c-a36b-6cd503043cb8"
+                    },
+                    "stateMachines": {
+                    "stateMachines": [
+                        {
+                        "id": "3728db27-37c3-dcbb-1eec-c50a32c51d82",
+                        "states": [
+                            "067b573f-77f1-1a6d-109c-558aeb6744ee"
+                        ],
+                        "transitions": [],
+                        "initState": "067b573f-77f1-1a6d-109c-558aeb6744ee"
+                        },
+                        {
+                        "id": "faf6b1fb-c94a-175b-0450-6cd63ac0930d",
+                        "states": [
+                            "3cf50e16-4fca-fc71-84e3-85db6850f604"
+                        ],
+                        "transitions": [],
+                        "initState": "3cf50e16-4fca-fc71-84e3-85db6850f604"
+                        },
+                        {
+                        "id": "5559c59a-8d76-ee08-4716-12b34816ad11",
+                        "states": [
+                            "67bdbd2e-e329-c4fa-b833-343beaed1d06",
+                            "fd99c43f-0fe2-c726-f2a6-c18386975056",
+                            "1cb7387f-758c-f215-9c67-b67719784bf7"
+                        ],
+                        "transitions": [
+                            "029799c4-3a23-a11f-0677-2509902296d8",
+                            "11922a15-929c-7e71-7cd5-afaf0e035e67",
+                            "be28c31b-72a2-d447-794c-98bf63639e47"
+                        ],
+                        "initState": "67bdbd2e-e329-c4fa-b833-343beaed1d06"
+                        },
+                        {
+                        "id": "d91e3944-9e04-9d93-d268-3c4b250f5874",
+                        "states": [],
+                        "transitions": [],
+                        "initState": ""
+                        }
+                    ],
+                    "states": [
+                        {
+                        "id": "067b573f-77f1-1a6d-109c-558aeb6744ee",
+                        "name": "InitState",
+                        "left": 270,
+                        "top": 150,
+                        "color": "#e3c85b",
+                        "parameters": []
+                        },
+                        {
+                        "id": "3cf50e16-4fca-fc71-84e3-85db6850f604",
+                        "name": "InitState",
+                        "left": 270,
+                        "top": 150,
+                        "color": "#e3c85b",
+                        "parameters": []
+                        },
+                        {
+                        "id": "67bdbd2e-e329-c4fa-b833-343beaed1d06",
+                        "name": "InitState",
+                        "left": 270,
+                        "top": 150,
+                        "color": "#e3c85b",
+                        "parameters": []
+                        },
+                        {
+                        "id": "fd99c43f-0fe2-c726-f2a6-c18386975056",
+                        "name": "state1",
+                        "color": "#e3c85b",
+                        "left": 397,
+                        "top": 462,
+                        "parameters": [
+                            {
+                            "name": "param1",
+                            "type": "bool",
+                            "id": "9b2a6222-0891-64b4-ce8f-e808b053301b"
+                            }
+                        ]
+                        },
+                        {
+                        "id": "1cb7387f-758c-f215-9c67-b67719784bf7",
+                        "name": "state2",
+                        "color": "#e3c85b",
+                        "left": 708,
+                        "top": 238,
+                        "parameters": [
+                            {
+                            "name": "param2",
+                            "type": "bool",
+                            "id": "1cf6065f-dc7b-495b-0a84-4baa19359c1f"
+                            }
+                        ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                        "id": "029799c4-3a23-a11f-0677-2509902296d8",
+                        "fromState": "67bdbd2e-e329-c4fa-b833-343beaed1d06",
+                        "toState": "fd99c43f-0fe2-c726-f2a6-c18386975056",
+                        "toStateArguments": [
+                            "1"
+                        ],
+                        "outMessageArguments": [
+                            "2"
+                        ],
+                        "guard": "Guard Ex",
+                        "outMessage": "74cc848f-3d17-0626-edab-466d9582e5a6",
+                        "inMessage": "18b710ab-8a8e-4574-901b-1f3a3879da12"
+                        },
+                        {
+                        "id": "11922a15-929c-7e71-7cd5-afaf0e035e67",
+                        "fromState": "67bdbd2e-e329-c4fa-b833-343beaed1d06",
+                        "toState": "1cb7387f-758c-f215-9c67-b67719784bf7",
+                        "toStateArguments": [
+                            "2"
+                        ],
+                        "outMessageArguments": [
+                            "2"
+                        ],
+                        "guard": "Guard Ex",
+                        "outMessage": "74cc848f-3d17-0626-edab-466d9582e5a6",
+                        "inMessage": "18b710ab-8a8e-4574-901b-1f3a3879da12"
+                        },
+                        {
+                        "id": "be28c31b-72a2-d447-794c-98bf63639e47",
+                        "fromState": "fd99c43f-0fe2-c726-f2a6-c18386975056",
+                        "toState": "fd99c43f-0fe2-c726-f2a6-c18386975056",
+                        "toStateArguments": [
+                            "1"
+                        ],
+                        "outMessageArguments": [
+                            "2"
+                        ],
+                        "guard": "Guard Ex",
+                        "outMessage": "74cc848f-3d17-0626-edab-466d9582e5a6",
+                        "inMessage": "18b710ab-8a8e-4574-901b-1f3a3879da12"
+                        }
+                    ]
+                    }
+                } 
+        }
+    ]
+}
