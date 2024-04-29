@@ -3,18 +3,11 @@
 ---
 
 This repository is used to generate UC DSL in a web-based graphical user interface.
-It includes both the uc-pact-webapp and uc-pact-backend-flat repositories as submodules.
 When run via docker compose, both the frontend and backend are built and then run in docker containers.
 
 ## How to use this repo
 
-To clone the repository either clone with the `--recurse-submodules` option
-or after cloning run `git submodule init` followed by `git submodule update`.
-
-Once this is run, the appropriate submodule folder should be populated with
-their respective repository code.
-
-From there, it is fairly simple to get UC-PACT up and running. Simply run
+It is fairly simple to get UC-PACT up and running. Simply run
 `docker compose --profile default build` followed by `docker compose --profile default up`.
 
 If run in daemon mode, you can bring down the containers by running
@@ -24,12 +17,6 @@ For development mode (avoids the need to build the frontend again after minor ed
 `docker compose --profile dev build` once, and then `docker compose --profile dev up -d`.
 
 To run tests (does not use Keycloak), use `docker compose --profile tests build` once, and then `docker compose --profile tests up`.  The tests will run automatically.
-
-## How to update the repository
-
-To update the submodules, simply change into the appropriate directory,
-update the repo to where you would like it to point, and then commit the
-submodule changes.
 
 ## How to access Keycloak admin UI
 
@@ -54,4 +41,4 @@ Navigate to [http://localhost/](http://localhost/) and sign in to UC-PACT with t
 
 You can contact the UC-PACT team by reaching out to INSERTEMAILHERE
 
-For more information about UC and UC DSL see the [EasyUC](https://github.com/easyuc/EasyUC/tree/master) repository.
+For more information about Universal Composability and the UC DSL see the [EasyUC](https://github.com/easyuc/EasyUC/tree/master) repository.

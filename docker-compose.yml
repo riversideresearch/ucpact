@@ -19,7 +19,7 @@ services:
         container_name: uc-pact-auth
     frontend:
         build:
-            context: uc-pact-webapp
+            context: frontend
             dockerfile: ../frontend.Dockerfile
         profiles:
             - default
@@ -29,10 +29,10 @@ services:
             - nginx-network
         volumes:
             - ${PWD}/nginx.conf:/etc/nginx/conf.d/default.conf
-        container_name: uc-pact-webapp
+        container_name: frontend
     frontend-dev:
         build:
-            context: uc-pact-webapp
+            context: frontend
             dockerfile: ../frontend-dev.Dockerfile
         profiles:
             - dev
@@ -42,12 +42,12 @@ services:
         networks:
             - nginx-network
         volumes:
-            - ./uc-pact-webapp/public:/webapp-build/public
-            - ./uc-pact-webapp/src:/webapp-build/src
-        container_name: uc-pact-webapp-dev
+            - ./frontend/public:/frontend-build/public
+            - ./frontend/src:/frontend-build/src
+        container_name: frontend-dev
     frontend-tests:
         build:
-            context: uc-pact-webapp
+            context: frontend
             dockerfile: ../frontend-tests.Dockerfile
         profiles:
             - tests
@@ -57,12 +57,12 @@ services:
         networks:
             - nginx-network
         volumes:
-            - ./uc-pact-webapp/public:/webapp-build/public
-            - ./uc-pact-webapp/src:/webapp-build/src
-        container_name: uc-pact-webapp-tests
+            - ./frontend/public:/frontend-build/public
+            - ./frontend/src:/frontend-build/src
+        container_name: frontend-tests
     backend:
         build:
-            context: uc-pact-backend-flat
+            context: backend
             dockerfile: ../backend.Dockerfile
         profiles:
             - default
@@ -74,10 +74,10 @@ services:
             - nginx-network
         volumes:
             - ./models:/app/models
-        container_name: uc-pact-backend-flat
+        container_name: backend
     backend-dev:
         build:
-            context: uc-pact-backend-flat
+            context: backend
             dockerfile: ../backend.Dockerfile
         profiles:
             - dev
@@ -91,7 +91,7 @@ services:
             - nginx-network
         volumes:
             - ./models:/app/models
-        container_name: uc-pact-backend-flat-dev
+        container_name: backend-dev
 volumes:
     realm.json:
     nginx.conf:
