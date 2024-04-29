@@ -35,11 +35,9 @@ Navigate to [http://localhost/](http://localhost/) and sign in to UC-PACT with t
 
 ## Deployment Notes
 
-* **Be sure to change Keycloak's `admin` password within `docker-compose.yml` before deployment!**
+**Be sure to change Keycloak's `admin` password within `docker-compose.yml` before deployment!**
 
 ## Contact
-
----
 
 You can contact the UC-PACT team by reaching out to harden@riversideresearch.org
 
