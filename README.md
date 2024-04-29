@@ -1,4 +1,6 @@
-# UC-PACT Docker Edition
+![logo](frontend/public/images/logo_blue-green-for-light-background.png)
+
+# UC-PACT
 
 ---
 
