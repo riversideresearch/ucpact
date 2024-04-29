@@ -1,4 +1,4 @@
-![logo](frontend/public/images/logo_blue-green-for-light-background.png)
+![logo | 25%](frontend/public/images/logo_blue-green-for-light-background.png)
 
 # UC-PACT
 
