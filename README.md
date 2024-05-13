@@ -23,7 +23,7 @@ To run tests (does not use Keycloak), use `docker compose --profile tests build`
 ## How to access Keycloak admin UI
 
 To access the admin UI for `Keycloak`, go to [http://localhost:8080/admin](http://localhost:8080/admin)
-and login with `username="admin" & password="admin"`.
+and login with `username="admin"` and `password="admin"`.
 
 ### Adding a new user
 
@@ -41,7 +41,7 @@ Navigate to [http://localhost/](http://localhost/) and sign in to UC-PACT with t
 
 You can contact the UC-PACT team by reaching out to harden@riversideresearch.org
 
-For more information about Universal Composability and the UC DSL see the [EasyUC](https://github.com/easyuc/EasyUC/tree/master) repository.
+For more information about Universal Composability and the UC DSL see the [EasyUC](https://github.com/easyuc) repository.
 
 ---
 
@@ -49,4 +49,4 @@ ACKNOWLEDGMENT
 
 This material is based upon work supported by the Defense Advanced Research Projects Agency (DARPA) under Contract No. N66001-22-C-4020. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the Defense Advanced Research Projects Agency (DARPA).
 
-Distribution Statement "A" Pending (Not Approved for Public Release, Distribution not Unlimited)
+Distribution A: Approved for Public Release
