@@ -13,3 +13,10 @@
     position: absolute;
     width: 44px;
 }
+.changeTheme {
+    left: 703px;
+    top: 122px;
+    z-index: 1;
+    position: absolute;
+    width: 44px;
+}
