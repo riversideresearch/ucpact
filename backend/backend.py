@@ -44,8 +44,12 @@ def locked_open(filename, mode, lock_type):
             fcntl.flock(fd, fcntl.LOCK_UN)
 
 def lock_model(fileName, username):
-    with locked_open(fileName, 'r', fcntl.LOCK_EX) as fp:
-        data = json.load(fp)
+    try:
+        with locked_open(fileName, 'r', fcntl.LOCK_EX) as fp:
+            data = json.load(fp)
+    except json.JSONDecodeError:
+        logging.debug(f'File {fileName} is corrupted!')
+        return
 
     data['readOnly'] = username
 
@@ -53,8 +57,12 @@ def lock_model(fileName, username):
         json.dump(data, fp, indent=2)
 
 def unlock_model(fileName):
-    with locked_open(fileName, 'r', fcntl.LOCK_EX) as fp:
-        data = json.load(fp)
+    try:
+        with locked_open(fileName, 'r', fcntl.LOCK_EX) as fp:
+            data = json.load(fp)
+    except json.JSONDecodeError:
+        logging.debug(f'File {fileName} is corrupted!')
+        return
 
     data['readOnly'] = ""
 
@@ -128,10 +136,12 @@ def index():
     for file in os.listdir('./models'):
         if file.endswith('.json'):
             fileName = os.path.join('models', file)
-
-            with locked_open(fileName, 'r', fcntl.LOCK_SH) as fp:
-                full_data = json.load(fp)
-
+            try:
+                with locked_open(fileName, 'r', fcntl.LOCK_SH) as fp:
+                    full_data = json.load(fp)
+            except json.JSONDecodeError:
+                res.append({'name': file, 'readOnly': 'CORRUPTED'})
+                continue
             data = full_data['model']
             data['modelVersion'] = full_data.get('modelVersion') if 'modelVersion' in full_data else ""
             if ((full_data['lastModified'] < (time.time() - 4500)) and (full_data['readOnly'] != "")):
@@ -139,9 +149,9 @@ def index():
                 full_data['lastModified'] = time.time()
                 with locked_open(fileName, 'w', fcntl.LOCK_EX) as fp:
                     json.dump(full_data, fp, indent=2)
-                res.append({'name' : data['name'], 'readOnly' : ""})
+                res.append({'name': data['name'], 'readOnly': ""})
             else:
-                res.append({'name' : data['name'], 'readOnly' : full_data['readOnly']})
+                res.append({'name': data['name'], 'readOnly': full_data['readOnly']})
     return jsonify(res)
 
 
@@ -157,9 +167,11 @@ def get_model(id):
 
     if not os.path.exists(fileName):
         return 'No file of that name exists', status.HTTP_404_NOT_FOUND
-    
-    with locked_open(fileName, 'r', fcntl.LOCK_EX) as fp:
-        full_data = json.load(fp)
+    try:
+        with locked_open(fileName, 'r', fcntl.LOCK_EX) as fp:
+            full_data = json.load(fp)
+    except json.JSONDecodeError:
+        return "Can't open model; JSON file is corrupted!", status.HTTP_500_INTERNAL_SERVER_ERROR
     data = full_data['model']
     data['modelVersion'] = full_data.get('modelVersion') if 'modelVersion' in full_data else ""
     if full_data['readOnly'] == f'{username}/{tabId}':
@@ -222,8 +234,11 @@ def put_model(id):
         
         # if file exists, retrieve modelVersion from the JSON
         if os.path.exists(filename):
-            with locked_open(filename, 'r', fcntl.LOCK_EX) as fp:
-                old_data = json.load(fp)
+            try:
+                with locked_open(filename, 'r', fcntl.LOCK_EX) as fp:
+                    old_data = json.load(fp)
+            except json.JSONDecodeError:
+                return "Can't open model; JSON file is corrupted!", status.HTTP_500_INTERNAL_SERVER_ERROR
         else:
             return 'No model of the supplied identifier exists on the server', status.HTTP_404_NOT_FOUND
             
@@ -285,10 +300,12 @@ def return_all_by_user():
     for file in os.listdir('./models'):
         if file.endswith('.json'):
             fileName = os.path.join('models', file)
-
-            with locked_open(fileName, 'r', fcntl.LOCK_SH) as fp:
-                full_data = json.load(fp)
-
+            try:
+                with locked_open(fileName, 'r', fcntl.LOCK_SH) as fp:
+                    full_data = json.load(fp)
+            except json.JSONDecodeError:
+                # model's JSON file is corrupted
+                continue
             # if request contained writable model, unlock it
             if not full_data['readOnly'] or full_data['readOnly'].startswith(f'{username}/{sessionId}/'):
                 unlock_model(fileName)
@@ -330,13 +347,19 @@ def get_IFs():
     ifs = []
     files = [os.path.join('models', file) for file in os.listdir('./models') if file.endswith('.json')]
     for file in files:
-        with locked_open(file, 'r', fcntl.LOCK_SH) as fp:
-            full_data = json.load(fp)
-            data = full_data['model']
+        try:
+            with locked_open(file, 'r', fcntl.LOCK_SH) as fp:
+                full_data = json.load(fp)
+        except json.JSONDecodeError:
+            # Model JSON file is corrupted!
+            # data = {'id': 'UNKNOWN', 'model_name': file.removesuffix('.json'),
+            #         'idealFunctionality_id': 'UNKONWN', 'idealFunctionality_name': 'UNKNOWN'}
+            continue
+        data = full_data['model']
 
-            ifs.append({'model_id': data['id'], 'model_name': data['name'],
-              'idealFunctionality_id': data['idealFunctionality']['id'], 
-              'idealFunctionality_name': data['idealFunctionality']['name']})
+        ifs.append({'model_id': data['id'], 'model_name': data['name'],
+            'idealFunctionality_id': data['idealFunctionality']['id'], 
+            'idealFunctionality_name': data['idealFunctionality']['name']})
 
     return jsonify(ifs)
 
@@ -354,32 +377,36 @@ def get_messages_of_IF(id):
     final_compInter = {}
     files = [os.path.join('models', file) for file in os.listdir('./models') if file.endswith('.json')]
     for file in files:
-        with locked_open(file, 'r', fcntl.LOCK_SH) as fp:
-            full_data = json.load(fp)  
-            data = full_data['model'] 
+        try:
+            with locked_open(file, 'r', fcntl.LOCK_SH) as fp:
+                full_data = json.load(fp)
+        except json.JSONDecodeError:
+            # Model JSON file is corrupted!
+            continue
+        data = full_data['model'] 
 
-            if (data['idealFunctionality']['id'] == id):
-                for compInter in data['interfaces']['compInters']:
-                    if (data['idealFunctionality']['compositeDirectInterface'] == compInter['id']):
-                        final_compInter = compInter
-                        for basicInter in compInter['basicInterfaces']:
-                            basicIntersIds.append(basicInter['idOfBasic'])
+        if (data['idealFunctionality']['id'] == id):
+            for compInter in data['interfaces']['compInters']:
+                if (data['idealFunctionality']['compositeDirectInterface'] == compInter['id']):
+                    final_compInter = compInter
+                    for basicInter in compInter['basicInterfaces']:
+                        basicIntersIds.append(basicInter['idOfBasic'])
 
-                for basicInter in data['interfaces']['basicInters']:
-                    if (data['idealFunctionality']['basicAdversarialInterface'] == basicInter['id']):
-                        basicIntersIds.append(basicInter['id'])
+            for basicInter in data['interfaces']['basicInters']:
+                if (data['idealFunctionality']['basicAdversarialInterface'] == basicInter['id']):
+                    basicIntersIds.append(basicInter['id'])
 
-                for basicInter in data['interfaces']['basicInters']:
-                    if (basicInter['id'] in basicIntersIds):
-                        messagesIds.extend(basicInter['messages'])
+            for basicInter in data['interfaces']['basicInters']:
+                if (basicInter['id'] in basicIntersIds):
+                    messagesIds.extend(basicInter['messages'])
 
-                for message in data['interfaces']['messages']:
-                    if message['id'] in messagesIds:
-                        message['compInter'] = final_compInter # Pass information about comp interface for code generation
-                        for basicInter in data['interfaces']['basicInters']:
-                            if message['id'] in basicInter['messages']:
-                                message['basicInter'] = basicInter # Pass information about basic instance for code generation
-                        messages.append(message)
+            for message in data['interfaces']['messages']:
+                if message['id'] in messagesIds:
+                    message['compInter'] = final_compInter # Pass information about comp interface for code generation
+                    for basicInter in data['interfaces']['basicInters']:
+                        if message['id'] in basicInter['messages']:
+                            message['basicInter'] = basicInter # Pass information about basic instance for code generation
+                    messages.append(message)
     
     return jsonify(messages)
 
@@ -395,15 +422,19 @@ def get_comps():
     comps = []
     files = [os.path.join('models', file) for file in os.listdir('./models') if file.endswith('.json')]
     for file in files:
-        with locked_open(file, 'r', fcntl.LOCK_SH) as fp:
-            full_data = json.load(fp)
-            data = full_data['model']
+        try:
+            with locked_open(file, 'r', fcntl.LOCK_SH) as fp:
+                full_data = json.load(fp)
+        except json.JSONDecodeError:
+            # Model JSON file is corrupted!
+            continue
+        data = full_data['model']
 
-            for compInt in data['interfaces']['compInters']:
-                if compInt['type'] == 'direct':
+        for compInt in data['interfaces']['compInters']:
+            if compInt['type'] == 'direct':
 
-                    comps.append({'model_id': data['id'], 'model_name': data['name'],
-                    'compInterface_id': compInt['id'],'compInterface_name': compInt['name']})
+                comps.append({'model_id': data['id'], 'model_name': data['name'],
+                'compInterface_id': compInt['id'],'compInterface_name': compInt['name']})
 
     return jsonify(comps)
     
@@ -421,26 +452,30 @@ def get_comp_messages(id):
     final_compInter = {}
     files = [os.path.join('models', file) for file in os.listdir('./models') if file.endswith('.json')]
     for file in files:
-        with locked_open(file, 'r', fcntl.LOCK_SH) as fp:
-            full_data = json.load(fp)   
-            data = full_data['model']
+        try:
+            with locked_open(file, 'r', fcntl.LOCK_SH) as fp:
+                full_data = json.load(fp)
+        except json.JSONDecodeError:
+            # Model JSON file is corrupted!
+            continue
+        data = full_data['model']
 
-            for compInter in data['interfaces']['compInters']:
-                if (compInter['id'] == id):
-                    final_compInter = compInter
-                    for basicInter in compInter['basicInterfaces']:
-                        basicIntersIds.append(basicInter['idOfBasic'])
+        for compInter in data['interfaces']['compInters']:
+            if (compInter['id'] == id):
+                final_compInter = compInter
+                for basicInter in compInter['basicInterfaces']:
+                    basicIntersIds.append(basicInter['idOfBasic'])
 
-            for basicInter in data['interfaces']['basicInters']:
-                if (basicInter['id'] in basicIntersIds):
-                    messagesIds.extend(basicInter['messages'])
+        for basicInter in data['interfaces']['basicInters']:
+            if (basicInter['id'] in basicIntersIds):
+                messagesIds.extend(basicInter['messages'])
 
-            for message in data['interfaces']['messages']:
-                    if message['id'] in messagesIds:
-                        message['compInter'] = final_compInter # Pass information about comp interface for code generation
-                        for basicInter in data['interfaces']['basicInters']:
-                            if message['id'] in basicInter['messages']:
-                                message['basicInter'] = basicInter # Pass information about basic instance for code generation
-                        messages.append(message)
+        for message in data['interfaces']['messages']:
+                if message['id'] in messagesIds:
+                    message['compInter'] = final_compInter # Pass information about comp interface for code generation
+                    for basicInter in data['interfaces']['basicInters']:
+                        if message['id'] in basicInter['messages']:
+                            message['basicInter'] = basicInter # Pass information about basic instance for code generation
+                    messages.append(message)
     
     return jsonify(messages)
