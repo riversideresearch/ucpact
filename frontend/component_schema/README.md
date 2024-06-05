@@ -8,7 +8,7 @@
 {
     id: <uuid>,
     name: <string>,
-    modelVersion: <string "1.0">, // Model version for compatibility; do a major increment each time the schema is changed (i.e 1.0 -> 2.0).
+    modelVersion: <string "1.1">, // Model version for compatibility; do a major increment each time the schema is changed (i.e 1.0 -> 2.0).
     readOnly: <string>, // "<username>/<sessionID>/<tabID>" if in readOnly mode, otherwise ""
 }
 ```
@@ -23,7 +23,7 @@
     name: <string>,
     compositeDirectInterface: <id of composite interface with type="direct">,
     compositeAdversarialInterface: <id of composite interface with type="adversarial">,
-    parameterInterfaces: [{name:<string>, idOfInterface: <id of composite interface with type="direct">}*]
+    parameterInterfaces: [{name:<string>, idOfInterface: <id of composite interface with type="direct">, modelName:<string>, compInterName:<string>, left:<int>, top:<int>, color:<string>}*]
 }
 ```
 

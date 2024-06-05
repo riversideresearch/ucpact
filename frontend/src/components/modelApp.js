@@ -8,6 +8,7 @@ import RealFunctionality from './realFunctionality';
 import UCCompBox from './uCCompBox';
 import Party from './party';
 import SubFunc from './subFunc';
+import ParameterInterface from './parameterInterface';
 import Interfaces from './interfaces';
 import CodeGenerator from './codeGenerator';
 import StateMachines from './stateMachines';
@@ -750,7 +751,7 @@ function ModelApp(props) {
             }
         });
     }
- 
+
     return (
         <DndProvider backend={HTML5Backend}>
         <ReactNotifications />
@@ -768,7 +769,8 @@ function ModelApp(props) {
                     <Tab eventKey="rWorld" title="Real World" className="rwTab">
                         <UCCompBox>
                             <SubFunc />
-                            <Party />
+                            <Party paramInterMessages={paramInterMessages}/>
+                            <ParameterInterface />
                         </UCCompBox>
                         <RealFunctionality />
                     </Tab>

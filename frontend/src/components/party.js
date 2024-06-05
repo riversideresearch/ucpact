@@ -20,6 +20,7 @@ function Party(props) {
     const dispatch = useDispatch() // dispatch function for altering the Redux store
     
     const [state, setState] = useState({color: "#c4dd88", colorTemp: "#c4dd88"})
+    const [paramInterMessages, setParamInterMessages] = useState();
     
     // Redux selector for specific instance of party
     // state.parties refers to the parties Redux state
@@ -38,6 +39,7 @@ function Party(props) {
 
     const [subFuncMessages, setSubFuncMessages] = useState([]); // State used for subfunc messages in State Machines
     const [subfuncsToConnect, setSubfuncsToConnect] = useState([]);
+    const [paramIntersToConnect, setParamIntersToConnect] = useState([]);
 
     // hook for updating Xarrow
     // eslint-disable-next-line no-unused-vars
@@ -192,6 +194,79 @@ function Party(props) {
         });
     }, [subFuncMessages, stateMachineSelector.transitions]);
 
+    // Api call for param interfaces messages
+    useEffect(() => {
+        // Clear paramInters
+        setParamInterMessages([]);
+        // Check if this state machine is for a party
+        if (realFuncSelector.parameterInterfaces) {
+            // Get all paramInterfaces
+            realFuncSelector.parameterInterfaces.forEach((paramInter) => {
+                if (paramInter.idOfInterface) {
+                    // Make api call
+                    let token = "none";
+                    if (process.env.NODE_ENV !== 'test') {
+                        token = auth.user?.access_token;
+                    }
+                    let urlPath = process.env.REACT_APP_SERVER_PREFIX + "/compInterfaces/" + paramInter.idOfInterface + "/messages";
+                    axios({
+                        method: "GET",
+                        url: urlPath,
+                        headers: {
+                          Authorization: `Bearer ${token}`, SessionTabId: `${localStorage.sessionID}/${sessionStorage.tabID}`,
+                        },
+                    })
+                    .then((response) => {
+                        const res = response.data;
+                        res.forEach(message => {
+                            message["paramInterId"] = paramInter.id;
+                            message["id"] += "/" + paramInter.id;
+                        });
+                        setParamInterMessages(paramInterMessages => [...paramInterMessages, ...res])
+                    })
+                    .catch((err) => {
+                        if (err.response) {
+                            console.log(err.response);
+                            console.log(err.response.status);
+                            console.log(err.response.headers);
+                        }
+                    });
+                }
+            });
+        }
+    }, [realFuncSelector]);
+
+    useEffect(() => {
+        // Clear subfuncsToConnect
+        setParamIntersToConnect([]);
+
+        stateMachineSelector.stateMachines.forEach((stateMachine) => {
+            if (partySelector) {
+                if (stateMachine.id === partySelector.stateMachine) {
+                    stateMachine.transitions.forEach((transitionInStateMachine) => {
+                        stateMachineSelector.transitions.forEach((transition) => {
+                            if (transition.id === transitionInStateMachine) {
+                                realFuncSelector.parameterInterfaces.forEach((parameter) => {
+                                    paramInterMessages && paramInterMessages.forEach(message => {
+                                        if (transition.outMessage === message.id) {
+                                            if (parameter.idOfInterface === message.compInter.id) {
+                                                setParamIntersToConnect(paramInterToConnect => [...paramInterToConnect, parameter.id])
+                                            }
+                                        }
+                                        if (transition.inMessage === message.id) {
+                                            if (parameter.idOfInterface === message.compInter.id) {
+                                                setParamIntersToConnect(paramInterToConnect => [...paramInterToConnect, parameter.id])
+                                            }
+                                        }
+                                    })
+                                });
+                            }
+                        });
+                    });
+                }
+            }
+        });
+    }, [realFuncSelector.parameterInterfaces, stateMachineSelector.transitions, paramInterMessages]);
     
     
     let colorPalette = ["#c4dd88", "#c7978c", "#6fa5c6", "#c2b8a3", "#b75d69", "#a2c8b3", "#e3c85b", "#bfe1d9", "#cf7b6b", "#8fc7a6", "#ce9bcc", "#5c6e91"]; 
@@ -302,6 +377,12 @@ function Party(props) {
             { subfuncsToConnect && props.id &&
             (subfuncsToConnect.filter((value, index) => subfuncsToConnect.indexOf(value) === index).map((subfunc) => (
                 <Xarrow key={ props.id + subfunc } start={ props.id } end={ subfunc }
+                        showHead={false} color="purple" path="grid"
+                />
+            )))}
+            { paramIntersToConnect && props.id &&
+            (paramIntersToConnect.filter((value, index) => paramIntersToConnect.indexOf(value) === index).map((param) => (
+                <Xarrow key={ props.id + param } start={ props.id } end={ param }
                         showHead={false} color="purple" path="grid"
                 />
             )))}

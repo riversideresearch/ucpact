@@ -64,6 +64,15 @@ export const realFuncSlice = createSlice ({
         deleteParamInterDispatch: (state, action) => {
             let thisParameterIndex = state.parameterInterfaces.findIndex(element => element.id === action.payload)
             state.parameterInterfaces.splice(thisParameterIndex, 1)
+        },
+        updateParamInterPositionDispatch: (state, action) => {
+            let thisParameterIndex = state.parameterInterfaces.findIndex(element => element.id === action.payload[0]);
+            state.parameterInterfaces[thisParameterIndex].left = action.payload[1];
+            state.parameterInterfaces[thisParameterIndex].top = action.payload[2];
+        },
+        changeParamInterDispatch: (state, action) => {
+            let thisParameterIndex = state.parameterInterfaces.findIndex(element => element.id === action.payload.id);
+            state.parameterInterfaces[thisParameterIndex] = action.payload;
         }
     },
 })
@@ -76,6 +85,8 @@ export const { addToPartiesDispatch,
                removeInterFromRealFuncDispatch,
                realFuncAppLoadDispatch,
                addParamInterDispatch,
-               deleteParamInterDispatch } = realFuncSlice.actions
+               deleteParamInterDispatch,
+               updateParamInterPositionDispatch,
+               changeParamInterDispatch } = realFuncSlice.actions
 
 export default realFuncSlice.reducer

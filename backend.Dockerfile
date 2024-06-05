@@ -8,6 +8,7 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # Copy over the python file
 COPY backend.py backend.py
+COPY reconciliationScript.py reconciliationScript.py
 
 # Create a directory for the models to go
 # If you want them to persist outside the container
