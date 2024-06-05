@@ -42,8 +42,12 @@ services:
         networks:
             - nginx-network
         volumes:
-            - ./frontend/public:/frontend-build/public
-            - ./frontend/src:/frontend-build/src
+            - type: bind
+              source: ./frontend/public
+              target: /frontend-build/public
+            - type: bind
+              source: ./frontend/src
+              target: /frontend-build/src
         container_name: frontend-dev
     frontend-tests:
         build:
@@ -57,8 +61,12 @@ services:
         networks:
             - nginx-network
         volumes:
-            - ./frontend/public:/frontend-build/public
-            - ./frontend/src:/frontend-build/src
+            - type: bind
+              source: ./frontend/public
+              target: /frontend-build/public
+            - type: bind
+              source: ./frontend/src
+              target: /frontend-build/src
         container_name: frontend-tests
     backend:
         build:
@@ -73,7 +81,9 @@ services:
         networks:
             - nginx-network
         volumes:
-            - ./models:/app/models
+            - type: bind
+              source: ./models
+              target: /app/models
         container_name: backend
     backend-dev:
         build:
@@ -90,13 +100,16 @@ services:
         networks:
             - nginx-network
         volumes:
-            - ./models:/app/models
+            - type: bind
+              source: ./models
+              target: /app/models
         container_name: backend-dev
 volumes:
     realm.json:
     nginx.conf:
     models:
     src:
+    public:
 networks:
     nginx-network:
         name: nginx-network

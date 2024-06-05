@@ -15,6 +15,11 @@
 .writableText {
     color: green;
 }
+
+.corruptedText {
+    color: purple
+}
+
 .returnModelConfirm {
     position: absolute;
     bottom: 12px;

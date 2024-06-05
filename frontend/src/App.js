@@ -44,12 +44,14 @@ function App(props) {
               console.log(err.response.status);
               console.log(err.response.headers);
           }
+      })
+      .finally(() => {
+          if (!modelSelector.readOnly) {
+            changeModelReadOnlyDispatch("");
+            let reduxData = {...reduxSelector}
+            delete reduxData["model"];
+          }
       });
-      if (!modelSelector.readOnly) {
-        changeModelReadOnlyDispatch("");
-        let reduxData = {...reduxSelector}
-        delete reduxData["model"];
-      }
     }
     if (auth.activeNavigator !== "signoutRedirect") {
       auth.signoutRedirect();

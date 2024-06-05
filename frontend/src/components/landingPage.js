@@ -185,6 +185,15 @@ function LandingPage(props) {
         let username = model['readOnly'].split('/')[0];
         return username;
     }
+    const modelLink = (model) => {
+        if (!model['readOnly']) {
+            return <Link className='list-item' to={"/model/" + model['name']}>Model: {model['name']} <span className='writableText'> (Writable)</span></Link>;
+        } else if (model['readOnly'] === 'CORRUPTED') {
+            return <Link className='list-item'>Model: {model['name']} <span className='corruptedText'> (CORRUPTED)</span></Link>;
+        } else {
+            return <Link className='list-item' to={"/model/" + model['name']}>Model: {model['name']} <span className='readOnlyText'> {`(Read Only: ${hideTabId(model)})`}</span></Link>;
+        }
+    }
 
     return (
         <div className='container'>
@@ -204,7 +213,7 @@ function LandingPage(props) {
                     apiData.map(model => (
                         <div key={model['name']}>
                             <FontAwesomeIcon icon={faTrash} className='interfaceDel' title="Delete Model" onClick={() => deleteModel(model['name'])} />
-                            <Link className='list-item' to={"/model/" + model['name']}>Model: {model['name']} <span className={model['readOnly'] ? "readOnlyText" : "writableText"}>{model['readOnly'] ? `(Read Only: ${hideTabId(model)})` : "(Writable)"}</span></Link>
+                            {modelLink(model)}
                         </div>
                     )))}  
                 </div>

@@ -49,7 +49,7 @@ def lock_model(fileName, username):
             data = json.load(fp)
     except json.JSONDecodeError:
         logging.debug(f'File {fileName} is corrupted!')
-        return
+        raise
 
     data['readOnly'] = username
 
@@ -62,7 +62,7 @@ def unlock_model(fileName):
             data = json.load(fp)
     except json.JSONDecodeError:
         logging.debug(f'File {fileName} is corrupted!')
-        return
+        raise
 
     data['readOnly'] = ""
 
@@ -140,7 +140,7 @@ def index():
                 with locked_open(fileName, 'r', fcntl.LOCK_SH) as fp:
                     full_data = json.load(fp)
             except json.JSONDecodeError:
-                res.append({'name': file, 'readOnly': 'CORRUPTED'})
+                res.append({'name': file.removesuffix('.json'), 'readOnly': 'CORRUPTED'})
                 continue
             data = full_data['model']
             data['modelVersion'] = full_data.get('modelVersion') if 'modelVersion' in full_data else ""
@@ -179,7 +179,10 @@ def get_model(id):
     elif full_data['readOnly']:
         data['readOnly'] = full_data['readOnly']
     else:
-        lock_model(fileName, f'{username}/{tabId}')
+        try:
+            lock_model(fileName, f'{username}/{tabId}')
+        except json.JSONDecodeError:
+            return "Can't open model; JSON file is corrupted!", status.HTTP_500_INTERNAL_SERVER_ERROR
     return data, status.HTTP_200_OK
 
 @app.route('/model/<id>', methods=['POST'])
@@ -308,7 +311,11 @@ def return_all_by_user():
                 continue
             # if request contained writable model, unlock it
             if not full_data['readOnly'] or full_data['readOnly'].startswith(f'{username}/{sessionId}/'):
-                unlock_model(fileName)
+                try:
+                    unlock_model(fileName)
+                except json.JSONDecodeError:
+                    # model's JSON file is corrupted
+                    continue
                 res.append(fileName)
     return f"{len(res)} model(s) returned!", status.HTTP_200_OK
 
@@ -328,7 +335,10 @@ def return_model(id):
             data = request.json
             # if request contained writable model, unlock it
             if not data['readOnly']:
-                unlock_model(filename)
+                try:
+                    unlock_model(filename)
+                except json.JSONDecodeError:
+                    return "Can't return model; JSON file is corrupted!", status.HTTP_500_INTERNAL_SERVER_ERROR
                 return 'Model Returned', status.HTTP_200_OK
             else:
                 return 'Not authorized to unlock this model', status.HTTP_403_FORBIDDEN

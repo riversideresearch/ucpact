@@ -221,6 +221,27 @@ function ModelApp(props) {
                     setTimeout(() => {
                         window.location.assign("/")
                     }, 2000);
+                } else if (err.response.status === 500) {
+                    let notiMessage = "Can't refresh: Model JSON file is corrupted!";
+                    let notiTitle = "Model Corrupted"
+                    let notiType = 'danger';
+                    let notification = {
+                        title:   notiTitle,
+                        message: notiMessage,
+                        type:    notiType,
+                        insert:  "top",
+                        container: "top-right",
+                        animationIn: ["animate__animated", "animate__fadeIn"],
+                        animationOut: ["animate__animated", "animate__fadeOut"],
+                        dismiss: {
+                            duration: 10000,
+                            onScreen: true
+                        }
+                    };
+                    Store.addNotification(notification);  
+                    setTimeout(() => {
+                        window.location.assign("/")
+                    }, 5000);
                 }
             });
 
@@ -395,6 +416,11 @@ function ModelApp(props) {
                     console.log(err.response);
                     console.log(err.response.status);
                     console.log(err.response.headers);
+                    if (err.response.status === 500) {
+                        setIsDone(false)
+                        setModelIsActive(false)
+                        window.location.assign("/");
+                    }
                 }
             })
             .finally(() => {                
@@ -549,6 +575,27 @@ function ModelApp(props) {
             if (err.response.status === 404) {
                 let notiMessage = "Message: Model not found on server. Name of model may have been changed. You will now be directed to the homepage...";
                 let notiTitle = "Model Not Found"
+                let notiType = 'danger';
+                let notification = {
+                    title:   notiTitle,
+                    message: notiMessage,
+                    type:    notiType,
+                    insert:  "top",
+                    container: "top-right",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                        duration: 10000,
+                        onScreen: true
+                    }
+                };
+                Store.addNotification(notification);  
+                setTimeout(() => {
+                    window.location.assign("/")
+                }, 5000);
+            } else if (err.response.status === 500) {
+                let notiMessage = "Can't refresh: Model JSON file is corrupted!";
+                let notiTitle = "Model Corrupted"
                 let notiType = 'danger';
                 let notification = {
                     title:   notiTitle,
@@ -735,17 +782,21 @@ function ModelApp(props) {
                             ...modelSelector
                         }
                     })
-                    .then(_ => {})
+                    .then(_ => {
+                        navigate("/model/" + newModelName);
+                        setModelModalShow(false);
+                    })
                     .catch((err) => {
                         if (err.response) {
                             console.log(err.response);
                             console.log(err.response.status);
                             console.log(err.response.headers);
+                            if (err.response.status === 500) {
+                                setIsDone(false)
+                                setModelIsActive(false)
+                                window.location.assign("/");
+                            }
                         }
-                    })
-                    .finally(() => {
-                        navigate("/model/" + newModelName);
-                        setModelModalShow(false);
                     });
                 }        
             }
