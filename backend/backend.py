@@ -149,9 +149,9 @@ def index():
                 full_data['lastModified'] = time.time()
                 with locked_open(fileName, 'w', fcntl.LOCK_EX) as fp:
                     json.dump(full_data, fp, indent=2)
-                res.append({'name': data['name'], 'readOnly': ""})
+                res.append({'name' : data['name'], 'readOnly' : "", 'lastModified': full_data['lastModified']})
             else:
-                res.append({'name': data['name'], 'readOnly': full_data['readOnly']})
+                res.append({'name' : data['name'], 'readOnly' : full_data['readOnly'], 'lastModified': full_data['lastModified']})
     return jsonify(res)
 
 

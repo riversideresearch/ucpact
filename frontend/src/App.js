@@ -135,7 +135,6 @@ function App(props) {
               <Route index element={<LandingPage />} />
               <Route path="new/:name" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>}/>
               <Route path="model/:id" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>} />
-              <Route path="list/" element={<ModelList />} /> 
           </Routes>
         </BrowserRouter>
         {modelIsActive && 
@@ -160,8 +159,7 @@ function App(props) {
           <Routes>
               <Route index element={<LandingPage />} />
               <Route path="new/:name" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>}/>
-              <Route path="model/:id" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>} />
-              <Route path="list/" element={<ModelList />} />
+              <Route path="model/:id" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>}/>
           </Routes>
         </BrowserRouter>
         {modelIsActive && 

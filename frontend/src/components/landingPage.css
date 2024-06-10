@@ -44,3 +44,17 @@
 .new-model-name {
   margin-bottom: 0.25em;
 }
+
+/* .modelListModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.modelListModal > div > div {
+  width: fit-content;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}

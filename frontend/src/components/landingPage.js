@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './landingPage.css';
 import { Link } from 'react-router-dom';
+import { Button, Modal } from "react-bootstrap";
 import axios from 'axios';
 import { upperCaseValidation } from './helperFunctions';
 import { useNavigate } from 'react-router';
@@ -10,6 +11,7 @@ import { Store } from "react-notifications-component";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from "react-oidc-context";
+import ModelList from './modelList';
 
 function LandingPage(props) {
 
@@ -17,6 +19,12 @@ function LandingPage(props) {
     const [newModelName, setNewModelName] = useState("");
     const navigate = useNavigate();
     const auth = useAuth();
+
+    const [modelData, setModelData] = useState();
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
 	let urlPath = process.env.REACT_APP_SERVER_PREFIX;
@@ -195,29 +203,51 @@ function LandingPage(props) {
         }
     }
 
+    useEffect(() => {
+        if (apiData) {
+            let modelsArray = apiData.sort((a, b) => b.lastModified - a.lastModified);
+            modelsArray = modelsArray.filter((model) => model.readOnly === '');
+            setModelData(modelsArray.slice(0, 5))
+        }
+    }, [apiData]);
+
     return (
-        <div className='container'>
-            <ReactNotifications />
-            <div className='item'>
-                <div><img src="/images/logo_blue-green-for-light-background.png" alt="logo" width="400"/></div>
-            </div>
-            <div className='item inner-flex'>
-                <div className='inner-item list'>                
-                    <input type='text' className='new-model-name form-control form-control-15' 
-                           placeholder='New Model Name' defaultValue={newModelName} onChange={(e) => setNewModelName(e.target.value)}/>
-                    <button className='btn btn-primary' onClick={modelNameCheck}>New Model...</button>
+        <div>
+            <div className='container'>
+                <ReactNotifications />
+                <div className='item'>
+                    <div><img src="/images/logo_blue-green-for-light-background.png" alt="logo" width="400"/></div>
                 </div>
-                <div className='inner-item list'>
-                    <div className='list-item'>All Models:</div>
-                    {apiData && (
-                    apiData.map(model => (
-                        <div key={model['name']}>
-                            <FontAwesomeIcon icon={faTrash} className='interfaceDel' title="Delete Model" onClick={() => deleteModel(model['name'])} />
-                            {modelLink(model)}
-                        </div>
-                    )))}  
+                <div className='item inner-flex'>
+                    <div className='inner-item list'>                
+                        <input type='text' className='new-model-name form-control form-control-15' 
+                            placeholder='New Model Name' defaultValue={newModelName} onChange={(e) => setNewModelName(e.target.value)}/>
+                        <button className='btn btn-primary' onClick={modelNameCheck}>New Model...</button>
+                    </div>
+                    <div className='inner-item list'><button className='btn btn-primary' onClick={handleShow}>All Models...</button></div>
+                    <div className='inner-item list'>
+                        <div className='list-item'>Recent Models:</div>
+                        {modelData && (
+                        modelData.map(model => (
+                            <div key={model['name']}>
+                                <FontAwesomeIcon icon={faTrash} className='interfaceDel' title="Delete Model" onClick={() => deleteModel(model['name'])} />
+                                {modelLink(model)}
+                            </div>
+                        )))}  
+                    </div>
                 </div>
             </div>
+            <Modal show={show} onHide={handleClose} animation={false} className="modelListModal">
+                <Modal.Header> 
+                    <Modal.Title>All Models</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <ModelList/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}> Close </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }

@@ -3,6 +3,59 @@
     padding: 20px;
 }
 
-td {
-    padding: 5px;
+.tableStyle {
+    margin: 25px 0px;
+    border: 1px solid black;
+}
+
+.tableStyle thead {
+    font-weight: bold;
+}
+
+.tableStyle th, td {
+    padding: 5px 10px;
+    border: 1px solid black;
+}
+
+
+.tableStyle tbody tr:nth-of-type(odd) {
+    background-color: #f3f3f3;
+}
+
+.tableStyle tbody tr:hover {
+    background-color: #ddd;
+}
+
+.readOnlyText {
+    color: red;
+}
+
+.writableText {
+    color: green;
+}
+
+.nameHeader {
+    min-width: 150px;
+}
+
+.statusHeader {
+    min-width: 100px;
+}
+
+.lastModifiedHeader {
+    min-width: 200px;
+}
+
+#tableSearch {
+    padding: 10px 5px 10px 20px;
+    font-size: 18px;
+    width: 100%;
+}
+
+.modelDelete {
+    text-align: center;
+}
+
+.nameHeader:hover, .statusHeader:hover, .lastModifiedHeader:hover, .trashcan:hover {
+    cursor: pointer;
 }
