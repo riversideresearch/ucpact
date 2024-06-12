@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import Select from "react-select";
 import { useAuth } from "react-oidc-context";
 import Xarrow, { useXarrow } from 'react-xarrows';
 import { Button, Modal, Form } from "react-bootstrap";
@@ -134,14 +135,14 @@ function ParameterInterface(props) {
     const saveComponentInfo = (e) => {
         e.preventDefault();
 
-        let thisCompInter = paramInterAPIData.find(element => element.compInterface_id === compDirRef.current.value)
+        let thisCompInter = paramInterAPIData.find(element => element.compInterface_id === compDirRef.current.props.value.value)
         let modelName = thisCompInter ? thisCompInter.model_name : "";
         let compInterName = thisCompInter ? thisCompInter.compInterface_name : "";
 
         let updatedValue = {
             "id": props.id,
             "name": nameRef.current.value,
-            "idOfInterface": compDirRef.current.value,
+            "idOfInterface": compDirRef.current.props.value.value,
             "compInterName": compInterName,
             "modelName": modelName,
             "color": state.colorTemp,
@@ -190,6 +191,19 @@ function ParameterInterface(props) {
                 }
             });
     }, [show]);
+
+    // Dropdown menu functions
+    const [compDirOptions, setCompDirOptions] = useState([]);
+
+    useEffect(() => {
+        let optionsArray = [{key: "composite-interface-id", value: "", label: "Select a Composite Interface..."}];
+        paramInterAPIData&& paramInterAPIData.forEach(compositeInt => {
+            optionsArray.push({key: "composite-interface-id-" + compositeInt.compInterface_id + compositeInt.model_name, value: compositeInt.compInterface_id,
+                label: compositeInt.compInterface_name + " (" + compositeInt.model_name + ")"
+            })
+        });
+        setCompDirOptions(optionsArray);
+    }, [paramInterAPIData]);
     
 
     return (
@@ -251,17 +265,14 @@ function ParameterInterface(props) {
                     <div id="dropdown-container">
                         <div id="composite-direct-interfaces">
                             <h6>Composite Direct Interface</h6>
-                            <Form.Select aria-label="Select a Composite Interface" ref={compDirRef}
-                                key={"id-" + props.id}
-                                defaultValue={ paramInterSelector && paramInterSelector.idOfInterface || "" }
-                                title={"realFuncAdvInterface"} >
-                                    <option value="">Select a Composite Interface</option>
-                                    { paramInterAPIData && paramInterAPIData.map(compositeInt => (
-                                            <option key={"composite-interface-id-" + compositeInt.compInterface_id + compositeInt.model_name} data-testid="select-option" value={compositeInt.compInterface_id}>
-                                                {compositeInt.compInterface_name + " (" + compositeInt.model_name + ")"}
-                                            </option> 
-                                    ))}
-                            </Form.Select>
+                            <Select 
+                                options={compDirOptions}
+                                getOptionValue ={(option)=>option.label}
+                                placeholder="Select a Direct Interface..."
+                                defaultValue={{ value : (paramInterSelector && paramInterSelector.idOfInterface) || "",
+                                    label : paramInterSelector ? compDirOptions.find(compositeInt => compositeInt.value == paramInterSelector.idOfInterface) ? compDirOptions.find(compositeInt => compositeInt.value == paramInterSelector.idOfInterface).label : "Select a Direct Interface..." : "Select a Direct Interface..."}}
+                                ref={compDirRef}
+                            />
                         </div>                                      
                     </div>
                 </Modal.Body>

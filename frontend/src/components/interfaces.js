@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from "react";
+import Select from 'react-select';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -440,7 +441,18 @@ function Interfaces(props) {
           }
         
     }
-    
+
+    // Dropdown menu functions
+    let optionsArray = [];
+
+    const makeBasicIntanceOptions = (value) => {
+        optionsArray = [{key : "basic-interface-id", value : "", label : "Select an Interface..."}];
+        interSelector.basicInters.filter(basicInt => basicInt.type === value.type).forEach(basicInt => {
+            optionsArray.push({key : "basic-interface-id-" + basicInt.id, value : basicInt.id, label : DisplayNameSetup(basicInt.name, dropdownDisplayLength)});
+        });
+        return optionsArray;
+    }
+
     return (
         <div className="interBox">
             <Form className="interForm">
@@ -633,14 +645,14 @@ function Interfaces(props) {
                                                                 placeholder="Instance Name"/>
                                                 </Col>
                                                 <Col>
-                                                    <Form.Select key={"comp-interface-basic-id" + inter.idOfInstance} id={"comp-interface-basic-id" + inter.idOfInstance} 
-                                                        onChange={ e => setBasicInterfaceIDForComposite(value.id, index, e.target.value)} title="Select an Interface"
-                                                        defaultValue={inter.idOfBasic} aria-label="Select an Interface">
-                                                        <option value="">Select an Interface</option>
-                                                        { interSelector.basicInters.filter(basicInt => basicInt.type === value.type).map(basicInt => (
-                                                                <option key={"basic-interface-id-" + basicInt.id} value={basicInt.id}>{DisplayNameSetup(basicInt.name, dropdownDisplayLength)}</option> 
-                                                        ))}
-                                                    </Form.Select>
+                                                    <Select 
+                                                        options={makeBasicIntanceOptions(value)}
+                                                        getOptionValue ={(option)=>option.label}
+                                                        placeholder="Select an Interface..."
+                                                        defaultValue={{ value : (inter.idOfBasic) || "",
+                                                            label : optionsArray && optionsArray.find(basicInt => basicInt.value == inter.idOfBasic) ? optionsArray.find(basicInt => basicInt.value == inter.idOfBasic).label : "Select an Interface..."}}                                                        key={"comp-interface-basic-id" + inter.idOfInstance} id={"comp-interface-basic-id" + inter.idOfInstance} 
+                                                        onChange={ e => setBasicInterfaceIDForComposite(value.id, index, e.value)}
+                                                    />
                                                 </Col>
                                             </Row>
                                         ))}
