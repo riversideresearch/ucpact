@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import './simulator.css'
@@ -127,7 +128,7 @@ function Simulator(props) {
                                 getOptionValue ={(option)=>option.label}
                                 placeholder="Select a Real Functionality..."
                                 defaultValue={{ value : (simSelector.realFunctionality) || "",
-                                label : realFuncOptions && realFuncOptions.find(realFunc => realFunc.value == simSelector.realFunctionality) ? realFuncOptions.find(realFunc => realFunc.value == simSelector.realFunctionality).label : "Select a Real Functionality..."}}
+                                label : realFuncOptions && realFuncOptions.find(realFunc => realFunc.value === simSelector.realFunctionality) ? realFuncOptions.find(realFunc => realFunc.value === simSelector.realFunctionality).label : "Select a Real Functionality..."}}
                                 ref={realFunctRef}
                             />
                         </div>
@@ -138,7 +139,7 @@ function Simulator(props) {
                                 getOptionValue ={(option)=>option.label}
                                 placeholder="Select an Adversarial Interface..."
                                 defaultValue={{ value : (simSelector.realFunctionality) || "",
-                                label : advIntOptions && advIntOptions.find(basicInt => basicInt.value == simSelector.basicAdversarialInterface) ? advIntOptions.find(basicInt => basicInt.value == simSelector.basicAdversarialInterface).label : "Select an Adversarial Interface..."}}
+                                label : advIntOptions && advIntOptions.find(basicInt => basicInt.value === simSelector.basicAdversarialInterface) ? advIntOptions.find(basicInt => basicInt.value === simSelector.basicAdversarialInterface).label : "Select an Adversarial Interface..."}}
                                 ref={basicAdvIntRef}
                             />
                         </div>                                      

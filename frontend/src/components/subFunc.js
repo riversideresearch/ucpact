@@ -318,7 +318,7 @@ function SubFunc(props) {
                                 getOptionValue ={(option)=>option.label}
                                 placeholder="Select an Ideal Functionality..."
                                 defaultValue={{ value : (subfuncSelector && subfuncSelector.idealFunctionalityId) || "",
-                                    label : subfuncSelector ? idealFuncApiData ? idealFuncOptions.find(idealFunc => idealFunc.value == subfuncSelector.idealFunctionalityId) ? idealFuncOptions.find(idealFunc => idealFunc.value == subfuncSelector.idealFunctionalityId).label : "Select an Ideal Functionality..." : "Select an Ideal Functionality..." : "Select an Ideal Functionality..."}}
+                                    label : subfuncSelector ? idealFuncApiData ? idealFuncOptions.find(idealFunc => idealFunc.value === subfuncSelector.idealFunctionalityId) ? idealFuncOptions.find(idealFunc => idealFunc.value === subfuncSelector.idealFunctionalityId).label : "Select an Ideal Functionality..." : "Select an Ideal Functionality..." : "Select an Ideal Functionality..."}}
                                 ref={idealFunctRef}
                             />
                             </div>

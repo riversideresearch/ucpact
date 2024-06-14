@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useDrag } from "react-dnd";
@@ -139,7 +140,7 @@ function IdealFunc(props) {
                                     getOptionValue ={(option)=>option.label}
                                     placeholder="Select a Composite Direct Interface..."
                                     defaultValue={{ value : (idealFuncSelector.compositeDirectInterface) || "",
-                                        label : compDirIntOptions && compDirIntOptions.find(basicInt => basicInt.value == idealFuncSelector.compositeDirectInterface) ? compDirIntOptions.find(basicInt => basicInt.value == idealFuncSelector.compositeDirectInterface).label : "Select a Composite Direct Interface..."}}
+                                        label : compDirIntOptions && compDirIntOptions.find(basicInt => basicInt.value === idealFuncSelector.compositeDirectInterface) ? compDirIntOptions.find(basicInt => basicInt.value === idealFuncSelector.compositeDirectInterface).label : "Select a Composite Direct Interface..."}}
                                     ref={compDirIntRef}
                                 />
                             </div>
@@ -150,7 +151,7 @@ function IdealFunc(props) {
                                     getOptionValue ={(option)=>option.label}
                                     placeholder="Select a Composite Direct Interface..."
                                     defaultValue={{ value : (idealFuncSelector.basicAdversarialInterface) || "",
-                                        label : basicAdvIntOptions && basicAdvIntOptions.find(basicInt => basicInt.value == idealFuncSelector.basicAdversarialInterface) ? basicAdvIntOptions.find(basicInt => basicInt.value == idealFuncSelector.basicAdversarialInterface).label : "Select an Adversarial Interface..."}}
+                                        label : basicAdvIntOptions && basicAdvIntOptions.find(basicInt => basicInt.value === idealFuncSelector.basicAdversarialInterface) ? basicAdvIntOptions.find(basicInt => basicInt.value === idealFuncSelector.basicAdversarialInterface).label : "Select an Adversarial Interface..."}}
                                     ref={basicAdvIntRef}
                                 />
                             </div>

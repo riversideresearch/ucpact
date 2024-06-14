@@ -6,6 +6,7 @@ WORKDIR /webapp-build
 COPY package*.json .
 COPY jest.config.js .
 COPY scripts/ scripts
+COPY src/ src
 
 # Install dependencies
 RUN npm install

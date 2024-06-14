@@ -650,7 +650,7 @@ function Interfaces(props) {
                                                         getOptionValue ={(option)=>option.label}
                                                         placeholder="Select an Interface..."
                                                         defaultValue={{ value : (inter.idOfBasic) || "",
-                                                            label : optionsArray && optionsArray.find(basicInt => basicInt.value == inter.idOfBasic) ? optionsArray.find(basicInt => basicInt.value == inter.idOfBasic).label : "Select an Interface..."}}                                                        key={"comp-interface-basic-id" + inter.idOfInstance} id={"comp-interface-basic-id" + inter.idOfInstance} 
+                                                            label : optionsArray && optionsArray.find(basicInt => basicInt.value === inter.idOfBasic) ? optionsArray.find(basicInt => basicInt.value === inter.idOfBasic).label : "Select an Interface..."}}                                                        key={"comp-interface-basic-id" + inter.idOfInstance} id={"comp-interface-basic-id" + inter.idOfInstance} 
                                                         onChange={ e => setBasicInterfaceIDForComposite(value.id, index, e.value)}
                                                     />
                                                 </Col>

@@ -356,7 +356,7 @@ function Party(props) {
                                 getOptionValue ={(option)=>option.label}
                                 placeholder="Select a Direct Interface..."
                                 defaultValue={{ value : (partySelector && partySelector.basicDirectInterface) || "",
-                                    label : partySelector ? directIntOptions.find(basicInt => basicInt.value == partySelector.basicDirectInterface) ? directIntOptions.find(basicInt => basicInt.value == partySelector.basicDirectInterface).label : "Select a Direct Interface..." : "Select a Direct Interface..."}}
+                                    label : partySelector ? directIntOptions.find(basicInt => basicInt.value === partySelector.basicDirectInterface) ? directIntOptions.find(basicInt => basicInt.value === partySelector.basicDirectInterface).label : "Select a Direct Interface..." : "Select a Direct Interface..."}}
                                 ref={basicDirIntRef}
                             />
                         </div>
@@ -367,7 +367,7 @@ function Party(props) {
                                 getOptionValue ={(option)=>option.label}
                                 placeholder="Select an Adversarial Interface..."
                                 defaultValue={{ value : (partySelector && partySelector.basicAdversarialInterface) || "",
-                                    label : partySelector ? advIntOptions.find(basicInt => basicInt.value == partySelector.basicAdversarialInterface) ? advIntOptions.find(basicInt => basicInt.value == partySelector.basicAdversarialInterface).label : "Select an Adversarial Interface..." : "Select an Adversarial Interface..."}}
+                                    label : partySelector ? advIntOptions.find(basicInt => basicInt.value === partySelector.basicAdversarialInterface) ? advIntOptions.find(basicInt => basicInt.value === partySelector.basicAdversarialInterface).label : "Select an Adversarial Interface..." : "Select an Adversarial Interface..."}}
                                 ref={basicAdvIntRef}
                             />
                         </div>                                      

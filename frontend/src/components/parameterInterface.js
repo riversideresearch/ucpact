@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import Select from "react-select";
 import { useAuth } from "react-oidc-context";
-import Xarrow, { useXarrow } from 'react-xarrows';
 import { Button, Modal, Form } from "react-bootstrap";
 import './parameterInterface.css';
 import { useDrag } from "react-dnd";
@@ -11,7 +11,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CirclePicker } from 'react-color';
-import { DisplayNameSetup, upperCaseValidation } from "./helperFunctions";
+import { upperCaseValidation } from "./helperFunctions";
 import { changeTransitionDispatch } from '../features/stateMachines/stateMachineSlice';
 import { changeParamInterDispatch, deleteParamInterDispatch } from '../features/realFunctionalities/realFuncSlice';
 
@@ -20,13 +20,11 @@ function ParameterInterface(props) {
 
     const paramInterSelector = useSelector((state) => state.realFunctionality.parameterInterfaces.find(paramInter => paramInter.id === props.id))
     const transitionSelector = useSelector((state) => state.stateMachines.transitions) // Redux selector for transitions
-    const realFuncSelector = useSelector((state) => state.realFunctionality)
-
+    
     const [state, setState] = useState({color: paramInterSelector && paramInterSelector.color, colorTemp: paramInterSelector && paramInterSelector.color});
     const [show, setShow] = useState(props.id && !paramInterSelector.name);
     const [paramInterAPIData, setParamInterAPIData] = useState();
 
-    const updateXarrow = useXarrow();
     const dispatch = useDispatch();
     const auth = useAuth();
 
@@ -34,12 +32,6 @@ function ParameterInterface(props) {
 
     const nameRef = React.createRef();
     const compDirRef = React.createRef();
-
-    // aarow display parameters
-    const anchorSpacing = index => {
-        const multiplier = index % 2 ? -1 : 1;
-        return Math.ceil(index/2) * 20 * multiplier;
-    };
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "ucComp",
@@ -270,7 +262,7 @@ function ParameterInterface(props) {
                                 getOptionValue ={(option)=>option.label}
                                 placeholder="Select a Direct Interface..."
                                 defaultValue={{ value : (paramInterSelector && paramInterSelector.idOfInterface) || "",
-                                    label : paramInterSelector ? compDirOptions.find(compositeInt => compositeInt.value == paramInterSelector.idOfInterface) ? compDirOptions.find(compositeInt => compositeInt.value == paramInterSelector.idOfInterface).label : "Select a Direct Interface..." : "Select a Direct Interface..."}}
+                                    label : paramInterSelector ? compDirOptions.find(compositeInt => compositeInt.value === paramInterSelector.idOfInterface) ? compDirOptions.find(compositeInt => compositeInt.value === paramInterSelector.idOfInterface).label : "Select a Direct Interface..." : "Select a Direct Interface..."}}
                                 ref={compDirRef}
                             />
                         </div>                                      

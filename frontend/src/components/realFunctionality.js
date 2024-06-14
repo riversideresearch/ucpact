@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDrop } from 'react-dnd';
 import { Button, Modal, Form } from "react-bootstrap";
 import Select from "react-select";
@@ -22,14 +22,11 @@ import { addToPartiesDispatch,
          removeFromPartiesDispatch,
          removeFromSubfuncsDispatch,
          changeRealfuncDispatch,
-         addParamInterDispatch,
-         deleteParamInterDispatch, 
+         addParamInterDispatch, 
          updateParamInterPositionDispatch} from '../features/realFunctionalities/realFuncSlice'
 import { addStateDispatch, 
-         addStateMachineDispatch, 
-         changeTransitionDispatch } from '../features/stateMachines/stateMachineSlice';
-import { DisplayNameSetup, upperCaseValidation } from './helperFunctions';
-import { useAuth } from "react-oidc-context";
+         addStateMachineDispatch } from '../features/stateMachines/stateMachineSlice';
+import { DisplayNameSetup } from './helperFunctions';
 import ParameterInterface from './parameterInterface';
 
 function RealFunctionality(props) {
@@ -39,14 +36,11 @@ function RealFunctionality(props) {
     const interSelector = useSelector((state) => state.interfaces) // Redux selector for interfaces
     const partySelector = useSelector((state) => state.parties) // Redux selector for parties
     const subSelector = useSelector((state) => state.subfunctionalities) // Redux selector for subfunctionalities
-    const transitionSelector = useSelector((state) => state.stateMachines.transitions) // Redux selector for transitions
 
     const [displayState, setDisplayState] = useState({});
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    const auth = useAuth();
 
     useEffect(() => {
         realFuncSelector.parties.forEach((party) => {
@@ -299,7 +293,7 @@ function RealFunctionality(props) {
                                 getOptionValue ={(option)=>option.label}
                                 placeholder="Select a Direct Interface..."
                                 defaultValue={{ value : (realFuncSelector && realFuncSelector.compositeDirectInterface) || "",
-                                    label : directIntOptions.find(compositeInt => compositeInt.value == realFuncSelector.compositeDirectInterface) ? directIntOptions.find(compositeInt => compositeInt.value == realFuncSelector.compositeDirectInterface).label : "Select a Direct Interface..."}}
+                                    label : directIntOptions.find(compositeInt => compositeInt.value === realFuncSelector.compositeDirectInterface) ? directIntOptions.find(compositeInt => compositeInt.value === realFuncSelector.compositeDirectInterface).label : "Select a Direct Interface..."}}
                                 ref={compositeDirIntRef}
                             />
                         </div>
@@ -310,7 +304,7 @@ function RealFunctionality(props) {
                                 getOptionValue ={(option)=>option.label}
                                 placeholder="Select an Adversarial Interface..."
                                 defaultValue={{ value : (realFuncSelector && realFuncSelector.compositeAdversarialInterface) || "",
-                                    label : advIntOptions.find(compositeInt => compositeInt.value == realFuncSelector.compositeAdversarialInterface) ? advIntOptions.find(compositeInt => compositeInt.value == realFuncSelector.compositeAdversarialInterface).label : "Select a Adversarial Interface..."}}
+                                    label : advIntOptions.find(compositeInt => compositeInt.value === realFuncSelector.compositeAdversarialInterface) ? advIntOptions.find(compositeInt => compositeInt.value === realFuncSelector.compositeAdversarialInterface).label : "Select a Adversarial Interface..."}}
                                 ref={compositeAdvIntRef}
                             />
                         </div><br></br>                    

@@ -945,7 +945,7 @@ function StateMachineDnD(props) {
                                                         getOptionValue ={(option)=>option.label}
                                                         placeholder="Select a From State..."
                                                         defaultValue={{ value : (transition.fromState && transition.fromState) || "",
-                                                            label : transition.fromState && fromStateOptions && fromStateOptions.find(fromState => fromState.value == transition.fromState) ? fromStateOptions.find(fromState => fromState.value == transition.fromState).label : "Select a From State..."}}
+                                                            label : transition.fromState && fromStateOptions && fromStateOptions.find(fromState => fromState.value === transition.fromState) ? fromStateOptions.find(fromState => fromState.value === transition.fromState).label : "Select a From State..."}}
                                                         ref={transitionFromStateRefArray[idx]}
                                                     />
                                                 </Col>
@@ -955,7 +955,7 @@ function StateMachineDnD(props) {
                                                         getOptionValue ={(option)=>option.label}
                                                         placeholder="Select an In Message..."
                                                         defaultValue={{ value : (transition.inMessage && transition.inMessage) || "",
-                                                        label : transition.inMessage && inMessageOptions && inMessageOptions.find(message => message.value == transition.inMessage) ? inMessageOptions.find(message => message.value == transition.inMessage).label : "Select an In Message..."}}
+                                                        label : transition.inMessage && inMessageOptions && inMessageOptions.find(message => message.value === transition.inMessage) ? inMessageOptions.find(message => message.value === transition.inMessage).label : "Select an In Message..."}}
                                                         ref={transitionInMessageRefArray[idx]}
                                                     />
                                                 </Col>
@@ -967,7 +967,7 @@ function StateMachineDnD(props) {
                                                         getOptionValue ={(option)=>option.label}
                                                         placeholder="Select an Out Message..."
                                                         defaultValue={{ value : (transition.outMessage && transition.outMessage) || "",
-                                                        label : transition.outMessage && outMessageOptions && outMessageOptions.find(message => message.value == transition.outMessage) ? outMessageOptions.find(message => message.value == transition.outMessage).label : "Select an Out Message..."}}
+                                                        label : transition.outMessage && outMessageOptions && outMessageOptions.find(message => message.value === transition.outMessage) ? outMessageOptions.find(message => message.value === transition.outMessage).label : "Select an Out Message..."}}
                                                         ref={transitionOutMessageRefArray[idx]}
                                                         onChange={handleSelectChange}
                                                     />
@@ -978,7 +978,7 @@ function StateMachineDnD(props) {
                                                         getOptionValue ={(option)=>option.label}
                                                         placeholder="Select a To State..."
                                                         defaultValue={{ value : (transition.toState && transition.toState) || "",
-                                                        label : transition.toState && toStateOptions && toStateOptions.find(state => state.value == transition.toState) ? toStateOptions.find(state => state.value == transition.toState).label : "Select a To State..."}}
+                                                        label : transition.toState && toStateOptions && toStateOptions.find(state => state.value === transition.toState) ? toStateOptions.find(state => state.value === transition.toState).label : "Select a To State..."}}
                                                         ref={transitionToStateRefArray[idx]}
                                                         onChange={handleSelectChange}
                                                     />
