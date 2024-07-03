@@ -17,7 +17,7 @@ function ModelList(props) {
     const [nameSortState, setNameSortState] = useState(true);
     const [lastModifiedState, setLastModifiedState] = useState(true);
     const [statusFilterState, setStatusFilterState] = useState('');
-    const [, setSearchWidth] = useState('600');
+    const [searchWidth, setSearchWidth] = useState('600');
 
     const tableSearchRef = useRef({});
     const tableRef = useRef({});

@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
-import Select from "react-select";
+import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 import { Button, Modal, Form } from "react-bootstrap";
 import './idealFunc.css'
@@ -52,8 +50,8 @@ function IdealFunc(props) {
         e.preventDefault();
         let updatedValue = {
             "name": nameRef.current.value,
-            "basicAdversarialInterface": basicAdvIntRef.current.getValue()[0].value,
-            "compositeDirectInterface": compDirIntRef.current.getValue()[0].value,
+            "basicAdversarialInterface": basicAdvIntRef.current.value,
+            "compositeDirectInterface": compDirIntRef.current.value,
         };
         if(upperCaseValidation(nameRef.current.value)){
             dispatch(changeIFDispatch(updatedValue))
@@ -79,26 +77,6 @@ function IdealFunc(props) {
 
         return (flag)
     };
-
-    // Dropdown menu functions
-    const [compDirIntOptions, setCompDirIntOptions] = useState([]);
-    const [basicAdvIntOptions, setBasicAdvIntOptions] = useState([]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "basic-interface-id", value : "", label : "Select a Composite Direct Interface..."}]
-        interSelector.compInters.filter(basicInt => basicInt.type === "direct").forEach(basicInt => {
-            optionsArray.push({key : "basic-interface-id-" + basicInt.id, value : basicInt.id, label : DisplayNameSetup(basicInt.name, IFInterfaceMaxLength)})
-        });
-        setCompDirIntOptions(optionsArray);
-    }, [interSelector]);
-
-    useEffect(() => {
-        let optionsArray = [{key: "basic-interface-id", value : "", label : "Select an Adversarial Interface..."}];
-        interSelector.basicInters.filter(interFilter).forEach(basicInt => {
-            optionsArray.push({key : "basic-interface-id-" + basicInt.id, value : basicInt.id, label : DisplayNameSetup(basicInt.name,IFInterfaceMaxLength)})
-        });
-        setBasicAdvIntOptions(optionsArray);                                    
-    }, [interSelector]);
     
     return (
         <div>
@@ -135,25 +113,26 @@ function IdealFunc(props) {
                         <div className="ideal-world-dropdowns">
                         <h6>Composite Direct Interface</h6>
                             <div id="composite-direct-interface">
-                                <Select 
-                                    options={compDirIntOptions}
-                                    getOptionValue ={(option)=>option.label}
-                                    placeholder="Select a Composite Direct Interface..."
-                                    defaultValue={{ value : (idealFuncSelector.compositeDirectInterface) || "",
-                                        label : compDirIntOptions && compDirIntOptions.find(basicInt => basicInt.value === idealFuncSelector.compositeDirectInterface) ? compDirIntOptions.find(basicInt => basicInt.value === idealFuncSelector.compositeDirectInterface).label : "Select a Composite Direct Interface..."}}
-                                    ref={compDirIntRef}
-                                />
+                                <Form.Select aria-label="Select a Composite Direct Interface" ref={compDirIntRef}
+                                             defaultValue={idealFuncSelector.compositeDirectInterface}
+                                             title={"idealFuncDirInterface"}>
+                                    <option value="">Select a Composite Direct Interface</option>
+                                    { interSelector.compInters.filter(basicInt => basicInt.type === "direct").map(basicInt => (
+                                            <option key={"basic-interface-id-" + basicInt.id} value={basicInt.id}>{DisplayNameSetup(basicInt.name, IFInterfaceMaxLength)}</option> 
+                                    ))}
+                                </Form.Select>
                             </div>
                             <h6>Basic Adversarial Interface</h6>
                             <div id="basic-adversarial-interface">
-                                <Select 
-                                    options={basicAdvIntOptions}
-                                    getOptionValue ={(option)=>option.label}
-                                    placeholder="Select a Composite Direct Interface..."
-                                    defaultValue={{ value : (idealFuncSelector.basicAdversarialInterface) || "",
-                                        label : basicAdvIntOptions && basicAdvIntOptions.find(basicInt => basicInt.value === idealFuncSelector.basicAdversarialInterface) ? basicAdvIntOptions.find(basicInt => basicInt.value === idealFuncSelector.basicAdversarialInterface).label : "Select an Adversarial Interface..."}}
-                                    ref={basicAdvIntRef}
-                                />
+                                <Form.Select aria-label="Select an Adversarial Interface" ref={basicAdvIntRef}
+                                             defaultValue={idealFuncSelector.basicAdversarialInterface}
+                                             title={"idealFuncAdvInterface"}>
+                                    <option value="">Select an Adversarial Interface</option>
+                                    { interSelector.basicInters.filter(interFilter).map(basicInt => (
+                                            <option key={"basic-interface-id-" + basicInt.id} value={basicInt.id}>{DisplayNameSetup(basicInt.name,IFInterfaceMaxLength)}</option> 
+                                    ))}
+                                    
+                                </Form.Select>
                             </div>
                         </div>                                   
                     </div>                   

@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDrop } from 'react-dnd';
 import { Button, Modal, Form } from "react-bootstrap";
-import Select from "react-select";
 import uuid from 'react-uuid';
 import Environment from './environment';
 import Party from './party';
@@ -22,11 +21,14 @@ import { addToPartiesDispatch,
          removeFromPartiesDispatch,
          removeFromSubfuncsDispatch,
          changeRealfuncDispatch,
-         addParamInterDispatch, 
+         addParamInterDispatch,
+         deleteParamInterDispatch, 
          updateParamInterPositionDispatch} from '../features/realFunctionalities/realFuncSlice'
 import { addStateDispatch, 
-         addStateMachineDispatch } from '../features/stateMachines/stateMachineSlice';
-import { DisplayNameSetup } from './helperFunctions';
+         addStateMachineDispatch, 
+         changeTransitionDispatch } from '../features/stateMachines/stateMachineSlice';
+import { DisplayNameSetup, upperCaseValidation } from './helperFunctions';
+import { useAuth } from "react-oidc-context";
 import ParameterInterface from './parameterInterface';
 
 function RealFunctionality(props) {
@@ -36,11 +38,14 @@ function RealFunctionality(props) {
     const interSelector = useSelector((state) => state.interfaces) // Redux selector for interfaces
     const partySelector = useSelector((state) => state.parties) // Redux selector for parties
     const subSelector = useSelector((state) => state.subfunctionalities) // Redux selector for subfunctionalities
+    const transitionSelector = useSelector((state) => state.stateMachines.transitions) // Redux selector for transitions
 
     const [displayState, setDisplayState] = useState({});
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const auth = useAuth();
 
     useEffect(() => {
         realFuncSelector.parties.forEach((party) => {
@@ -201,8 +206,8 @@ function RealFunctionality(props) {
 
         let updatedValue = {
             "name": nameRef.current.value,
-            "compositeAdversarialInterface": compositeAdvIntRef.current.getValue()[0].value,
-            "compositeDirectInterface": compositeDirIntRef.current.getValue()[0].value,
+            "compositeAdversarialInterface": compositeAdvIntRef.current.value,
+            "compositeDirectInterface": compositeDirIntRef.current.value,
             "parameterInterfaces": realFuncSelector.parameterInterfaces
         };
 
@@ -225,26 +230,6 @@ function RealFunctionality(props) {
         //Close the modal [May not want to do it]
         setShow(false);
     }    
-
-    // Dropdown menu functions
-    const [directIntOptions, setDirectIntOptions] = useState([]);
-    const [advIntOptions, setAdvIntOptions] = useState([]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "composite-direct-int", value : "", label : "Select a Direct Interface..."}];
-        interSelector.compInters.filter(compositeInt => compositeInt.type === "direct").forEach(compositeInt => {
-            optionsArray.push({key : "composite-interface-id-" + compositeInt.id, value : compositeInt.id, label : DisplayNameSetup(compositeInt.name, realFuncInterfaceDisplayLength)})
-        });
-        setDirectIntOptions(optionsArray);
-    }, [interSelector]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "composite-adv-int", value : "", label : "Select an Adversarial Interface..."}];
-        interSelector.compInters.filter(compositeInt => compositeInt.type === "adversarial").forEach(compositeInt => {
-            optionsArray.push({key: "composite-interface-id-" + compositeInt.id, datatestid : "select-option", value : compositeInt.id, label : DisplayNameSetup(compositeInt.name, realFuncInterfaceDisplayLength)})
-        });
-        setAdvIntOptions(optionsArray)
-    }, [interSelector]);
     
     return (
         <div className="rw" ref={drop} >
@@ -288,26 +273,30 @@ function RealFunctionality(props) {
                     <div id="dropdown-container">
                         <div id="composite-direct-interfaces">
                             <h6>Composite Direct Interface</h6>
-                            <Select 
-                                options={directIntOptions}
-                                getOptionValue ={(option)=>option.label}
-                                placeholder="Select a Direct Interface..."
-                                defaultValue={{ value : (realFuncSelector && realFuncSelector.compositeDirectInterface) || "",
-                                    label : directIntOptions.find(compositeInt => compositeInt.value === realFuncSelector.compositeDirectInterface) ? directIntOptions.find(compositeInt => compositeInt.value === realFuncSelector.compositeDirectInterface).label : "Select a Direct Interface..."}}
-                                ref={compositeDirIntRef}
-                            />
+                            <Form.Select aria-label="Select a Direct Interface" ref={compositeDirIntRef}
+                                            defaultValue={ (realFuncSelector && realFuncSelector.compositeDirectInterface) || "" }
+                                            title={"realFuncDirInterface"}>
+                                <option value="">Select a Direct Interface</option>
+                                { interSelector.compInters.filter(compositeInt => compositeInt.type === "direct").map(compositeInt => (
+                                        <option key={"composite-interface-id-" + compositeInt.id} value={compositeInt.id}>
+                                            {DisplayNameSetup(compositeInt.name, realFuncInterfaceDisplayLength)}
+                                            </option> 
+                                ))}
+                            </Form.Select>
                         </div>
                         <div id="composite-adversary-interfaces">
                             <h6>Composite Adversarial Interface</h6>
-                            <Select 
-                                options={advIntOptions}
-                                getOptionValue ={(option)=>option.label}
-                                placeholder="Select an Adversarial Interface..."
-                                defaultValue={{ value : (realFuncSelector && realFuncSelector.compositeAdversarialInterface) || "",
-                                    label : advIntOptions.find(compositeInt => compositeInt.value === realFuncSelector.compositeAdversarialInterface) ? advIntOptions.find(compositeInt => compositeInt.value === realFuncSelector.compositeAdversarialInterface).label : "Select a Adversarial Interface..."}}
-                                ref={compositeAdvIntRef}
-                            />
-                        </div><br></br>                    
+                            <Form.Select aria-label="Select an Adversarial Interface" ref={compositeAdvIntRef}
+                                            defaultValue={ (realFuncSelector && realFuncSelector.compositeAdversarialInterface) || "" }
+                                            title={"realFuncAdvInterface"} >
+                                <option value="">Select an Adversarial Interface</option>
+                                { interSelector.compInters.filter(compositeInt => compositeInt.type === "adversarial").map(compositeInt => (
+                                        <option key={"composite-interface-id-" + compositeInt.id} data-testid="select-option" value={compositeInt.id}>
+                                            {DisplayNameSetup(compositeInt.name, realFuncInterfaceDisplayLength)}
+                                            </option> 
+                                ))}
+                            </Form.Select>
+                        </div>                               
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

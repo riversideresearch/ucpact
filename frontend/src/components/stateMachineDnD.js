@@ -2,7 +2,6 @@
 import './stateMachines.css';
 import State from './state';
 import React, { useState, useEffect, useRef } from 'react';
-import Select from 'react-select';
 import { useDrop } from 'react-dnd';
 import { Button, Modal, Form } from "react-bootstrap";
 import './stateMachines.css';
@@ -190,13 +189,13 @@ function StateMachineDnD(props) {
             }
             let updatedTransition = {
                 "id": transition,
-                "fromState": transitionFromStateRefArray[idx].current.getValue()[0].value,
-                "toState": transitionToStateRefArray[idx].current.getValue()[0].value,
+                "fromState": transitionFromStateRefArray[idx].current.value,
+                "toState": transitionToStateRefArray[idx].current.value,
                 "toStateArguments": inArgumentValuesArray,
                 "outMessageArguments": outArgumentValuesArray,
                 "guard": transitionGuardRefArray[idx].current.value,
-                "outMessage": transitionOutMessageRefArray[idx].current.getValue()[0].value,
-                "inMessage": transitionInMessageRefArray[idx].current.getValue()[0].value,
+                "outMessage": transitionOutMessageRefArray[idx].current.value,
+                "inMessage": transitionInMessageRefArray[idx].current.value,
                 "targetPort": targetport
             }
             
@@ -800,86 +799,6 @@ function StateMachineDnD(props) {
         }
     };
 
-    // Dropdown menu functions
-    const [fromStateOptions, setFromStateOptions] = useState([]);
-    const [inMessageOptions, setInMessageOptions] = useState([]);
-    const [outMessageOptions, setOutMessageOptions] = useState([]);
-    const [toStateOptions, setToStateOptions] = useState([]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "state", value : "", label : "Select a From State..."}];
-        thisStateMachineSelector.states.forEach(state => {
-            optionsArray.push({key : "state-" + state, value : state, label : DisplayNameSetup(stateMachineSelector.states.find(element => element.id === state).name, stateDropDownDisplayLength)});
-        });
-        setFromStateOptions(optionsArray);
-    }, [thisStateMachineSelector]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "inMessage", value : "", label : "Select an In Message..."}];
-        interSelector.messages.filter(messageFilterIn).forEach(message => {
-            optionsArray.push({key : "message-" + message.id, value : message.id, label : messagePathConstruction(message, "misc")});
-        });
-        // Options for subfunc out messages
-        partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && subFuncMessages.forEach(message => {
-            (message.type === "out" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "direct" &&
-            optionsArray.push({key : "message-" + message.id + message.subfuncId, value : message.id, label : messagePathConstruction(message, "subFunc")}));
-        });
-        // Options for parameterInterfaces out messages
-        partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && paramInterMessages.forEach(message => {
-            (message.type === "out" && realFuncSelector.parameterInterfaces.find(element => element.id === message.paramInterId) && message.basicInter.type === "direct" &&
-            optionsArray.push({key : "message-" + message.id + message.paramInterId, value : message.id, label : messagePathConstruction(message, "paramInter")}));
-        });
-        // Options for sim subfunc out messages
-        (props.component === simSelector) && subFuncMessages.forEach(message => {
-            (message.type === "in" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "adversarial" &&
-            optionsArray.push({key : "message-" + message.id + message.subfuncId, value : message.id, label : messagePathConstruction(message, "subFunc")}));
-        });
-        // Options for sim parameterInterfaces out messages
-        (props.component === simSelector) && paramInterMessages.forEach(message => {
-            (message.type === "in" && realFuncSelector.parameterInterfaces.find(element => element.id === message.paramInterId) && message.basicInter.type === "adversarial" &&
-            optionsArray.push({key : "message-" + message.id + message.paramInterId, value : message.id, label : messagePathConstruction(message, "paramInter")}));
-        });
-        setInMessageOptions(optionsArray);
-
-    }, [interSelector, partySelector, paramInterMessages, subFuncMessages]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "outMessage", value : "", label : "Select an Out Message..."}];
-        interSelector.messages.filter(messageFilterOut).forEach(message => {
-            optionsArray.push({key : "message-" + message.id, value : message.id, label : messagePathConstruction(message, "misc")});
-        });
-        // Options for subfunc in messages
-        partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && subFuncMessages.forEach(message => {
-            (message.type === "in" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "direct" &&
-            optionsArray.push({key : "message-" + message.id + message.subfuncId, value : message.id, label : messagePathConstruction(message, "subFunc")}));
-        });
-        // Options for parameterInterfaces in messages
-        partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && paramInterMessages.forEach(message => {
-            (message.type === "in" && realFuncSelector.parameterInterfaces.find(element => element.id === message.paramInterId) && message.basicInter.type === "direct" &&
-            optionsArray.push({key : "message-" + message.id + message.paramInterId, value : message.id, label : messagePathConstruction(message, "paramInter")}));
-        });
-        // Options for sim subfunc in messages
-        (props.component === simSelector) && subFuncMessages.forEach(message => {
-            (message.type === "out" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "adversarial" &&
-            optionsArray.push({key : "message-" + message.id + message.subfuncId, value : message.id, label : messagePathConstruction(message, "subFunc")}));
-        });
-        // Options for sim parameterInterfaces in messages
-        (props.component === simSelector) && paramInterMessages.forEach(message => {
-            (message.type === "out" && realFuncSelector.parameterInterfaces.find(element => element.id === message.paramInterId) && message.basicInter.type === "adversarial" &&
-            optionsArray.push({key : "message-" + message.id + message.paramInterId, value : message.id, label : messagePathConstruction(message, "paramInter")}));
-        });
-        setOutMessageOptions(optionsArray);
-    }, [interSelector, partySelector, subFuncMessages, paramInterMessages]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "toState", value : "", label : "Select a To State..."}];
-        thisStateMachineSelector.states.forEach(state => {
-            (thisStateMachineSelector.initState !== state) &&
-            optionsArray.push({key : "state-" + state, value : state, label : DisplayNameSetup(stateMachineSelector.states.find(element => element.id === state).name, stateDropDownDisplayLength)}) 
-        });
-        setToStateOptions(optionsArray);
-    }, [thisStateMachineSelector, stateMachineSelector]);
-
     return (
         <div className='overall-container' style={{display: 'flex'}}>
             <div className="dB1">
@@ -940,48 +859,100 @@ function StateMachineDnD(props) {
                                         <Accordion.Body>
                                             <Row>
                                                 <Col>
-                                                    <Select 
-                                                        options={fromStateOptions}
-                                                        getOptionValue ={(option)=>option.label}
-                                                        placeholder="Select a From State..."
-                                                        defaultValue={{ value : (transition.fromState && transition.fromState) || "",
-                                                            label : transition.fromState && fromStateOptions && fromStateOptions.find(fromState => fromState.value === transition.fromState) ? fromStateOptions.find(fromState => fromState.value === transition.fromState).label : "Select a From State..."}}
-                                                        ref={transitionFromStateRefArray[idx]}
-                                                    />
+                                                    <Form.Select aria-label="Select a From State" ref={transitionFromStateRefArray[idx]}
+                                                    defaultValue={ (transition.fromState && transition.fromState) || "" }
+                                                    title={"transitionFromState"} className="inputFields">
+                                                        <option value="">Select a From State</option>
+                                                        {thisStateMachineSelector.states.map(state => (
+                                                            <option key={"state-" + state} value={state}>{DisplayNameSetup(stateMachineSelector.states.find(element => element.id === state).name, stateDropDownDisplayLength)}</option> 
+                                                        ))}
+                                                    </Form.Select>
                                                 </Col>
                                                 <Col>
-                                                    <Select 
-                                                        options={inMessageOptions}
-                                                        getOptionValue ={(option)=>option.label}
-                                                        placeholder="Select an In Message..."
-                                                        defaultValue={{ value : (transition.inMessage && transition.inMessage) || "",
-                                                        label : transition.inMessage && inMessageOptions && inMessageOptions.find(message => message.value === transition.inMessage) ? inMessageOptions.find(message => message.value === transition.inMessage).label : "Select an In Message..."}}
-                                                        ref={transitionInMessageRefArray[idx]}
-                                                    />
+                                                    <Form.Select aria-label="Select an In Message" ref={transitionInMessageRefArray[idx]}
+                                                    defaultValue={ (transition.inMessage && transition.inMessage) || "" }
+                                                    title={"transitionInMessage"} className="inputFields">
+                                                        <option value="">Select an In Message</option>
+                                                        {interSelector.messages.filter(messageFilterIn).map(message => (
+                                                            <option key={"message-" + message.id} value={message.id}>{messagePathConstruction(message, "misc")}</option>
+                                                        ))}
+                                                        {/* Options for subfunc out messages */}
+                                                        {partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && subFuncMessages.map(message => (
+                                                            (message.type === "out" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "direct" &&
+                                                            <option key={"message-" + message.id + message.subfuncId} value={message.id}>{messagePathConstruction(message, "subFunc")}</option>
+                                                            )
+                                                        ))}
+                                                        {/* Options for parameterInterfaces out messages */}
+                                                        {partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && paramInterMessages.map(message => (
+                                                            (message.type === "out" && realFuncSelector.parameterInterfaces.find(element => element.id === message.paramInterId) && message.basicInter.type === "direct" &&
+                                                            <option key={"message-" + message.id + message.paramInterId} value={message.id}>{messagePathConstruction(message, "paramInter")}</option>
+                                                            )
+                                                        ))}
+                                                        {/* Options for sim subfunc out messages */}
+                                                        {(props.component === simSelector) && subFuncMessages.map(message => (
+                                                            (message.type === "in" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "adversarial" &&
+                                                            <option key={"message-" + message.id + message.subfuncId} value={message.id}>{messagePathConstruction(message, "subFunc")}</option>
+                                                            )
+                                                        ))}
+                                                        {/* Options for sim parameterInterfaces out messages */}
+                                                        {(props.component === simSelector) && paramInterMessages.map(message => (
+                                                            (message.type === "in" && realFuncSelector.parameterInterfaces.find(element => element.id === message.paramInterId) && message.basicInter.type === "adversarial" &&
+                                                            <option key={"message-" + message.id + message.paramInterId} value={message.id}>{messagePathConstruction(message, "paramInter")}</option>
+                                                            )
+                                                        ))}
+                                    
+                                                    </Form.Select>
                                                 </Col>
                                             </Row>
                                             <Row>
                                                 <Col>
-                                                    <Select 
-                                                        options={outMessageOptions}
-                                                        getOptionValue ={(option)=>option.label}
-                                                        placeholder="Select an Out Message..."
-                                                        defaultValue={{ value : (transition.outMessage && transition.outMessage) || "",
-                                                        label : transition.outMessage && outMessageOptions && outMessageOptions.find(message => message.value === transition.outMessage) ? outMessageOptions.find(message => message.value === transition.outMessage).label : "Select an Out Message..."}}
-                                                        ref={transitionOutMessageRefArray[idx]}
-                                                        onChange={handleSelectChange}
-                                                    />
+                                                    <Form.Select aria-label="Select an Out Message" ref={transitionOutMessageRefArray[idx]}
+                                                    defaultValue={ (transition.outMessage && transition.outMessage) || "" }
+                                                    onChange={handleSelectChange}
+                                                    title={"transitionOutMessage"} className="inputFields">
+                                                        <option value="">Select an Out Message</option>
+                                                        {interSelector.messages.filter(messageFilterOut).map(message => (
+                                                            <option key={"message-" + message.id} value={message.id}>{messagePathConstruction(message, "misc")}</option>
+                                                        ))}
+                                                        {/* Options for subfunc in messages */}
+                                                        {partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && subFuncMessages.map(message => (
+                                                            (message.type === "in" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "direct" &&
+                                                            <option key={"message-" + message.id + message.subfuncId} value={message.id}>{messagePathConstruction(message, "subFunc")}</option>
+                                                            )
+                                                        ))}
+                                                        {/* Options for parameterInterfaces in messages */}
+                                                        {partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && paramInterMessages.map(message => (
+                                                            (message.type === "in" && realFuncSelector.parameterInterfaces.find(element => element.id === message.paramInterId) && message.basicInter.type === "direct" &&
+                                                            <option key={"message-" + message.id + message.paramInterId} value={message.id}>{messagePathConstruction(message, "paramInter")}</option>
+                                                            )
+                                                        ))}
+                                                        {/* Options for sim subfunc in messages */}
+                                                        {(props.component === simSelector) && subFuncMessages.map(message => (
+                                                            (message.type === "out" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "adversarial" &&
+                                                            <option key={"message-" + message.id + message.subfuncId} value={message.id}>{messagePathConstruction(message, "subFunc")}</option>
+                                                            )
+                                                        ))}
+                                                        {/* Options for sim parameterInterfaces in messages */}
+                                                        {(props.component === simSelector) && paramInterMessages.map(message => (
+                                                            (message.type === "out" && realFuncSelector.parameterInterfaces.find(element => element.id === message.paramInterId) && message.basicInter.type === "adversarial" &&
+                                                            <option key={"message-" + message.id + message.paramInterId} value={message.id}>{messagePathConstruction(message, "paramInter")}</option>
+                                                            )
+                                                        ))}
+
+                                                    </Form.Select>
                                                 </Col>
                                                 <Col>
-                                                    <Select 
-                                                        options={toStateOptions}
-                                                        getOptionValue ={(option)=>option.label}
-                                                        placeholder="Select a To State..."
-                                                        defaultValue={{ value : (transition.toState && transition.toState) || "",
-                                                        label : transition.toState && toStateOptions && toStateOptions.find(state => state.value === transition.toState) ? toStateOptions.find(state => state.value === transition.toState).label : "Select a To State..."}}
-                                                        ref={transitionToStateRefArray[idx]}
-                                                        onChange={handleSelectChange}
-                                                    />
+                                                    <Form.Select aria-label="Select a To State" ref={transitionToStateRefArray[idx]}
+                                                    defaultValue={ (transition.toState && transition.toState) || "" }
+                                                    onChange={handleSelectChange}
+                                                    title={"transitionToState"} className="inputFields"
+                                                    >
+                                                        <option value="">Select a To State</option>
+                                                        {thisStateMachineSelector.states.map(state => (
+                                                            (thisStateMachineSelector.initState !== state) &&
+                                                            <option key={"state-" + state} value={state}>{DisplayNameSetup(stateMachineSelector.states.find(element => element.id === state).name, stateDropDownDisplayLength)}</option> 
+                                                        ))}
+                                                    </Form.Select>
                                                 </Col>
                                             </Row>
                                             {(transition.outMessage && checkMessageType(transition.outMessage, transition)) &&                                                  

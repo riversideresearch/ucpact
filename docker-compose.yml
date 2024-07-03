@@ -15,9 +15,7 @@ services:
         networks:
             - nginx-network
         volumes:
-            - type: bind
-              source: ./auth/realm.json
-              target: /opt/keycloak/data/import/realm.json
+            - ./auth/realm.json:/opt/keycloak/data/import/realm.json
         container_name: uc-pact-auth
     frontend:
         build:
@@ -30,9 +28,7 @@ services:
         networks:
             - nginx-network
         volumes:
-            - type: bind
-              source: ${PWD}/nginx.conf
-              target: /etc/nginx/conf.d/default.conf
+            - ${PWD}/nginx.conf:/etc/nginx/conf.d/default.conf
         container_name: frontend
     frontend-dev:
         build:

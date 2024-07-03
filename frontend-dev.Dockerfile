@@ -1,6 +1,6 @@
 # First we will build the webapp
 FROM node as buildstage
-WORKDIR /frontend-build
+WORKDIR /webapp-build
 
 # Copy in the files we need
 COPY package*.json .

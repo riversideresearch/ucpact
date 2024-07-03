@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
-import Select from "react-select";
+import React, { useState } from 'react';
 import './simulator.css'
 import { Button, Modal, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -44,8 +42,8 @@ function Simulator(props) {
         e.preventDefault();
         let updatedValue = {
             "name": nameRef.current.value,
-            "basicAdversarialInterface": basicAdvIntRef.current.getValue()[0].value,
-            "realFunctionality": realFunctRef.current.getValue()[0].value,};
+            "basicAdversarialInterface": basicAdvIntRef.current.value,
+            "realFunctionality": realFunctRef.current.value,};
         if(upperCaseValidation(nameRef.current.value)){
             dispatch(changeSimDispatch(updatedValue))
             //Close the modal [May not want to do it]
@@ -69,23 +67,6 @@ function Simulator(props) {
 
         return (flag)
     };
-
-    const [realFuncOptions, setRealFuncOptions] = useState([]);
-    const [advIntOptions, setAdvIntOptions] = useState([]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "real-Func-id", value : "", label : "Select a Real Functionality..."}]
-        optionsArray.push({key : "real-Func-id-" + realFuncSelector.id, value : realFuncSelector.id, label : DisplayNameSetup(realFuncSelector.name, simInterfaceMaxLength)});
-        setRealFuncOptions(optionsArray);
-    }, [realFuncSelector]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "basic-interface-id", value : "", label : "Select an Adversarial Interface..."}];
-        interSelector.basicInters.filter(interFilter).forEach(basicInt => {
-            optionsArray.push({key : "basic-interface-id-" + basicInt.id, value : basicInt.id, label : DisplayNameSetup(basicInt.name, simInterfaceMaxLength)});
-        });
-        setAdvIntOptions(optionsArray);
-    }, [interSelector]);
     
     return (
         // Below we use simSelector.id to see if this is an actual simulator or if it exists
@@ -123,25 +104,24 @@ function Simulator(props) {
                     <div id="dropdown-container">                        
                         <div id="real-functionalities">
                             <h6>Real Functionality</h6>
-                            <Select 
-                                options={realFuncOptions}
-                                getOptionValue ={(option)=>option.label}
-                                placeholder="Select a Real Functionality..."
-                                defaultValue={{ value : (simSelector.realFunctionality) || "",
-                                label : realFuncOptions && realFuncOptions.find(realFunc => realFunc.value === simSelector.realFunctionality) ? realFuncOptions.find(realFunc => realFunc.value === simSelector.realFunctionality).label : "Select a Real Functionality..."}}
-                                ref={realFunctRef}
-                            />
+                            <Form.Select aria-label="Select a Real Functionality" ref={realFunctRef}
+                                            defaultValue={simSelector.realFunctionality}
+                                            title={"simRealFunc"}>
+                                <option value="">Select a Real Functionality</option>
+                                <option key={"real-Func-id-" + realFuncSelector.id} value={realFuncSelector.id}>{DisplayNameSetup(realFuncSelector.name, simInterfaceMaxLength)}</option> 
+                                
+                            </Form.Select>
                         </div>
                         <div id="basic-adversarial-interfaces">
                             <h6>Basic Adversarial Interface</h6>
-                            <Select 
-                                options={advIntOptions}
-                                getOptionValue ={(option)=>option.label}
-                                placeholder="Select an Adversarial Interface..."
-                                defaultValue={{ value : (simSelector.realFunctionality) || "",
-                                label : advIntOptions && advIntOptions.find(basicInt => basicInt.value === simSelector.basicAdversarialInterface) ? advIntOptions.find(basicInt => basicInt.value === simSelector.basicAdversarialInterface).label : "Select an Adversarial Interface..."}}
-                                ref={basicAdvIntRef}
-                            />
+                            <Form.Select aria-label="Select an Adversarial Interface" ref={basicAdvIntRef}
+                                            defaultValue={simSelector.basicAdversarialInterface}
+                                            title={"simAdvInterface"}>
+                                <option value="">Select an Adversarial Interface</option>
+                                { interSelector.basicInters.filter(interFilter).map(basicInt => (
+                                            <option key={"basic-interface-id-" + basicInt.id} value={basicInt.id}>{DisplayNameSetup(basicInt.name, simInterfaceMaxLength)}</option> 
+                                    ))}
+                            </Form.Select>
                         </div>                                      
                     </div>
                 </Modal.Body>

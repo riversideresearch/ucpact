@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import Select from "react-select";
 import { useDrag } from "react-dnd";
 import { useParams } from 'react-router';
 import { Button, Modal, Form } from "react-bootstrap";
@@ -161,7 +160,7 @@ function SubFunc(props) {
         
         // Get the ideal functionality of what we are pointing to
         let idealIDOfThisSubFunc = subfuncSelector.idealFunctionalityId
-        if((idealIDOfThisSubFunc !== idealFunctRef.current.props.value.value) && idealIDOfThisSubFunc !== null){
+        if((idealIDOfThisSubFunc !== idealFunctRef.current.value) && idealIDOfThisSubFunc !== null){
             //URL Path needs to be based off of the subFunc that we are deleting
             let token = "none";
             if (process.env.NODE_ENV !== 'test') {
@@ -215,8 +214,8 @@ function SubFunc(props) {
         let idealFuncName = "";
         let IFModelName = "";
 
-        if (idealFunctRef.current.props.value.value !== "") {
-            const currentApiObj = idealFuncApiData.find(element => element.idealFunctionality_id === idealFunctRef.current.props.value.value);
+        if (idealFunctRef.current.value !== "") {
+            const currentApiObj = idealFuncApiData.find(element => element.idealFunctionality_id === idealFunctRef.current.value);
             idealFuncName = currentApiObj.idealFunctionality_name;
             IFModelName = currentApiObj.model_name;
         }
@@ -224,7 +223,7 @@ function SubFunc(props) {
         let updatedValue = {
             "id": props.id,
             "name": nameRef.current.value,
-            "idealFunctionalityId": idealFunctRef.current.props.value.value,
+            "idealFunctionalityId": idealFunctRef.current.value,
             "idealFunctionalityName" : idealFuncName,
             "idealFuncModel": IFModelName,
             "color": state.colorTemp,
@@ -245,18 +244,6 @@ function SubFunc(props) {
         }
         
     }
-
-    // Dropdown menu functions
-    const [idealFuncOptions, setIdealFuncOptions] = useState([]);
-
-    useEffect(() => {
-        let optionsArray = [{key : "ideal-Func-id", value : "", label : "Select an Ideal Functionality..."}];
-        idealFuncApiData && idealFuncApiData.forEach(idealFunc => {
-            (id !== idealFunc.model_name &&
-            optionsArray.push({key: "ideal-Func-id-" + idealFunc.idealFunctionality_id, value : idealFunc.idealFunctionality_id, label : idealFunc.idealFunctionality_name + " (" + idealFunc.model_name + ")"}))
-        });
-        setIdealFuncOptions(optionsArray);
-    }, [idealFuncApiData]);
     
     let colorPalette = ["#8a6996", "#db585f", "#8e9cc6", "#d1b292", "#5f8ba1", "#e6a545", "#6b9a8d", "#c96383", "#5290a2", "#d1a27d", "#477090", "#c8b47b"];
 
@@ -313,14 +300,15 @@ function SubFunc(props) {
                         <div className="real-world-dropdowns">
                             <div id="ideal-functionality">
                             <h6>Ideal Functionality</h6>
-                            <Select 
-                                options={idealFuncOptions}
-                                getOptionValue ={(option)=>option.label}
-                                placeholder="Select an Ideal Functionality..."
-                                defaultValue={{ value : (subfuncSelector && subfuncSelector.idealFunctionalityId) || "",
-                                    label : subfuncSelector ? idealFuncApiData ? idealFuncOptions.find(idealFunc => idealFunc.value === subfuncSelector.idealFunctionalityId) ? idealFuncOptions.find(idealFunc => idealFunc.value === subfuncSelector.idealFunctionalityId).label : "Select an Ideal Functionality..." : "Select an Ideal Functionality..." : "Select an Ideal Functionality..."}}
-                                ref={idealFunctRef}
-                            />
+                            <Form.Select aria-label="Select an Ideal Functionality" ref={idealFunctRef}
+                                            defaultValue={ (subfuncSelector && subfuncSelector.idealFunctionalityId) || "" }>
+                                <option value="">Select an Ideal Functionality</option>
+                                {idealFuncApiData && (
+                                idealFuncApiData.map(idealFunc => (
+                                        (id !== idealFunc.model_name &&
+                                        <option key={"ideal-Func-id-" + idealFunc.idealFunctionality_id} value={idealFunc.idealFunctionality_id}>{idealFunc.idealFunctionality_name + " (" + idealFunc.model_name + ")"}</option>) 
+                                )))}
+                            </Form.Select>
                             </div>
                         </div>                                    
                     </div>

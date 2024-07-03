@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import LandingPage from './components/landingPage';
+import ModelList from './components/modelList';
 import LoadingPage from './components/loadingPage';
 import 'react-notifications-component/dist/theme.css'
 import './App.css';
