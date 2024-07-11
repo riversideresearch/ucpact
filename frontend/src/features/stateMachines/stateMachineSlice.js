@@ -147,6 +147,14 @@ export const stateMachineSlice = createSlice ({
             state.stateMachines = action.payload.stateMachines;
             state.states = action.payload.states;
             state.transitions = action.payload.transitions;
+        },
+        changeTransitionToStateDispatch: (state, action) => {
+            let theTransitionIndex = state.transitions.findIndex(element => element.id === action.payload.id);
+            state.transitions[theTransitionIndex].toState = action.payload.toState;
+        },
+        changeTransitionOutMessageDispatch: (state, action) => {
+            let theTransitionIndex = state.transitions.findIndex(element => element.id === action.payload.id);
+            state.transitions[theTransitionIndex].outMessage = action.payload.outMessage;
         }
     },
 })
@@ -169,7 +177,9 @@ export const { addStateMachineDispatch,
                addParameterToStateDispatch,
                removeParameterFromStateDispatch,
                updateStatePositionDispatch,
-               stateMachineAppLoadDispatch
+               stateMachineAppLoadDispatch,
+               changeTransitionToStateDispatch,
+               changeTransitionOutMessageDispatch
             } = stateMachineSlice.actions
 
 export default stateMachineSlice.reducer

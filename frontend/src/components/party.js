@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import Select from "react-select";
 import { useDrag } from "react-dnd";
 import { Button, Modal, Form } from "react-bootstrap";
 import Xarrow, { useXarrow } from 'react-xarrows';
@@ -106,8 +107,8 @@ function Party(props) {
         let updatedValue = {
             "id": props.id,
             "name": nameRef.current.value,
-            "basicAdversarialInterface": basicAdvIntRef.current.value,
-            "basicDirectInterface": basicDirIntRef.current.value,
+            "basicAdversarialInterface": basicAdvIntRef.current.getValue()[0].value,
+            "basicDirectInterface": basicDirIntRef.current.getValue()[0].value,
             "stateMachine": partySelector.stateMachine,
             "color": state.colorTemp,
             "left": props.disp.left,
@@ -271,6 +272,26 @@ function Party(props) {
     
     let colorPalette = ["#c4dd88", "#c7978c", "#6fa5c6", "#c2b8a3", "#b75d69", "#a2c8b3", "#e3c85b", "#bfe1d9", "#cf7b6b", "#8fc7a6", "#ce9bcc", "#5c6e91"]; 
 
+    // Dropdown menu functions
+    const [directIntOptions, setDirectIntOptions] = useState([]);
+    const [advIntOptions, setAdvIntOptions] = useState([]);
+
+    useEffect(() => {
+        let optionsArray = [{key : "basic-interface-id", value : "", label : "Select a Direct Interface..."}];
+        compDirSelector && compDirSelector.basicInterfaces.forEach(basicInt => {
+            optionsArray.push({key : "basic-interface-id-" + basicInt.idOfInstance, value : basicInt.idOfInstance, label : DisplayNameSetup(basicInt.name, partyInterfaceMaxLength)})
+        });
+        setDirectIntOptions(optionsArray);
+    }, [compDirSelector]);
+
+    useEffect(() => {
+        let optionsArray = [{key : "basic-interface-id", value : "", label : "Select an Adversarial Interface..."}];
+        compAdvSelector && compAdvSelector.basicInterfaces.forEach(basicInt => {
+            optionsArray.push({key : "basic-interface-id-" + basicInt.idOfInstance, value : basicInt.idOfInstance, label : DisplayNameSetup(basicInt.name, partyInterfaceMaxLength)})
+        })
+        setAdvIntOptions(optionsArray);
+    }, [compAdvSelector]);
+
     return (
         <div>
             { /* Party Box */ }
@@ -330,25 +351,25 @@ function Party(props) {
                     <div id="dropdown-container">
                         <div id="basic-direct-interfaces">
                             <h6>Basic Direct Interface</h6>
-                            <Form.Select aria-label="Select a Direct Interface" ref={basicDirIntRef}
-                                            defaultValue={ (partySelector && partySelector.basicDirectInterface) || "" }
-                                            title={"partyDirSelector"}>
-                                <option value="">Select a Direct Interface</option>
-                                { (compDirSelector) && (compDirSelector.basicInterfaces.map(basicInt => (
-                                            <option key={"basic-interface-id-" + basicInt.idOfInstance} value={basicInt.idOfInstance}>{DisplayNameSetup(basicInt.name, partyInterfaceMaxLength)}</option> 
-                                    )))}
-                            </Form.Select>
+                            <Select 
+                                options={directIntOptions}
+                                getOptionValue ={(option)=>option.label}
+                                placeholder="Select a Direct Interface..."
+                                defaultValue={{ value : (partySelector && partySelector.basicDirectInterface) || "",
+                                    label : partySelector ? directIntOptions.find(basicInt => basicInt.value === partySelector.basicDirectInterface) ? directIntOptions.find(basicInt => basicInt.value === partySelector.basicDirectInterface).label : "Select a Direct Interface..." : "Select a Direct Interface..."}}
+                                ref={basicDirIntRef}
+                            />
                         </div>
                         <div id="basic-adversary-interfaces">
                             <h6>Basic Adversarial Interface</h6>
-                            <Form.Select aria-label="Select an Adversarial Interface" ref={basicAdvIntRef}
-                                            defaultValue={ (partySelector && partySelector.basicAdversarialInterface) || "" }
-                                            title={"partyAdvSelector"}>
-                                <option value="">Select an Adversarial Interface</option>
-                                { (compAdvSelector) && (compAdvSelector.basicInterfaces.map(basicInt => (
-                                            <option key={"basic-interface-id-" + basicInt.idOfInstance} value={basicInt.idOfInstance}>{DisplayNameSetup(basicInt.name, partyInterfaceMaxLength)}</option> 
-                                    )))}
-                            </Form.Select>
+                            <Select 
+                                options={advIntOptions}
+                                getOptionValue ={(option)=>option.label}
+                                placeholder="Select an Adversarial Interface..."
+                                defaultValue={{ value : (partySelector && partySelector.basicAdversarialInterface) || "",
+                                    label : partySelector ? advIntOptions.find(basicInt => basicInt.value === partySelector.basicAdversarialInterface) ? advIntOptions.find(basicInt => basicInt.value === partySelector.basicAdversarialInterface).label : "Select an Adversarial Interface..." : "Select an Adversarial Interface..."}}
+                                ref={basicAdvIntRef}
+                            />
                         </div>                                      
                     </div>
                 </Modal.Body>
