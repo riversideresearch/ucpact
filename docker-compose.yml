@@ -81,7 +81,7 @@ services:
         environment:
             KC_PUBLIC_KEY_URI: http://auth:8080/realms/UCPACT-Realm/
             KC_HTTP_RELATIVE_PATH: true
-            MODEL_VERSION: "1.1"
+            MODEL_VERSION: "1.2"
         networks:
             - nginx-network
         volumes:
@@ -100,7 +100,7 @@ services:
         environment:
             KC_PUBLIC_KEY_URI: http://auth:8080/realms/UCPACT-Realm/
             KC_HTTP_RELATIVE_PATH: true
-            MODEL_VERSION: "1.1"
+            MODEL_VERSION: "1.2"
         networks:
             - nginx-network
         volumes:

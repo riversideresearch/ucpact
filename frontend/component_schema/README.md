@@ -8,7 +8,7 @@
 {
     id: <uuid>,
     name: <string>,
-    modelVersion: <string "1.1">, // Model version for compatibility; do a major increment each time the schema is changed (i.e 1.0 -> 2.0).
+    modelVersion: <string "1.2">, // Model version for compatibility
     readOnly: <string>, // "<username>/<sessionID>/<tabID>" if in readOnly mode, otherwise ""
 }
 ```
@@ -137,6 +137,7 @@
     }, ...],
     transitions: [{
         id: <uuid>,
+        name: <string>,
         fromState: <id of state>,
         toState: <id of state>,
         toStateArguments: [{paraID: <id of parameter>, <string>}*, ...],
@@ -144,7 +145,9 @@
         guard: <string>,
         outMessage: <id of message>,
         inMessage: <id of message>,
-        targetPort: <string>
+        targetPort: <string>,
+        sourceHandle: <int>, // The point on the fromState to which the transition connects
+        targetHandle: <int> // The point on the toState to which the transition connects
     }, ...],
 }
 ```

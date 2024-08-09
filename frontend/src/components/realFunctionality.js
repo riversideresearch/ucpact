@@ -121,8 +121,8 @@ function RealFunctionality(props) {
         let newInitState = {
             "id" : initStateId,
             "name": "InitState",
-            "left": 270,
-            "top": 150,
+            "left": 25,
+            "top": 50,
             "color": "#e3c85b",
             "parameters": []
         };

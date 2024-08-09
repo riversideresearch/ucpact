@@ -151,10 +151,12 @@ export const stateMachineSlice = createSlice ({
         changeTransitionToStateDispatch: (state, action) => {
             let theTransitionIndex = state.transitions.findIndex(element => element.id === action.payload.id);
             state.transitions[theTransitionIndex].toState = action.payload.toState;
+            state.transitions[theTransitionIndex].toStateArguments = [];
         },
         changeTransitionOutMessageDispatch: (state, action) => {
             let theTransitionIndex = state.transitions.findIndex(element => element.id === action.payload.id);
             state.transitions[theTransitionIndex].outMessage = action.payload.outMessage;
+            state.transitions[theTransitionIndex].outMessageArguments = [];
         }
     },
 })

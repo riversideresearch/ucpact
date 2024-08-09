@@ -280,16 +280,16 @@ function ModelApp(props) {
                     {
                         "id" : idealFuncInitStateID,
                         "name" : "InitState",
-                        "left" : 270,
-                        "top" : 150,
+                        "left" : 25,
+                        "top" : 50,
                         "color" : "#e3c85b",
                         "parameters" : [],
                     },
                     {
                         "id" : simInitStateID,
                         "name" : "InitState",
-                        "left" : 270,
-                        "top" : 150,
+                        "left" : 25,
+                        "top" : 50,
                         "color" : "#e3c85b",
                         "parameters" : [],
                     }

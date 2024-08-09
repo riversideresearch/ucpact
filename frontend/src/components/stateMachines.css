@@ -2,7 +2,7 @@
     width: 950px;
     height: 600px;
     border: 2px solid black;
-    padding: 10px;
+    padding: 0px;
     margin: 20px;
     float: left;
     flex-wrap: nowrap;
@@ -24,6 +24,7 @@
 
 .smHeader {
     display: block;
+    margin: 5px;
 }
 
 .dB1 {
@@ -39,6 +40,53 @@
 
 .db2 {
     flex: 1;
+}
+
+.db3 {
+    flex: 2;
+    margin-top: 13px;
+}
+
+.transition-table {
+    border: solid black 1px;
+    border-collapse: collapse;
+}
+
+.transition-table:hover {
+    cursor: pointer;
+}
+
+.transition-table thead {
+    font-weight: bold;
+}
+
+.transition-table th, td {
+    padding: 5px 10px;
+    border: 1px solid black;
+}
+
+/* .transition-table tbody tr:nth-of-type(odd) {
+    background-color: #f3f3f3;
+} */
+
+/* .transition-table tbody tr:nth-of-type(even) {
+    background-color: #000000;
+} */
+
+.transition-table-odd {
+    background-color: #f3f3f3;
+} 
+
+.transition-table-even {
+    background-color: #ffffff;
+} 
+
+.transition-table tbody tr:hover {
+    background-color: #ddd;
+}
+
+.transition-table-hover {
+    background-color: #ddd;
 }
 
 .stateTitle {
@@ -118,13 +166,13 @@
 .guardInput {
     margin-top: 10px;
     margin-left: 12px;
-    width: 428px;
+    width: 466px;
     justify-content: center;
 }
 .outMessagePort {
     margin-top: 10px;
     margin-left: 12px;
-    width: 428px;
+    width: 466px;
     justify-content: center;
 }
 
@@ -141,5 +189,85 @@
 }
 
 div#accordion-inArguments-item > h2 > button {
-    width: 423px;
+    width: 464px;
+}
+
+.transitionTableSearch {
+    padding: 10px 5px 10px 20px;
+    font-size: 18px;
+    width: 366px;
+    margin-bottom: 5px;
+    margin-top: 7px;
+}
+
+.providerflow {
+    flex-direction: column;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+}
+  
+.providerflow aside {
+    border-left: 1px solid #eee;
+    padding: 15px 10px;
+    font-size: 12px;
+    background: #fff;
+}
+
+.providerflow aside .description {
+    margin-bottom: 10px;
+}
+
+.providerflow aside .title {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.providerflow aside .transform {
+    margin-bottom: 20px;
+}
+
+.providerflow .reactflow-wrapper {
+    flex-grow: 1;
+}
+
+.providerflow .selectall {
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .providerflow {
+        flex-direction: row;
+    }
+
+    .providerflow aside {
+        width: 20%;
+        max-width: 250px;
+        height: 200px;
+    }
+}
+
+.reactflow-wrapper {
+    width: 946px;
+    height: 596px;
+}
+
+.reactflow-wrapper > div {
+    width: 946px;
+    height: 596px;
+}
+
+.react-flow__renderer {
+    width: 946px;
+    height: 596px;
+}
+
+.react-flow__pane {
+    width: 946px;
+    height: 596px;
+}
+
+.reactflow-wrapper > div > div {
+    width: 946px;
+    height: 596px;
 }
