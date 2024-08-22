@@ -56,6 +56,8 @@ function ReactFlowBox(props) {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
+  const [stateRender, setStateRender] = useState(false);
+
   const [show, setShow] = useState();
   const [modalTransition, setModalTransition] = useState('');
 
@@ -95,7 +97,28 @@ function ReactFlowBox(props) {
   );
 
   const onNodeDragStop = (event, node) => {
-    dispatch(updateStatePositionDispatch([node.id, node.position.x, node.position.y]));
+    if (node.position.y > 550 || node.position.x > 895 || node.position.x < -50 || node.position.y < -50) {
+        let notiMessage = "Message: State cannot be placed outside state machine bounds. STATE NOT MODIFIED";
+        let notiTitle = " State Position Error"
+        let notiType = 'danger';
+        let notification = {
+            title:   notiTitle,
+            message: notiMessage,
+            type:    notiType,
+            insert:  "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+                duration: 10000,
+                onScreen: true
+            }
+        };
+        Store.addNotification(notification);  
+        setStateRender(!stateRender)
+    } else {
+        dispatch(updateStatePositionDispatch([node.id, node.position.x, node.position.y]));
+    }
   };
 
   const onConnect = useCallback(
@@ -183,7 +206,7 @@ function ReactFlowBox(props) {
       newNodes.push({id : thisState.id, position: { x: thisState.left, y: thisState.top }, data: { label: thisState.name, id: thisState.id, initState: isInitState, color: thisState.color }, type: 'stateNode'});
     });
     setNodes(newNodes);
-  }, [stateMachineSelector]);
+  }, [stateMachineSelector, stateRender]);
 
   // Display transitions
   useEffect(() => {
