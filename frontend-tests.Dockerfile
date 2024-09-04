@@ -9,9 +9,9 @@ COPY scripts/ scripts
 COPY src/ src
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
-CMD CI=true npm test
+CMD CI=true npm run test
 
 # Copy over the other files we need
 # COPY ./public ./public
