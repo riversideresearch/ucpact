@@ -1,7 +1,7 @@
-flask==2.2.5
+flask
 flask_cors
-Flask-API
-Werkzeug==2.2.2
+starlette
+Werkzeug
 requests
 gunicorn
 PyJWT[crypto]

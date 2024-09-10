@@ -7,10 +7,10 @@ from contextlib import contextmanager
 import json
 import re
 from flask import Flask, jsonify, request
-from flask_api import status
+from starlette import status
 from flask_cors import CORS
 import jwt
-from jwt.exceptions import ExpiredSignatureError
+from jwt.exceptions import InvalidTokenError
 import requests
 import time
 
@@ -75,16 +75,18 @@ class AuthenticationError(BaseException):
     pass
 
 def retrieve_public_key():
+    if not os.environ.get("KC_PUBLIC_KEY_URI"):
+        return ""
     key_location_uri = os.environ["KC_PUBLIC_KEY_URI"]
     r = requests.get(key_location_uri)
-    if r.status_code == 200:
+    if r.status_code == status.HTTP_200_OK:
         pbkey_raw = r.json()["public_key"]
         pbkey = f"-----BEGIN PUBLIC KEY-----\n{pbkey_raw}\n-----END PUBLIC KEY-----"
         return pbkey
     else:
         return ""
 
-def decode_token(auth_token) -> dict:
+def decode_token(auth_token: str) -> dict:
     if not PubKey.val:
         PubKey.val = retrieve_public_key()
     if PubKey.val:
@@ -94,22 +96,17 @@ def decode_token(auth_token) -> dict:
                       "username": "",
                       "token_status": "public_key_missing"}
         return token_data
-    if auth_token is not None and auth_token.startswith('Bearer '):
-        auth_token = ' '.join(auth_token.split(' ')[1:])
-    elif auth_token is None:
+    if not auth_token:
         token_data = {"info": {},
                       "username": "",
                       "token_status": "token_missing"}
         return token_data
+    auth_token = auth_token.removeprefix('Bearer ').lstrip()
     try:
         token_info = jwt.decode(auth_token, key=public_key, algorithms=["RS256"])
         username = token_info['preferred_username']
         token_status = "valid"
-    except ExpiredSignatureError:
-        token_info = {}
-        username = ""
-        token_status = "expired"
-    except Exception:
+    except InvalidTokenError:
         token_info = {}
         username = ""
         token_status = "invalid"
@@ -118,7 +115,10 @@ def decode_token(auth_token) -> dict:
                   "token_status": token_status}
     return token_data
 
-def validate_token(auth_token) -> str:
+def validate_token(auth_token, test_username: str="user1") -> str:
+    auth_disabled = os.environ.get("BACKEND_AUTH_ENABLED", default="true") == "false"
+    if auth_disabled and not auth_token:
+        return test_username
     data = decode_token(auth_token)
     if data["token_status"] == "valid":
         return data["username"]
@@ -159,8 +159,9 @@ def index():
 def get_model(id):
     token = request.headers.get('Authorization')
     tabId = request.headers.get('SessionTabId')
+    testUser = request.headers.get('TestUsername', default="user1")
     try:
-        username = validate_token(token)
+        username = validate_token(token, test_username=testUser)
     except AuthenticationError as e:
         return str(e), status.HTTP_401_UNAUTHORIZED
     fileName = os.path.join('models', id) + '.json'
@@ -190,8 +191,9 @@ def post_model(id):
     token = request.headers.get('Authorization')
     tabId = request.headers.get('SessionTabId')
     model_ver = os.environ["MODEL_VERSION"]
+    testUser = request.headers.get('TestUsername', default="user1")
     try:
-        username = validate_token(token)
+        username = validate_token(token, test_username=testUser)
     except AuthenticationError as e:
         return str(e), status.HTTP_401_UNAUTHORIZED
     if not validation_check(id):
@@ -225,8 +227,9 @@ def post_model(id):
 def put_model(id):
     token = request.headers.get('Authorization')
     tabId = request.headers.get('SessionTabId')
+    testUser = request.headers.get('TestUsername', default="user1")
     try:
-        username = validate_token(token)
+        username = validate_token(token, test_username=testUser)
     except AuthenticationError as e:
         return str(e), status.HTTP_401_UNAUTHORIZED
     if not validation_check(id):
@@ -295,8 +298,9 @@ def delete_model(id):
 def return_all_by_user():
     token = request.headers.get('Authorization')
     [sessionId, _] = request.headers.get('SessionTabId').split('/')
+    testUser = request.headers.get('TestUsername', default="user1")
     try:
-        username = validate_token(token)
+        username = validate_token(token, test_username=testUser)
     except AuthenticationError as e:
         return str(e), status.HTTP_401_UNAUTHORIZED
     res = []
@@ -310,14 +314,14 @@ def return_all_by_user():
                 # model's JSON file is corrupted
                 continue
             # if request contained writable model, unlock it
-            if not full_data['readOnly'] or full_data['readOnly'].startswith(f'{username}/{sessionId}/'):
+            if full_data['readOnly'].startswith(f'{username}/{sessionId}/'):
                 try:
                     unlock_model(fileName)
                 except json.JSONDecodeError:
                     # model's JSON file is corrupted
                     continue
                 res.append(fileName)
-    return f"{len(res)} model(s) returned!", status.HTTP_200_OK
+    return jsonify({"message": f"{len(res)} model(s) returned!"}), status.HTTP_200_OK
 
 @app.route('/model/return/<id>', methods=['PUT'])
 def return_model(id):

@@ -14,12 +14,14 @@ before_script:
   - docker builder prune -a -f
   - docker image prune -a -f
   - docker compose --profile tests down --rmi all
+  - docker compose --profile pytest down --rmi all
   - docker compose --profile integration-tests down --rmi all
   - docker compose --profile default down
 
 after_script:
   - echo "After script section"
   - docker compose --profile tests down
+  - docker compose --profile pytest down --rmi all
   - docker compose --profile integration-tests  down
   - docker compose --profile default down
   - docker builder prune -a -f
@@ -42,7 +44,7 @@ test2:
   stage: test
   script:
     - docker compose --profile pytest build
-    - docker compose --profile pytest up --exit-code-from frontend-tests
+    - docker compose --profile pytest up --exit-code-from backend-tests
 
 #deploy:
 #  stage: deploy

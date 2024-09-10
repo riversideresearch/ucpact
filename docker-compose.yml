@@ -108,6 +108,19 @@ services:
               source: ./models
               target: /app/models
         container_name: backend-dev
+    backend-tests:
+        build:
+            context: backend
+            dockerfile: ../backend-tests.Dockerfile
+        profiles:
+            - pytest
+        environment:
+            MODEL_VERSION: "1.2"
+            TEST_DATA_FN: "/app/tests/testData.json"
+            BACKEND_AUTH_ENABLED: "false"
+        networks:
+            - nginx-network
+        container_name: backend-tests
 volumes:
     realm.json:
     nginx.conf:

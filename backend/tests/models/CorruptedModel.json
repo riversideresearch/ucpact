@@ -1,0 +1,552 @@
+{
+  "model" {
+    "interfaces": {
+      "compInters": [
+        {
+          "basicInterfaces": [
+            {
+              "idOfBasic": "59d27394-5ada-e616-aa69-b3c0d0ce345b",
+              "idOfInstance": "2ee31f76-2187-a46d-a376-2ca122b0bc80",
+              "name": "Ideal3Dir"
+            }
+          ],
+          "id": "70ae80fe-5fb4-ca4c-2f4c-fd2c8c7a7970",
+          "name": "Ideal3Dir",
+          "type": "direct"
+        },
+        {
+          "basicInterfaces": [
+            {
+              "idOfBasic": "3189cf6c-a5f6-d569-39e2-22f92eb2cdc4",
+              "idOfInstance": "70be18f9-6d41-57a6-e1bc-02b69d1618b2",
+              "name": "Real3Adv"
+            },
+            {
+              "idOfBasic": "c78673d8-3c0b-990d-cd98-6af8a6829072",
+              "idOfInstance": "f8cdc22a-e2ea-b0e3-cbbc-ed000f208ded",
+              "name": "P1Adv"
+            },
+            {
+              "idOfBasic": "301f048e-937b-723e-92db-f54b622f0967",
+              "idOfInstance": "8ef897ea-df2f-4ebd-2a82-009bc87d4ea8",
+              "name": "P2Adv"
+            }
+          ],
+          "id": "313eefa2-3bd2-b7e6-c06d-970af82cc7c2",
+          "name": "Real3Adv",
+          "type": "adversarial"
+        },
+        {
+          "basicInterfaces": [
+            {
+              "idOfBasic": "7eb7e795-9b61-9f5f-fa8a-b33c8992efdd",
+              "idOfInstance": "8e7f7649-fcb6-7a62-ad99-1ac64d62d98f",
+              "name": "Real3Dir"
+            },
+            {
+              "idOfBasic": "afc2b795-c3c3-51a4-551c-271f990ab6cb",
+              "idOfInstance": "61bdc503-1e97-e63f-4434-e87cb2f6cfe5",
+              "name": "P1Dir"
+            },
+            {
+              "idOfBasic": "dbcd6917-b85a-8e69-73d5-b60d4c7c3880",
+              "idOfInstance": "a4e86838-dc6a-ccfc-aa01-3562e55fdd98",
+              "name": "P2Dir"
+            }
+          ],
+          "id": "c55816f1-c714-51d0-89f6-e51bb539afc5",
+          "name": "Real3Dir",
+          "type": "direct"
+        }
+      ],
+      "basicInters": [
+        {
+          "id": "59d27394-5ada-e616-aa69-b3c0d0ce345b",
+          "messages": [
+            "faa9be6d-2985-1fbd-3ee5-40c36fff19b7",
+            "44ba555a-c74b-0248-ce18-25b0e3929d5c",
+            "94ec8fc0-a89e-eae9-2cdf-976ad70ab9f0",
+            "648137dc-499b-9acd-17d9-9f167c4d0206"
+          ],
+          "name": "Ideal3DirBasic",
+          "type": "direct"
+        },
+        {
+          "id": "3189cf6c-a5f6-d569-39e2-22f92eb2cdc4",
+          "messages": [
+            "29020c7c-81d2-af4f-6dcc-f709dd6c9978",
+            "f17397aa-6971-b307-5457-04d2ab3981f9"
+          ],
+          "name": "Real3AdvBasic",
+          "type": "adversarial"
+        },
+        {
+          "id": "9dac0522-64bc-6cf6-8675-3bef95024063",
+          "messages": [
+            "cc56197a-8c30-d1d2-b993-b869a28e01c7",
+            "f69ad9a4-d2c6-1448-cadc-47fa26dff3cf"
+          ],
+          "name": "Sim3AdvBasic",
+          "type": "adversarial"
+        },
+        {
+          "id": "59861a1c-a51e-6a5d-72e0-cf9b95c70803",
+          "messages": [
+            "aecdd375-21d4-9034-c4cd-7b7591eb64af",
+            "b1e10ee1-eed8-c3c2-faf6-242d39b96e91"
+          ],
+          "name": "Ideal3AdvBasic",
+          "type": "adversarial"
+        },
+        {
+          "id": "7eb7e795-9b61-9f5f-fa8a-b33c8992efdd",
+          "messages": [
+            "de8cc245-5ac2-872a-038b-cc95fd689401",
+            "137e0a8c-a6eb-63cb-90da-501fe582ce8b"
+          ],
+          "name": "Real3DirBasic",
+          "type": "direct"
+        },
+        {
+          "id": "afc2b795-c3c3-51a4-551c-271f990ab6cb",
+          "messages": [
+            "2a4feba0-6c17-77d0-9391-927c95c5813b",
+            "a43d8e91-4c47-156d-ab75-269063aca509"
+          ],
+          "name": "P1DirBasic",
+          "type": "direct"
+        },
+        {
+          "id": "c78673d8-3c0b-990d-cd98-6af8a6829072",
+          "messages": [
+            "b09d40dd-f5e7-fa2a-a88b-b775a7ecff45",
+            "a89a73b7-865f-6577-8fe1-c56e43c88d86"
+          ],
+          "name": "P1AdvBasic",
+          "type": "adversarial"
+        },
+        {
+          "id": "dbcd6917-b85a-8e69-73d5-b60d4c7c3880",
+          "messages": [
+            "96afcbc3-25da-f808-87fe-d7033c8b1d33",
+            "09665c75-860c-e368-82ca-600aae6840bd"
+          ],
+          "name": "P2DirBasic",
+          "type": "direct"
+        },
+        {
+          "id": "301f048e-937b-723e-92db-f54b622f0967",
+          "messages": [
+            "96db4774-fc48-ba44-75d2-6d48f1130104",
+            "6c6048a8-e43e-9974-d126-18f581bfbe65"
+          ],
+          "name": "P2AdvBasic",
+          "type": "adversarial"
+        }
+      ],
+      "messages": [
+        {
+          "id": "faa9be6d-2985-1fbd-3ee5-40c36fff19b7",
+          "name": "idealmess301",
+          "parameters": [],
+          "port": "pt1",
+          "type": "in"
+        },
+        {
+          "id": "44ba555a-c74b-0248-ce18-25b0e3929d5c",
+          "name": "idealmess302",
+          "parameters": [],
+          "port": "pt1",
+          "type": "out"
+        },
+        {
+          "id": "94ec8fc0-a89e-eae9-2cdf-976ad70ab9f0",
+          "name": "idealmess303",
+          "parameters": [],
+          "port": "pt2",
+          "type": "in"
+        },
+        {
+          "id": "648137dc-499b-9acd-17d9-9f167c4d0206",
+          "name": "idealmess304",
+          "parameters": [],
+          "port": "pt2",
+          "type": "out"
+        },
+        {
+          "id": "29020c7c-81d2-af4f-6dcc-f709dd6c9978",
+          "name": "advmess301",
+          "parameters": [],
+          "port": "",
+          "type": "in"
+        },
+        {
+          "id": "f17397aa-6971-b307-5457-04d2ab3981f9",
+          "name": "advmess302",
+          "parameters": [],
+          "port": "",
+          "type": "out"
+        },
+        {
+          "id": "cc56197a-8c30-d1d2-b993-b869a28e01c7",
+          "name": "advmess303",
+          "parameters": [],
+          "port": "",
+          "type": "in"
+        },
+        {
+          "id": "f69ad9a4-d2c6-1448-cadc-47fa26dff3cf",
+          "name": "advmess304",
+          "parameters": [],
+          "port": "",
+          "type": "out"
+        },
+        {
+          "id": "aecdd375-21d4-9034-c4cd-7b7591eb64af",
+          "name": "advmess305",
+          "parameters": [],
+          "port": "",
+          "type": "in"
+        },
+        {
+          "id": "b1e10ee1-eed8-c3c2-faf6-242d39b96e91",
+          "name": "advmess306",
+          "parameters": [],
+          "port": "",
+          "type": "out"
+        },
+        {
+          "id": "de8cc245-5ac2-872a-038b-cc95fd689401",
+          "name": "realmess301",
+          "parameters": [],
+          "port": "pt3",
+          "type": "in"
+        },
+        {
+          "id": "137e0a8c-a6eb-63cb-90da-501fe582ce8b",
+          "name": "realmess302",
+          "parameters": [],
+          "port": "pt3",
+          "type": "out"
+        },
+        {
+          "id": "2a4feba0-6c17-77d0-9391-927c95c5813b",
+          "name": "partymess301",
+          "parameters": [],
+          "port": "pt4",
+          "type": "in"
+        },
+        {
+          "id": "a43d8e91-4c47-156d-ab75-269063aca509",
+          "name": "partymess302",
+          "parameters": [],
+          "port": "pt4",
+          "type": "out"
+        },
+        {
+          "id": "b09d40dd-f5e7-fa2a-a88b-b775a7ecff45",
+          "name": "partymess303",
+          "parameters": [],
+          "port": "",
+          "type": "in"
+        },
+        {
+          "id": "a89a73b7-865f-6577-8fe1-c56e43c88d86",
+          "name": "partymess304",
+          "parameters": [],
+          "port": "",
+          "type": "out"
+        },
+        {
+          "id": "96afcbc3-25da-f808-87fe-d7033c8b1d33",
+          "name": "partymess305",
+          "parameters": [],
+          "port": "pt5",
+          "type": "in"
+        },
+        {
+          "id": "09665c75-860c-e368-82ca-600aae6840bd",
+          "name": "partymess306",
+          "parameters": [],
+          "port": "pt5",
+          "type": "out"
+        },
+        {
+          "id": "96db4774-fc48-ba44-75d2-6d48f1130104",
+          "name": "partymess307",
+          "parameters": [],
+          "port": "",
+          "type": "in"
+        },
+        {
+          "id": "6c6048a8-e43e-9974-d126-18f581bfbe65",
+          "name": "partymess308",
+          "parameters": [],
+          "port": "",
+          "type": "out"
+        }
+      ]
+    },
+    "parties": {
+      "parties": [
+        {
+          "basicAdversarialInterface": "f8cdc22a-e2ea-b0e3-cbbc-ed000f208ded",
+          "basicDirectInterface": "61bdc503-1e97-e63f-4434-e87cb2f6cfe5",
+          "color": "#c4dd88",
+          "id": "9cee6b92-e6d3-04fb-49ee-008832ca669d",
+          "left": 417,
+          "name": "P1",
+          "stateMachine": "6e259bf5-8866-6bb1-83e4-57ac9caab971",
+          "top": 204
+        },
+        {
+          "basicAdversarialInterface": "8ef897ea-df2f-4ebd-2a82-009bc87d4ea8",
+          "basicDirectInterface": "a4e86838-dc6a-ccfc-aa01-3562e55fdd98",
+          "color": "#c4dd88",
+          "id": "2495bb7b-5602-060c-e631-6bc9a5125e17",
+          "left": 511,
+          "name": "P2",
+          "stateMachine": "efb2fe8f-7eba-03d3-5597-8a393f82e365",
+          "top": 407
+        }
+      ]
+    },
+    "subfunctionalities": {
+      "subfunctionalities": [
+        {
+          "color": "#8a6996",
+          "id": "1e63e90e-4517-b331-ec12-32c98f6a16e4",
+          "idealFuncModel": "IdealOnly2",
+          "idealFunctionalityId": "d87abfe0-2d07-b29f-3624-f4d3ed530b09",
+          "idealFunctionalityName": "IF",
+          "left": 838,
+          "name": "Ideal2",
+          "top": 511
+        },
+        {
+          "color": "#8a6996",
+          "id": "beccb27f-6925-4295-9507-aabc7522563f",
+          "idealFuncModel": "IdealOnly1",
+          "idealFunctionalityId": "4272dfb5-66d5-520a-c454-a67085c4aa37",
+          "idealFunctionalityName": "IF",
+          "left": 691,
+          "name": "Ideal1",
+          "top": 316
+        }
+      ]
+    },
+    "realFunctionality": {
+      "parties": [
+        "9cee6b92-e6d3-04fb-49ee-008832ca669d",
+        "2495bb7b-5602-060c-e631-6bc9a5125e17"
+      ],
+      "subfunctionalities": [
+        "1e63e90e-4517-b331-ec12-32c98f6a16e4",
+        "beccb27f-6925-4295-9507-aabc7522563f"
+      ],
+      "id": "68d83c34-c0ec-a7e9-d5f2-7f4e4b0c9d66",
+      "name": "Real_Functionality",
+      "compositeDirectInterface": "c55816f1-c714-51d0-89f6-e51bb539afc5",
+      "compositeAdversarialInterface": "313eefa2-3bd2-b7e6-c06d-970af82cc7c2",
+      "parameterInterfaces": [
+        {
+          "color": "#DE8989",
+          "compInterName": "Ideal2Dir",
+          "id": "0418562b-b989-29d7-6d2c-4c969f00c1f4",
+          "idOfInterface": "25517052-5c75-80f9-1b56-f07a21cc6251",
+          "left": 377,
+          "modelName": "IdealOnly2",
+          "name": "Param1",
+          "top": 345
+        }
+      ]
+    },
+    "simulator": {
+      "id": "91ed3158-c8ce-f332-936e-e8c187a5983e",
+      "name": "Sim",
+      "basicAdversarialInterface": "9dac0522-64bc-6cf6-8675-3bef95024063",
+      "realFunctionality": "68d83c34-c0ec-a7e9-d5f2-7f4e4b0c9d66",
+      "stateMachine": "08aebac1-5958-5935-a0a3-495ddd36d0ef",
+      "color": "#6bb45c",
+      "left": 450,
+      "top": 201
+    },
+    "idealFunctionality": {
+      "id": "2f95b6f0-4ce5-0882-5da6-d1e7c653a855",
+      "name": "IF",
+      "basicAdversarialInterface": "59861a1c-a51e-6a5d-72e0-cf9b95c70803",
+      "compositeDirectInterface": "70ae80fe-5fb4-ca4c-2f4c-fd2c8c7a7970",
+      "stateMachine": "133377c5-57c6-ddbc-7ce1-3cddb33534d8",
+      "color": "#3e88c7",
+      "left": 250,
+      "top": 250
+    },
+    "stateMachines": {
+      "stateMachines": [
+        {
+          "id": "133377c5-57c6-ddbc-7ce1-3cddb33534d8",
+          "initState": "82917560-5eef-2dd4-3f98-4f84c9ba1843",
+          "states": [
+            "82917560-5eef-2dd4-3f98-4f84c9ba1843"
+          ],
+          "transitions": []
+        },
+        {
+          "id": "08aebac1-5958-5935-a0a3-495ddd36d0ef",
+          "initState": "1cd4628b-7114-b830-eb12-36a3b416896f",
+          "states": [
+            "1cd4628b-7114-b830-eb12-36a3b416896f"
+          ],
+          "transitions": []
+        },
+        {
+          "id": "6e259bf5-8866-6bb1-83e4-57ac9caab971",
+          "initState": "cd1a3d27-7d98-84f8-f0c2-019fc0e96a88",
+          "states": [
+            "cd1a3d27-7d98-84f8-f0c2-019fc0e96a88",
+            "c6d82a0e-53b5-eb7e-ff94-4cbde46d5b43",
+            "66513f61-ab1c-2067-4df4-afcd21705052"
+          ],
+          "transitions": [
+            "b43cbb92-4844-2ca7-50d4-c5a2ccd60092",
+            "b7813cf3-70f4-cfb0-80fa-38633c18f78e",
+            "744587d5-450c-40ba-f691-459e33bd45b6",
+            "ac488183-f51a-a53b-c9d0-6303900acdbf"
+          ]
+        },
+        {
+          "id": "efb2fe8f-7eba-03d3-5597-8a393f82e365",
+          "initState": "5200847e-18dc-69ee-cdbd-01216cb9b760",
+          "states": [
+            "5200847e-18dc-69ee-cdbd-01216cb9b760"
+          ],
+          "transitions": []
+        }
+      ],
+      "states": [
+        {
+          "color": "#e3c85b",
+          "id": "82917560-5eef-2dd4-3f98-4f84c9ba1843",
+          "left": 25,
+          "name": "InitState",
+          "parameters": [],
+          "top": 50
+        },
+        {
+          "color": "#e3c85b",
+          "id": "1cd4628b-7114-b830-eb12-36a3b416896f",
+          "left": 25,
+          "name": "InitState",
+          "parameters": [],
+          "top": 50
+        },
+        {
+          "color": "#e3c85b",
+          "id": "cd1a3d27-7d98-84f8-f0c2-019fc0e96a88",
+          "left": 25,
+          "name": "InitState",
+          "parameters": [],
+          "top": 50
+        },
+        {
+          "color": "#e3c85b",
+          "id": "5200847e-18dc-69ee-cdbd-01216cb9b760",
+          "left": 25,
+          "name": "InitState",
+          "parameters": [],
+          "top": 50
+        },
+        {
+          "color": "#e3c85b",
+          "id": "c6d82a0e-53b5-eb7e-ff94-4cbde46d5b43",
+          "left": 254,
+          "name": "S1",
+          "parameters": [],
+          "top": 156
+        },
+        {
+          "color": "#e3c85b",
+          "id": "66513f61-ab1c-2067-4df4-afcd21705052",
+          "left": 525,
+          "name": "Main",
+          "parameters": [],
+          "top": 293
+        }
+      ],
+      "transitions": [
+        {
+          "fromState": "cd1a3d27-7d98-84f8-f0c2-019fc0e96a88",
+          "guard": "",
+          "id": "b43cbb92-4844-2ca7-50d4-c5a2ccd60092",
+          "inMessage": "de170c70-8ef6-5eac-b016-7816d50b62be/beccb27f-6925-4295-9507-aabc7522563f",
+          "name": "",
+          "outMessage": "01a44501-5a7a-7a27-72a9-1df6e29cdf1b/beccb27f-6925-4295-9507-aabc7522563f",
+          "outMessageArguments": [
+            {
+              "argValue": "FLOAT_VALUE",
+              "paraID": "7d91d517-16f8-2587-e836-c82d63a88736"
+            },
+            {
+              "argValue": "FLOAT_VALUE",
+              "paraID": "483cfefa-ce2b-0fe7-33f4-1801919c6fad"
+            }
+          ],
+          "sourceHandle": "12",
+          "targetHandle": "3",
+          "targetPort": "",
+          "toState": "c6d82a0e-53b5-eb7e-ff94-4cbde46d5b43",
+          "toStateArguments": []
+        },
+        {
+          "fromState": "c6d82a0e-53b5-eb7e-ff94-4cbde46d5b43",
+          "guard": "",
+          "id": "b7813cf3-70f4-cfb0-80fa-38633c18f78e",
+          "inMessage": "04ca6f74-5fc6-0ed7-c347-9abb092dd692/1e63e90e-4517-b331-ec12-32c98f6a16e4",
+          "name": "",
+          "outMessage": "cec66b51-47eb-8c77-37d6-49d77bb0a6b4/1e63e90e-4517-b331-ec12-32c98f6a16e4",
+          "outMessageArguments": [],
+          "sourceHandle": "12",
+          "targetHandle": "2",
+          "targetPort": "",
+          "toState": "66513f61-ab1c-2067-4df4-afcd21705052",
+          "toStateArguments": []
+        },
+        {
+          "fromState": "66513f61-ab1c-2067-4df4-afcd21705052",
+          "guard": "",
+          "id": "744587d5-450c-40ba-f691-459e33bd45b6",
+          "inMessage": "2a4feba0-6c17-77d0-9391-927c95c5813b",
+          "name": "",
+          "outMessage": "a43d8e91-4c47-156d-ab75-269063aca509",
+          "outMessageArguments": [],
+          "sourceHandle": "13",
+          "targetHandle": "1",
+          "targetPort": "pt4",
+          "toState": "66513f61-ab1c-2067-4df4-afcd21705052",
+          "toStateArguments": []
+        },
+        {
+          "fromState": "66513f61-ab1c-2067-4df4-afcd21705052",
+          "guard": "",
+          "id": "ac488183-f51a-a53b-c9d0-6303900acdbf",
+          "inMessage": "04ca6f74-5fc6-0ed7-c347-9abb092dd692/0418562b-b989-29d7-6d2c-4c969f00c1f4",
+          "name": "",
+          "outMessage": "cec66b51-47eb-8c77-37d6-49d77bb0a6b4/0418562b-b989-29d7-6d2c-4c969f00c1f4",
+          "outMessageArguments": [],
+          "sourceHandle": "9",
+          "targetHandle": "12",
+          "targetPort": "",
+          "toState": "66513f61-ab1c-2067-4df4-afcd21705052",
+          "toStateArguments": []
+        }
+      ]
+    },
+    "id": "b1db12cb-56f3-50ce-b932-05a665a7bca6",
+    "name": "FullModel1",
+    "readOnly": false,
+    "modelVersion": "1.2"
+  },
+  "readOnly": "",
+  "lastModified": 1722371004.8951666,
+  "modelVersion": "1.2"
+}

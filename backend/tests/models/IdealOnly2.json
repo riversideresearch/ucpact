@@ -1,0 +1,225 @@
+{
+  "model": {
+    "interfaces": {
+      "compInters": [
+        {
+          "basicInterfaces": [
+            {
+              "idOfBasic": "9dd3af75-fa72-8b81-be0a-c137fa762bf3",
+              "idOfInstance": "12ec58f5-fe78-1a6b-1570-a5e73a0980de",
+              "name": "Ideal2Dir"
+            }
+          ],
+          "id": "25517052-5c75-80f9-1b56-f07a21cc6251",
+          "name": "Ideal2Dir",
+          "type": "direct"
+        },
+        {
+          "basicInterfaces": [
+            {
+              "idOfBasic": "f736f115-36f9-3fac-9601-de71c3384db2",
+              "idOfInstance": "8d98c3a7-e910-bd8b-a68f-4bc532ba4138",
+              "name": "Real2Adv"
+            }
+          ],
+          "id": "3a4bdd9a-2d34-7eed-381c-99104a842ab3",
+          "name": "Real2Adv",
+          "type": "adversarial"
+        }
+      ],
+      "basicInters": [
+        {
+          "id": "9dd3af75-fa72-8b81-be0a-c137fa762bf3",
+          "messages": [
+            "cec66b51-47eb-8c77-37d6-49d77bb0a6b4",
+            "04ca6f74-5fc6-0ed7-c347-9abb092dd692",
+            "801d579d-1acb-f963-3e72-cf0272ba0d3f",
+            "41c3c9ac-8e84-6435-d65d-a89215bd8e81"
+          ],
+          "name": "Ideal2DirBasic",
+          "type": "direct"
+        },
+        {
+          "id": "9909f4fb-4651-0535-f8a4-9c043712916f",
+          "messages": [
+            "e14a532c-1796-09df-e0e3-b656946dd07b",
+            "de22299f-7df7-ef61-6dff-975722d80d0a"
+          ],
+          "name": "Ideal2AdvBasic",
+          "type": "adversarial"
+        },
+        {
+          "id": "f736f115-36f9-3fac-9601-de71c3384db2",
+          "messages": [
+            "68b4b699-8eb6-02dc-ed89-05baa93022ea",
+            "4d600704-439e-969d-522e-4ddfaf9313c1"
+          ],
+          "name": "Real2AdvBasic",
+          "type": "adversarial"
+        },
+        {
+          "id": "f4f98147-580f-9507-806b-cd20dc3bad31",
+          "messages": [
+            "c1313481-a794-581f-973f-dd33c7484e91",
+            "9a00e21a-723f-0311-1d75-5bbc705ee93b"
+          ],
+          "name": "Sim2AdvBasic",
+          "type": "adversarial"
+        }
+      ],
+      "messages": [
+        {
+          "id": "cec66b51-47eb-8c77-37d6-49d77bb0a6b4",
+          "name": "idealmess201",
+          "parameters": [],
+          "port": "pt1",
+          "type": "in"
+        },
+        {
+          "id": "04ca6f74-5fc6-0ed7-c347-9abb092dd692",
+          "name": "idealmess202",
+          "parameters": [],
+          "port": "pt1",
+          "type": "out"
+        },
+        {
+          "id": "801d579d-1acb-f963-3e72-cf0272ba0d3f",
+          "name": "idealmess203",
+          "parameters": [],
+          "port": "pt2",
+          "type": "in"
+        },
+        {
+          "id": "41c3c9ac-8e84-6435-d65d-a89215bd8e81",
+          "name": "idealmess204",
+          "parameters": [],
+          "port": "pt2",
+          "type": "out"
+        },
+        {
+          "id": "e14a532c-1796-09df-e0e3-b656946dd07b",
+          "name": "advmess201",
+          "parameters": [],
+          "port": "",
+          "type": "in"
+        },
+        {
+          "id": "de22299f-7df7-ef61-6dff-975722d80d0a",
+          "name": "advmess202",
+          "parameters": [],
+          "port": "",
+          "type": "out"
+        },
+        {
+          "id": "68b4b699-8eb6-02dc-ed89-05baa93022ea",
+          "name": "advmess203",
+          "parameters": [],
+          "port": "",
+          "type": "in"
+        },
+        {
+          "id": "4d600704-439e-969d-522e-4ddfaf9313c1",
+          "name": "advmess204",
+          "parameters": [],
+          "port": "",
+          "type": "out"
+        },
+        {
+          "id": "c1313481-a794-581f-973f-dd33c7484e91",
+          "name": "advmess205",
+          "parameters": [],
+          "port": "",
+          "type": "in"
+        },
+        {
+          "id": "9a00e21a-723f-0311-1d75-5bbc705ee93b",
+          "name": "advmess206",
+          "parameters": [],
+          "port": "",
+          "type": "out"
+        }
+      ]
+    },
+    "parties": {
+      "parties": []
+    },
+    "subfunctionalities": {
+      "subfunctionalities": []
+    },
+    "realFunctionality": {
+      "parties": [],
+      "subfunctionalities": [],
+      "id": "9f8d57be-614f-749c-f030-aac23d7d66cc",
+      "name": "Real_Functionality",
+      "compositeDirectInterface": "25517052-5c75-80f9-1b56-f07a21cc6251",
+      "compositeAdversarialInterface": "3a4bdd9a-2d34-7eed-381c-99104a842ab3",
+      "parameterInterfaces": []
+    },
+    "simulator": {
+      "id": "99da6c88-24ab-a078-3f45-29bc97627413",
+      "name": "Sim",
+      "basicAdversarialInterface": "f4f98147-580f-9507-806b-cd20dc3bad31",
+      "realFunctionality": "9f8d57be-614f-749c-f030-aac23d7d66cc",
+      "stateMachine": "d80d9210-ad4a-3e0d-da33-a0abd79ebcf9",
+      "color": "#6bb45c",
+      "left": 450,
+      "top": 201
+    },
+    "idealFunctionality": {
+      "id": "d87abfe0-2d07-b29f-3624-f4d3ed530b09",
+      "name": "IF",
+      "basicAdversarialInterface": "9909f4fb-4651-0535-f8a4-9c043712916f",
+      "compositeDirectInterface": "25517052-5c75-80f9-1b56-f07a21cc6251",
+      "stateMachine": "170439fe-3c4b-9f60-760c-7d4f89cbd0e4",
+      "color": "#3e88c7",
+      "left": 250,
+      "top": 250
+    },
+    "stateMachines": {
+      "stateMachines": [
+        {
+          "id": "170439fe-3c4b-9f60-760c-7d4f89cbd0e4",
+          "initState": "80339f6e-70ed-bdbe-2a39-dfe5f9dab10c",
+          "states": [
+            "80339f6e-70ed-bdbe-2a39-dfe5f9dab10c"
+          ],
+          "transitions": []
+        },
+        {
+          "id": "d80d9210-ad4a-3e0d-da33-a0abd79ebcf9",
+          "initState": "84049a02-ec2f-6560-71a1-57b7402a6e8e",
+          "states": [
+            "84049a02-ec2f-6560-71a1-57b7402a6e8e"
+          ],
+          "transitions": []
+        }
+      ],
+      "states": [
+        {
+          "color": "#e3c85b",
+          "id": "80339f6e-70ed-bdbe-2a39-dfe5f9dab10c",
+          "left": 25,
+          "name": "InitState",
+          "parameters": [],
+          "top": 50
+        },
+        {
+          "color": "#e3c85b",
+          "id": "84049a02-ec2f-6560-71a1-57b7402a6e8e",
+          "left": 25,
+          "name": "InitState",
+          "parameters": [],
+          "top": 50
+        }
+      ],
+      "transitions": []
+    },
+    "id": "ca8683b3-da1a-8222-f925-a38683e0f86a",
+    "name": "IdealOnly2",
+    "readOnly": false,
+    "modelVersion": "1.2"
+  },
+  "readOnly": "",
+  "lastModified": 1722369214.4482682,
+  "modelVersion": "1.2"
+}

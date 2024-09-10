@@ -1,0 +1,1788 @@
+{
+  "ids": {
+    "models": {
+      "PostTest1": "PostTest1",
+      "PostTest2": "PostTest2",
+      "PostTest3": "PostTest3",
+      "PostTest4": "PostTest4",
+      "PostTest5": "PostTest5",
+      "PutTest1": "PutTest1",
+      "PutTest2": "PutTest2",
+      "IdealOnly1": "IdealOnly1",
+      "IdealOnly2": "IdealOnly2",
+      "FullModel1": "FullModel1",
+      "CorruptedModel": "CorruptedModel"
+    },
+    "IFs": {
+      "IdealOnly1": "4272dfb5-66d5-520a-c454-a67085c4aa37",
+      "IdealOnly2": "d87abfe0-2d07-b29f-3624-f4d3ed530b09"
+    },
+    "compInters": {
+      "IdealOnly1": [
+        "d31bb636-b59c-6bb0-a51e-bf642cbb57d6",
+        "3b50ad34-c65b-8bb1-fdd8-f981c0f074d4"
+      ],
+      "IdealOnly2": [
+        "25517052-5c75-80f9-1b56-f07a21cc6251",
+        "3a4bdd9a-2d34-7eed-381c-99104a842ab3"
+      ]
+    }
+  },
+  "compInterCount": 4,
+  "messageCounts": {
+    "IFs": {
+      "IdealOnly1": 6,
+      "IdealOnly2": 6
+    },
+    "compInters": {
+      "IdealOnly1": [
+        4,
+        2
+      ],
+      "IdealOnly2": [
+        4,
+        2
+      ]
+    }
+  },
+  "usernames": [
+    "user1",
+    "user1",
+    "user1",
+    "user2"
+  ],
+  "tab_ids": [
+    "abc-123/def-456",
+    "abc-123/ghi-789",
+    "wxyz-321/tuv-987",
+    "abc-123/jkl-123"
+  ],
+  "return_all_count": [
+    {
+      "sessionID": "abc-123",
+      "user1": 2,
+      "user2": 1
+    },
+    {
+      "sessionID": "wxyz-321",
+      "user1": 1,
+      "user2": 0
+    }
+  ],
+  "parser_data": "parser_data.json",
+  "putData": [
+    {
+      "interfaces": {
+        "compInters": [
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "944acb3a-5d81-7cec-fa58-2afa7829e731",
+                "idOfInstance": "0624c330-546f-e64c-de2a-c8f7469222bd",
+                "name": "InterDir"
+              }
+            ],
+            "id": "83df7cee-3787-d92f-8b60-d7d3e8be8962",
+            "name": "InterDir",
+            "type": "direct"
+          },
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "c19f2131-4e88-90e7-4060-17b909cbcfaa",
+                "idOfInstance": "bee82bbe-beda-8316-e28c-95ae2d30a238",
+                "name": "InterAdv"
+              }
+            ],
+            "id": "2bca7ad8-b95c-abb5-445b-5b12cdbd126d",
+            "name": "InterAdv",
+            "type": "adversarial"
+          }
+        ],
+        "basicInters": [
+          {
+            "id": "944acb3a-5d81-7cec-fa58-2afa7829e731",
+            "messages": [
+              "2445b6a7-7dc3-8d94-1b30-601893bf2818",
+              "aaef709e-5af0-3e0d-dea9-0a394f2bece7"
+            ],
+            "name": "InterDirBasic",
+            "type": "direct"
+          },
+          {
+            "id": "c19f2131-4e88-90e7-4060-17b909cbcfaa",
+            "messages": [
+              "d2b0cad1-10ad-ab38-9414-ed7c09213319",
+              "f80ecb77-ae2b-fd76-3a50-380e23f065cd"
+            ],
+            "name": "InterAdvBasic",
+            "type": "adversarial"
+          }
+        ],
+        "messages": [
+          {
+            "id": "2445b6a7-7dc3-8d94-1b30-601893bf2818",
+            "name": "mess1",
+            "parameters": [],
+            "port": "pt1",
+            "type": "in"
+          },
+          {
+            "id": "aaef709e-5af0-3e0d-dea9-0a394f2bece7",
+            "name": "mess2",
+            "parameters": [],
+            "port": "pt1",
+            "type": "out"
+          },
+          {
+            "id": "d2b0cad1-10ad-ab38-9414-ed7c09213319",
+            "name": "mess3",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "f80ecb77-ae2b-fd76-3a50-380e23f065cd",
+            "name": "mess4",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          }
+        ]
+      },
+      "name": "PutTest1"
+    },
+    {
+      "interfaces": {
+        "compInters": [
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "70d31a35-4011-f1c9-d04b-b54b7cc26261",
+                "idOfInstance": "ac3d51d6-0fe5-a8a9-97fb-757eecc23452",
+                "name": "InterDir"
+              }
+            ],
+            "id": "1163b54d-d804-eb7f-7222-fda579024f64",
+            "name": "InterDir",
+            "type": "direct"
+          }
+        ],
+        "basicInters": [
+          {
+            "id": "70d31a35-4011-f1c9-d04b-b54b7cc26261",
+            "messages": [
+              "df059008-ca99-a200-bae1-a16cb0e4dfab",
+              "21885de4-edf5-76a4-e172-aa8a45b1fda5"
+            ],
+            "name": "InterDirBasic",
+            "type": "direct"
+          }
+        ],
+        "messages": [
+          {
+            "id": "df059008-ca99-a200-bae1-a16cb0e4dfab",
+            "name": "mess1",
+            "parameters": [],
+            "port": "pt1",
+            "type": "in"
+          },
+          {
+            "id": "21885de4-edf5-76a4-e172-aa8a45b1fda5",
+            "name": "mess2",
+            "parameters": [],
+            "port": "pt1",
+            "type": "out"
+          }
+        ]
+      },
+      "name": "PutTest2"
+    }
+  ],
+  "postData": {
+    "PostTest1": {
+      "interfaces": {
+        "compInters": [],
+        "basicInters": [],
+        "messages": []
+      },
+      "parties": {
+        "parties": []
+      },
+      "subfunctionalities": {
+        "subfunctionalities": []
+      },
+      "realFunctionality": {
+        "parties": [],
+        "subfunctionalities": [],
+        "id": "b0794ea1-2664-66aa-27b6-b5f6383dda60",
+        "name": "Real_Functionality",
+        "compositeDirectInterface": "",
+        "compositeAdversarialInterface": "",
+        "parameterInterfaces": []
+      },
+      "simulator": {
+        "id": "a365100a-f8a9-c436-46cf-83fec457339d",
+        "name": "Sim",
+        "basicAdversarialInterface": "",
+        "realFunctionality": "",
+        "stateMachine": "42b4ad48-8627-5ab7-53fd-4d2fb41bf95c",
+        "color": "#6bb45c",
+        "left": 450,
+        "top": 201
+      },
+      "idealFunctionality": {
+        "id": "8323acd1-2462-8b65-1b26-f92012a62837",
+        "name": "IF",
+        "basicAdversarialInterface": "",
+        "compositeDirectInterface": "",
+        "stateMachine": "53b70144-f6e8-e242-7b19-46e97923ebdb",
+        "color": "#3e88c7",
+        "left": 250,
+        "top": 250
+      },
+      "stateMachines": {
+        "stateMachines": [
+          {
+            "id": "53b70144-f6e8-e242-7b19-46e97923ebdb",
+            "states": [
+              "2c700270-87a1-e5eb-1493-78372ae398b2"
+            ],
+            "transitions": [],
+            "initState": "2c700270-87a1-e5eb-1493-78372ae398b2"
+          },
+          {
+            "id": "42b4ad48-8627-5ab7-53fd-4d2fb41bf95c",
+            "states": [
+              "d8cb5097-4393-ec3e-4661-fd90d6f04cc0"
+            ],
+            "transitions": [],
+            "initState": "d8cb5097-4393-ec3e-4661-fd90d6f04cc0"
+          }
+        ],
+        "states": [
+          {
+            "id": "2c700270-87a1-e5eb-1493-78372ae398b2",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          },
+          {
+            "id": "d8cb5097-4393-ec3e-4661-fd90d6f04cc0",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          }
+        ],
+        "transitions": []
+      },
+      "id": "73034a9f-73db-7659-98b7-4a68d70843ff",
+      "name": "PostTest1",
+      "readOnly": false,
+      "modelVersion": "1.2"
+    },
+    "PostTest2": {
+      "interfaces": {
+        "compInters": [],
+        "basicInters": [],
+        "messages": []
+      },
+      "parties": {
+        "parties": []
+      },
+      "subfunctionalities": {
+        "subfunctionalities": []
+      },
+      "realFunctionality": {
+        "parties": [],
+        "subfunctionalities": [],
+        "id": "1a18a0e1-2edd-a228-dd01-c2eeab35c789",
+        "name": "Real_Functionality",
+        "compositeDirectInterface": "",
+        "compositeAdversarialInterface": "",
+        "parameterInterfaces": []
+      },
+      "simulator": {
+        "id": "adca637f-0b5a-6d14-e604-ab1e2c90504d",
+        "name": "Sim",
+        "basicAdversarialInterface": "",
+        "realFunctionality": "",
+        "stateMachine": "d6274ce8-ae28-604d-ac39-d72239869ccf",
+        "color": "#6bb45c",
+        "left": 450,
+        "top": 201
+      },
+      "idealFunctionality": {
+        "id": "54530ca3-6c99-fb9d-fe1b-524ed42653e2",
+        "name": "IF",
+        "basicAdversarialInterface": "",
+        "compositeDirectInterface": "",
+        "stateMachine": "9b36ba46-6c95-3e1c-6747-67bb87179d93",
+        "color": "#3e88c7",
+        "left": 250,
+        "top": 250
+      },
+      "stateMachines": {
+        "stateMachines": [
+          {
+            "id": "9b36ba46-6c95-3e1c-6747-67bb87179d93",
+            "states": [
+              "55b96a60-ebcb-f3be-9e0c-dedf363c522c"
+            ],
+            "transitions": [],
+            "initState": "55b96a60-ebcb-f3be-9e0c-dedf363c522c"
+          },
+          {
+            "id": "d6274ce8-ae28-604d-ac39-d72239869ccf",
+            "states": [
+              "ae5e041e-fbd2-9cde-177a-b5a88d57281f"
+            ],
+            "transitions": [],
+            "initState": "ae5e041e-fbd2-9cde-177a-b5a88d57281f"
+          }
+        ],
+        "states": [
+          {
+            "id": "55b96a60-ebcb-f3be-9e0c-dedf363c522c",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          },
+          {
+            "id": "ae5e041e-fbd2-9cde-177a-b5a88d57281f",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          }
+        ],
+        "transitions": []
+      },
+      "id": "6e747244-15f1-632d-5bac-06d07cd178bd",
+      "name": "PostTest2",
+      "readOnly": false,
+      "modelVersion": "1.2"
+    },
+    "PostTest3": {
+      "interfaces": {
+        "compInters": [],
+        "basicInters": [],
+        "messages": []
+      },
+      "parties": {
+        "parties": []
+      },
+      "subfunctionalities": {
+        "subfunctionalities": []
+      },
+      "realFunctionality": {
+        "parties": [],
+        "subfunctionalities": [],
+        "id": "1461b7d3-7d5e-0541-6acd-5c4ccdac1f64",
+        "name": "Real_Functionality",
+        "compositeDirectInterface": "",
+        "compositeAdversarialInterface": "",
+        "parameterInterfaces": []
+      },
+      "simulator": {
+        "id": "e6f8e48c-d462-fd16-4bc9-8a4d9f4c1e78",
+        "name": "Sim",
+        "basicAdversarialInterface": "",
+        "realFunctionality": "",
+        "stateMachine": "5dee85df-3c02-38ce-207f-4e84f4391ebf",
+        "color": "#6bb45c",
+        "left": 450,
+        "top": 201
+      },
+      "idealFunctionality": {
+        "id": "dd33f682-7b87-6f3a-b85b-4cca3e1d8207",
+        "name": "IF",
+        "basicAdversarialInterface": "",
+        "compositeDirectInterface": "",
+        "stateMachine": "c5351447-b1f4-a76f-5dd6-76812a1df5b9",
+        "color": "#3e88c7",
+        "left": 250,
+        "top": 250
+      },
+      "stateMachines": {
+        "stateMachines": [
+          {
+            "id": "c5351447-b1f4-a76f-5dd6-76812a1df5b9",
+            "states": [
+              "fa02ff1f-d269-affd-6cee-f0d6c3e14eb3"
+            ],
+            "transitions": [],
+            "initState": "fa02ff1f-d269-affd-6cee-f0d6c3e14eb3"
+          },
+          {
+            "id": "5dee85df-3c02-38ce-207f-4e84f4391ebf",
+            "states": [
+              "6bd36d0d-1396-f811-f182-b2a5bc8d05aa"
+            ],
+            "transitions": [],
+            "initState": "6bd36d0d-1396-f811-f182-b2a5bc8d05aa"
+          }
+        ],
+        "states": [
+          {
+            "id": "fa02ff1f-d269-affd-6cee-f0d6c3e14eb3",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          },
+          {
+            "id": "6bd36d0d-1396-f811-f182-b2a5bc8d05aa",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          }
+        ],
+        "transitions": []
+      },
+      "id": "d5cebfb7-453a-daaf-6d46-d066b8538007",
+      "name": "PostTest3",
+      "readOnly": false,
+      "modelVersion": "1.2"
+    },
+    "PostTest4": {
+      "interfaces": {
+        "compInters": [],
+        "basicInters": [],
+        "messages": []
+      },
+      "parties": {
+        "parties": []
+      },
+      "subfunctionalities": {
+        "subfunctionalities": []
+      },
+      "realFunctionality": {
+        "parties": [],
+        "subfunctionalities": [],
+        "id": "18643206-daad-3b06-aae7-f7c441b0b66c",
+        "name": "Real_Functionality",
+        "compositeDirectInterface": "",
+        "compositeAdversarialInterface": "",
+        "parameterInterfaces": []
+      },
+      "simulator": {
+        "id": "d65e10bc-ffc5-dad4-3dce-11ac17c6bec6",
+        "name": "Sim",
+        "basicAdversarialInterface": "",
+        "realFunctionality": "",
+        "stateMachine": "2c9b5d1f-4e73-0a06-ee6f-1eb179ce26e3",
+        "color": "#6bb45c",
+        "left": 450,
+        "top": 201
+      },
+      "idealFunctionality": {
+        "id": "628db695-3830-15dc-c483-98db89fd0e06",
+        "name": "IF",
+        "basicAdversarialInterface": "",
+        "compositeDirectInterface": "",
+        "stateMachine": "c8903571-5a10-9301-b18e-65c3a7816e7c",
+        "color": "#3e88c7",
+        "left": 250,
+        "top": 250
+      },
+      "stateMachines": {
+        "stateMachines": [
+          {
+            "id": "c8903571-5a10-9301-b18e-65c3a7816e7c",
+            "states": [
+              "710e88c7-e2ee-5cdc-32f3-67b680a73770"
+            ],
+            "transitions": [],
+            "initState": "710e88c7-e2ee-5cdc-32f3-67b680a73770"
+          },
+          {
+            "id": "2c9b5d1f-4e73-0a06-ee6f-1eb179ce26e3",
+            "states": [
+              "90fb47c6-efb9-2e93-8e5b-881ea91a78e3"
+            ],
+            "transitions": [],
+            "initState": "90fb47c6-efb9-2e93-8e5b-881ea91a78e3"
+          }
+        ],
+        "states": [
+          {
+            "id": "710e88c7-e2ee-5cdc-32f3-67b680a73770",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          },
+          {
+            "id": "90fb47c6-efb9-2e93-8e5b-881ea91a78e3",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          }
+        ],
+        "transitions": []
+      },
+      "id": "654d632f-11d1-d033-311e-b24b3e56b4ce",
+      "name": "PostTest4",
+      "readOnly": false,
+      "modelVersion": "1.2"
+    },
+    "PostTest5": {
+      "interfaces": {
+        "compInters": [],
+        "basicInters": [],
+        "messages": []
+      },
+      "parties": {
+        "parties": []
+      },
+      "subfunctionalities": {
+        "subfunctionalities": []
+      },
+      "realFunctionality": {
+        "parties": [],
+        "subfunctionalities": [],
+        "id": "e6f08e41-98f2-b32d-ec7d-deb99f6e7714",
+        "name": "Real_Functionality",
+        "compositeDirectInterface": "",
+        "compositeAdversarialInterface": "",
+        "parameterInterfaces": []
+      },
+      "simulator": {
+        "id": "8936211c-0cf9-32c0-c5f8-eaddbda1e69d",
+        "name": "Sim",
+        "basicAdversarialInterface": "",
+        "realFunctionality": "",
+        "stateMachine": "afa343e8-f8c3-6655-f18e-48ba21a77bbc",
+        "color": "#6bb45c",
+        "left": 450,
+        "top": 201
+      },
+      "idealFunctionality": {
+        "id": "80023218-0f31-1c92-dbd0-b4c9b9ff1995",
+        "name": "IF",
+        "basicAdversarialInterface": "",
+        "compositeDirectInterface": "",
+        "stateMachine": "3bbd617d-09b0-b807-806b-7c09d6242e00",
+        "color": "#3e88c7",
+        "left": 250,
+        "top": 250
+      },
+      "stateMachines": {
+        "stateMachines": [
+          {
+            "id": "3bbd617d-09b0-b807-806b-7c09d6242e00",
+            "states": [
+              "543e39d2-fdcf-547b-10fc-d60b4340764f"
+            ],
+            "transitions": [],
+            "initState": "543e39d2-fdcf-547b-10fc-d60b4340764f"
+          },
+          {
+            "id": "afa343e8-f8c3-6655-f18e-48ba21a77bbc",
+            "states": [
+              "bf28a913-87d1-7bf4-c4b8-5ab7f4375259"
+            ],
+            "transitions": [],
+            "initState": "bf28a913-87d1-7bf4-c4b8-5ab7f4375259"
+          }
+        ],
+        "states": [
+          {
+            "id": "543e39d2-fdcf-547b-10fc-d60b4340764f",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          },
+          {
+            "id": "bf28a913-87d1-7bf4-c4b8-5ab7f4375259",
+            "name": "InitState",
+            "left": 25,
+            "top": 50,
+            "color": "#e3c85b",
+            "parameters": []
+          }
+        ],
+        "transitions": []
+      },
+      "id": "feef7719-9aed-c8d0-a0b3-e812bb7bcac6",
+      "name": "PostTest5",
+      "readOnly": false,
+      "modelVersion": "1.2"
+    }
+  },
+  "models": [
+    {
+      "interfaces": {
+        "compInters": [
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "d02df774-0266-62c9-d694-d62704c86d1f",
+                "idOfInstance": "016ad5ce-a97d-989d-40f6-ecd0fed3649a",
+                "name": "IdealDir"
+              }
+            ],
+            "id": "d31bb636-b59c-6bb0-a51e-bf642cbb57d6",
+            "name": "IdealDir",
+            "type": "direct"
+          },
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "69229cec-9dcf-b5bd-28ba-2c6ec7ac7e13",
+                "idOfInstance": "4188601a-9e0d-e29b-684d-d228f87352b3",
+                "name": "RealAdv"
+              }
+            ],
+            "id": "3b50ad34-c65b-8bb1-fdd8-f981c0f074d4",
+            "name": "RealAdv",
+            "type": "adversarial"
+          }
+        ],
+        "basicInters": [
+          {
+            "id": "d02df774-0266-62c9-d694-d62704c86d1f",
+            "messages": [
+              "01a44501-5a7a-7a27-72a9-1df6e29cdf1b",
+              "de170c70-8ef6-5eac-b016-7816d50b62be",
+              "cce61b40-02e3-2a45-67a6-228d28f1adf1",
+              "e5ac0e98-c3ee-0625-50e9-a6a670fc8163"
+            ],
+            "name": "IdealDirBasic",
+            "type": "direct"
+          },
+          {
+            "id": "c128879c-25fd-6601-cab9-b3bd87b7eafc",
+            "messages": [
+              "85e12c67-ca50-db71-59c3-c5f3dbc9bf37",
+              "16d1f926-32e0-6c1d-9614-28e32e85c3ec"
+            ],
+            "name": "IdealAdvBasic",
+            "type": "adversarial"
+          },
+          {
+            "id": "e05d3adf-776a-2349-72ef-cd9436132659",
+            "messages": [
+              "7bc840b3-f1ea-d0e1-a68b-1f14536e1413",
+              "b8d31997-7d01-2f51-fc35-ed17e512611b"
+            ],
+            "name": "SimAdvBasic",
+            "type": "adversarial"
+          },
+          {
+            "id": "69229cec-9dcf-b5bd-28ba-2c6ec7ac7e13",
+            "messages": [
+              "5a659e34-ec95-b866-c8d8-ef9b3af5195f",
+              "890de3b4-ea85-e2ec-7344-2d80ab361eae"
+            ],
+            "name": "RealAdvBasic",
+            "type": "adversarial"
+          }
+        ],
+        "messages": [
+          {
+            "id": "01a44501-5a7a-7a27-72a9-1df6e29cdf1b",
+            "name": "mess1",
+            "parameters": [
+              {
+                "id": "7d91d517-16f8-2587-e836-c82d63a88736",
+                "name": "param1",
+                "type": "float"
+              },
+              {
+                "id": "483cfefa-ce2b-0fe7-33f4-1801919c6fad",
+                "name": "param2",
+                "type": "float"
+              }
+            ],
+            "port": "pt1",
+            "type": "in"
+          },
+          {
+            "id": "de170c70-8ef6-5eac-b016-7816d50b62be",
+            "name": "mess2",
+            "parameters": [
+              {
+                "id": "5d18ddd3-815b-d128-fc86-a3f2484d209f",
+                "name": "param3",
+                "type": "uint16"
+              }
+            ],
+            "port": "pt1",
+            "type": "out"
+          },
+          {
+            "id": "cce61b40-02e3-2a45-67a6-228d28f1adf1",
+            "name": "mess3",
+            "parameters": [],
+            "port": "pt2",
+            "type": "in"
+          },
+          {
+            "id": "e5ac0e98-c3ee-0625-50e9-a6a670fc8163",
+            "name": "mess4",
+            "parameters": [],
+            "port": "pt2",
+            "type": "out"
+          },
+          {
+            "id": "85e12c67-ca50-db71-59c3-c5f3dbc9bf37",
+            "name": "advmess1",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "16d1f926-32e0-6c1d-9614-28e32e85c3ec",
+            "name": "advmess2",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          },
+          {
+            "id": "7bc840b3-f1ea-d0e1-a68b-1f14536e1413",
+            "name": "advmess3",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "b8d31997-7d01-2f51-fc35-ed17e512611b",
+            "name": "advmess4",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          },
+          {
+            "id": "5a659e34-ec95-b866-c8d8-ef9b3af5195f",
+            "name": "advmess5",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "890de3b4-ea85-e2ec-7344-2d80ab361eae",
+            "name": "advmess6",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          }
+        ]
+      },
+      "parties": {
+        "parties": []
+      },
+      "subfunctionalities": {
+        "subfunctionalities": []
+      },
+      "realFunctionality": {
+        "parties": [],
+        "subfunctionalities": [],
+        "id": "f20412e5-fdb0-fa3e-d987-36c476d67fe3",
+        "name": "Real_Functionality",
+        "compositeDirectInterface": "d31bb636-b59c-6bb0-a51e-bf642cbb57d6",
+        "compositeAdversarialInterface": "3b50ad34-c65b-8bb1-fdd8-f981c0f074d4",
+        "parameterInterfaces": []
+      },
+      "simulator": {
+        "id": "0834f472-d4e4-7220-cefb-850cc6634fdc",
+        "name": "Sim",
+        "basicAdversarialInterface": "e05d3adf-776a-2349-72ef-cd9436132659",
+        "realFunctionality": "f20412e5-fdb0-fa3e-d987-36c476d67fe3",
+        "stateMachine": "10002140-b8e6-af0b-b03f-638622d2a544",
+        "color": "#6bb45c",
+        "left": 450,
+        "top": 201
+      },
+      "idealFunctionality": {
+        "id": "4272dfb5-66d5-520a-c454-a67085c4aa37",
+        "name": "IF",
+        "basicAdversarialInterface": "c128879c-25fd-6601-cab9-b3bd87b7eafc",
+        "compositeDirectInterface": "d31bb636-b59c-6bb0-a51e-bf642cbb57d6",
+        "stateMachine": "45e955c9-aebd-5f40-5e2f-2b7550997439",
+        "color": "#3e88c7",
+        "left": 250,
+        "top": 250
+      },
+      "stateMachines": {
+        "stateMachines": [
+          {
+            "id": "45e955c9-aebd-5f40-5e2f-2b7550997439",
+            "initState": "88404081-caad-eb52-f85b-fc8c212a4073",
+            "states": [
+              "88404081-caad-eb52-f85b-fc8c212a4073",
+              "7af6a04d-47b8-5dba-5933-2a731e8d9c2c",
+              "0b2a29e7-b0ee-cb0d-95cc-4addf77be808"
+            ],
+            "transitions": [
+              "29a2bb6f-f330-bf86-49d4-8f6c7707cab0",
+              "80c99269-ca6f-c69f-131e-c29563c6379b",
+              "43c89172-869a-b54d-69b3-feb863b8bef6"
+            ]
+          },
+          {
+            "id": "10002140-b8e6-af0b-b03f-638622d2a544",
+            "initState": "61c07959-3969-b64e-d798-35c39a3ffd66",
+            "states": [
+              "61c07959-3969-b64e-d798-35c39a3ffd66",
+              "c6365286-91ea-df03-af23-7b06fee5bae5"
+            ],
+            "transitions": [
+              "43fd5da6-41e2-db5f-2530-ef7901e03aad",
+              "d31ff174-b929-efde-564e-f2131e1e3fbc"
+            ]
+          }
+        ],
+        "states": [
+          {
+            "color": "#e3c85b",
+            "id": "88404081-caad-eb52-f85b-fc8c212a4073",
+            "left": 25,
+            "name": "InitState",
+            "parameters": [],
+            "top": 50
+          },
+          {
+            "color": "#e3c85b",
+            "id": "61c07959-3969-b64e-d798-35c39a3ffd66",
+            "left": 25,
+            "name": "InitState",
+            "parameters": [],
+            "top": 50
+          },
+          {
+            "color": "#e3c85b",
+            "id": "7af6a04d-47b8-5dba-5933-2a731e8d9c2c",
+            "left": 259,
+            "name": "S1",
+            "parameters": [
+              {
+                "id": "4498e061-2925-41b0-022e-fde596b2f17a",
+                "name": "sparam1",
+                "type": "float"
+              }
+            ],
+            "top": 190
+          },
+          {
+            "color": "#e3c85b",
+            "id": "0b2a29e7-b0ee-cb0d-95cc-4addf77be808",
+            "left": 504,
+            "name": "Main",
+            "parameters": [
+              {
+                "id": "2afdbc61-200a-44d7-7aac-0d558b3be6e6",
+                "name": "mparam2",
+                "type": "port"
+              }
+            ],
+            "top": 301
+          },
+          {
+            "color": "#e3c85b",
+            "id": "c6365286-91ea-df03-af23-7b06fee5bae5",
+            "left": 274,
+            "name": "Main",
+            "parameters": [
+              {
+                "id": "1408226f-8d50-9800-b5bd-86b44b4c8330",
+                "name": "mparam2",
+                "type": "uint16"
+              }
+            ],
+            "top": 212
+          }
+        ],
+        "transitions": [
+          {
+            "id": "29a2bb6f-f330-bf86-49d4-8f6c7707cab0",
+            "name": "",
+            "fromState": "88404081-caad-eb52-f85b-fc8c212a4073",
+            "toState": "7af6a04d-47b8-5dba-5933-2a731e8d9c2c",
+            "sourceHandle": "13",
+            "targetHandle": "1",
+            "toStateArguments": [
+              {
+                "paraID": "4498e061-2925-41b0-022e-fde596b2f17a",
+                "argValue": "FLOAT_VALUE"
+              }
+            ],
+            "outMessageArguments": [
+              {
+                "paraID": "5d18ddd3-815b-d128-fc86-a3f2484d209f",
+                "argValue": "INT_VALUE"
+              }
+            ],
+            "guard": "",
+            "outMessage": "de170c70-8ef6-5eac-b016-7816d50b62be",
+            "inMessage": "01a44501-5a7a-7a27-72a9-1df6e29cdf1b",
+            "targetPort": "pt1"
+          },
+          {
+            "id": "80c99269-ca6f-c69f-131e-c29563c6379b",
+            "name": "",
+            "fromState": "7af6a04d-47b8-5dba-5933-2a731e8d9c2c",
+            "toState": "0b2a29e7-b0ee-cb0d-95cc-4addf77be808",
+            "sourceHandle": "13",
+            "targetHandle": "1",
+            "toStateArguments": [
+              {
+                "paraID": "2afdbc61-200a-44d7-7aac-0d558b3be6e6",
+                "argValue": "pt1"
+              }
+            ],
+            "outMessageArguments": [],
+            "guard": "",
+            "outMessage": "e5ac0e98-c3ee-0625-50e9-a6a670fc8163",
+            "inMessage": "cce61b40-02e3-2a45-67a6-228d28f1adf1",
+            "targetPort": "pt2"
+          },
+          {
+            "id": "43c89172-869a-b54d-69b3-feb863b8bef6",
+            "name": "",
+            "fromState": "0b2a29e7-b0ee-cb0d-95cc-4addf77be808",
+            "toState": "0b2a29e7-b0ee-cb0d-95cc-4addf77be808",
+            "sourceHandle": "13",
+            "targetHandle": "16",
+            "toStateArguments": [
+              {
+                "paraID": "2afdbc61-200a-44d7-7aac-0d558b3be6e6",
+                "argValue": "pt2"
+              }
+            ],
+            "outMessageArguments": [],
+            "guard": "",
+            "outMessage": "16d1f926-32e0-6c1d-9614-28e32e85c3ec",
+            "inMessage": "85e12c67-ca50-db71-59c3-c5f3dbc9bf37",
+            "targetPort": ""
+          },
+          {
+            "id": "43fd5da6-41e2-db5f-2530-ef7901e03aad",
+            "name": "",
+            "fromState": "61c07959-3969-b64e-d798-35c39a3ffd66",
+            "toState": "c6365286-91ea-df03-af23-7b06fee5bae5",
+            "sourceHandle": "13",
+            "targetHandle": "1",
+            "toStateArguments": [
+              {
+                "paraID": "1408226f-8d50-9800-b5bd-86b44b4c8330",
+                "argValue": "INT_VALUE"
+              }
+            ],
+            "outMessageArguments": [],
+            "guard": "",
+            "outMessage": "7bc840b3-f1ea-d0e1-a68b-1f14536e1413",
+            "inMessage": "b8d31997-7d01-2f51-fc35-ed17e512611b",
+            "targetPort": ""
+          },
+          {
+            "id": "d31ff174-b929-efde-564e-f2131e1e3fbc",
+            "name": "",
+            "fromState": "c6365286-91ea-df03-af23-7b06fee5bae5",
+            "toState": "c6365286-91ea-df03-af23-7b06fee5bae5",
+            "sourceHandle": "14",
+            "targetHandle": "16",
+            "toStateArguments": [
+              {
+                "paraID": "1408226f-8d50-9800-b5bd-86b44b4c8330",
+                "argValue": "INT_VALUE"
+              }
+            ],
+            "outMessageArguments": [],
+            "guard": "",
+            "outMessage": "890de3b4-ea85-e2ec-7344-2d80ab361eae",
+            "inMessage": "5a659e34-ec95-b866-c8d8-ef9b3af5195f",
+            "targetPort": ""
+          }
+        ]
+      },
+      "id": "a9393d63-61b3-6c89-99ae-79c712074e28",
+      "name": "IdealOnly1",
+      "readOnly": false,
+      "modelVersion": "1.2"
+    },
+    {
+      "interfaces": {
+        "compInters": [
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "9dd3af75-fa72-8b81-be0a-c137fa762bf3",
+                "idOfInstance": "12ec58f5-fe78-1a6b-1570-a5e73a0980de",
+                "name": "Ideal2Dir"
+              }
+            ],
+            "id": "25517052-5c75-80f9-1b56-f07a21cc6251",
+            "name": "Ideal2Dir",
+            "type": "direct"
+          },
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "f736f115-36f9-3fac-9601-de71c3384db2",
+                "idOfInstance": "8d98c3a7-e910-bd8b-a68f-4bc532ba4138",
+                "name": "Real2Adv"
+              }
+            ],
+            "id": "3a4bdd9a-2d34-7eed-381c-99104a842ab3",
+            "name": "Real2Adv",
+            "type": "adversarial"
+          }
+        ],
+        "basicInters": [
+          {
+            "id": "9dd3af75-fa72-8b81-be0a-c137fa762bf3",
+            "messages": [
+              "cec66b51-47eb-8c77-37d6-49d77bb0a6b4",
+              "04ca6f74-5fc6-0ed7-c347-9abb092dd692",
+              "801d579d-1acb-f963-3e72-cf0272ba0d3f",
+              "41c3c9ac-8e84-6435-d65d-a89215bd8e81"
+            ],
+            "name": "Ideal2DirBasic",
+            "type": "direct"
+          },
+          {
+            "id": "9909f4fb-4651-0535-f8a4-9c043712916f",
+            "messages": [
+              "e14a532c-1796-09df-e0e3-b656946dd07b",
+              "de22299f-7df7-ef61-6dff-975722d80d0a"
+            ],
+            "name": "Ideal2AdvBasic",
+            "type": "adversarial"
+          },
+          {
+            "id": "f736f115-36f9-3fac-9601-de71c3384db2",
+            "messages": [
+              "68b4b699-8eb6-02dc-ed89-05baa93022ea",
+              "4d600704-439e-969d-522e-4ddfaf9313c1"
+            ],
+            "name": "Real2AdvBasic",
+            "type": "adversarial"
+          },
+          {
+            "id": "f4f98147-580f-9507-806b-cd20dc3bad31",
+            "messages": [
+              "c1313481-a794-581f-973f-dd33c7484e91",
+              "9a00e21a-723f-0311-1d75-5bbc705ee93b"
+            ],
+            "name": "Sim2AdvBasic",
+            "type": "adversarial"
+          }
+        ],
+        "messages": [
+          {
+            "id": "cec66b51-47eb-8c77-37d6-49d77bb0a6b4",
+            "name": "idealmess201",
+            "parameters": [],
+            "port": "pt1",
+            "type": "in"
+          },
+          {
+            "id": "04ca6f74-5fc6-0ed7-c347-9abb092dd692",
+            "name": "idealmess202",
+            "parameters": [],
+            "port": "pt1",
+            "type": "out"
+          },
+          {
+            "id": "801d579d-1acb-f963-3e72-cf0272ba0d3f",
+            "name": "idealmess203",
+            "parameters": [],
+            "port": "pt2",
+            "type": "in"
+          },
+          {
+            "id": "41c3c9ac-8e84-6435-d65d-a89215bd8e81",
+            "name": "idealmess204",
+            "parameters": [],
+            "port": "pt2",
+            "type": "out"
+          },
+          {
+            "id": "e14a532c-1796-09df-e0e3-b656946dd07b",
+            "name": "advmess201",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "de22299f-7df7-ef61-6dff-975722d80d0a",
+            "name": "advmess202",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          },
+          {
+            "id": "68b4b699-8eb6-02dc-ed89-05baa93022ea",
+            "name": "advmess203",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "4d600704-439e-969d-522e-4ddfaf9313c1",
+            "name": "advmess204",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          },
+          {
+            "id": "c1313481-a794-581f-973f-dd33c7484e91",
+            "name": "advmess205",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "9a00e21a-723f-0311-1d75-5bbc705ee93b",
+            "name": "advmess206",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          }
+        ]
+      },
+      "parties": {
+        "parties": []
+      },
+      "subfunctionalities": {
+        "subfunctionalities": []
+      },
+      "realFunctionality": {
+        "parties": [],
+        "subfunctionalities": [],
+        "id": "9f8d57be-614f-749c-f030-aac23d7d66cc",
+        "name": "Real_Functionality",
+        "compositeDirectInterface": "25517052-5c75-80f9-1b56-f07a21cc6251",
+        "compositeAdversarialInterface": "3a4bdd9a-2d34-7eed-381c-99104a842ab3",
+        "parameterInterfaces": []
+      },
+      "simulator": {
+        "id": "99da6c88-24ab-a078-3f45-29bc97627413",
+        "name": "Sim",
+        "basicAdversarialInterface": "f4f98147-580f-9507-806b-cd20dc3bad31",
+        "realFunctionality": "9f8d57be-614f-749c-f030-aac23d7d66cc",
+        "stateMachine": "d80d9210-ad4a-3e0d-da33-a0abd79ebcf9",
+        "color": "#6bb45c",
+        "left": 450,
+        "top": 201
+      },
+      "idealFunctionality": {
+        "id": "d87abfe0-2d07-b29f-3624-f4d3ed530b09",
+        "name": "IF",
+        "basicAdversarialInterface": "9909f4fb-4651-0535-f8a4-9c043712916f",
+        "compositeDirectInterface": "25517052-5c75-80f9-1b56-f07a21cc6251",
+        "stateMachine": "170439fe-3c4b-9f60-760c-7d4f89cbd0e4",
+        "color": "#3e88c7",
+        "left": 250,
+        "top": 250
+      },
+      "stateMachines": {
+        "stateMachines": [
+          {
+            "id": "170439fe-3c4b-9f60-760c-7d4f89cbd0e4",
+            "initState": "80339f6e-70ed-bdbe-2a39-dfe5f9dab10c",
+            "states": [
+              "80339f6e-70ed-bdbe-2a39-dfe5f9dab10c"
+            ],
+            "transitions": []
+          },
+          {
+            "id": "d80d9210-ad4a-3e0d-da33-a0abd79ebcf9",
+            "initState": "84049a02-ec2f-6560-71a1-57b7402a6e8e",
+            "states": [
+              "84049a02-ec2f-6560-71a1-57b7402a6e8e"
+            ],
+            "transitions": []
+          }
+        ],
+        "states": [
+          {
+            "color": "#e3c85b",
+            "id": "80339f6e-70ed-bdbe-2a39-dfe5f9dab10c",
+            "left": 25,
+            "name": "InitState",
+            "parameters": [],
+            "top": 50
+          },
+          {
+            "color": "#e3c85b",
+            "id": "84049a02-ec2f-6560-71a1-57b7402a6e8e",
+            "left": 25,
+            "name": "InitState",
+            "parameters": [],
+            "top": 50
+          }
+        ],
+        "transitions": []
+      },
+      "id": "ca8683b3-da1a-8222-f925-a38683e0f86a",
+      "name": "IdealOnly2",
+      "readOnly": false,
+      "modelVersion": "1.2"
+    },
+    {
+      "interfaces": {
+        "compInters": [
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "59d27394-5ada-e616-aa69-b3c0d0ce345b",
+                "idOfInstance": "2ee31f76-2187-a46d-a376-2ca122b0bc80",
+                "name": "Ideal3Dir"
+              }
+            ],
+            "id": "70ae80fe-5fb4-ca4c-2f4c-fd2c8c7a7970",
+            "name": "Ideal3Dir",
+            "type": "direct"
+          },
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "3189cf6c-a5f6-d569-39e2-22f92eb2cdc4",
+                "idOfInstance": "70be18f9-6d41-57a6-e1bc-02b69d1618b2",
+                "name": "Real3Adv"
+              },
+              {
+                "idOfBasic": "c78673d8-3c0b-990d-cd98-6af8a6829072",
+                "idOfInstance": "f8cdc22a-e2ea-b0e3-cbbc-ed000f208ded",
+                "name": "P1Adv"
+              },
+              {
+                "idOfBasic": "301f048e-937b-723e-92db-f54b622f0967",
+                "idOfInstance": "8ef897ea-df2f-4ebd-2a82-009bc87d4ea8",
+                "name": "P2Adv"
+              }
+            ],
+            "id": "313eefa2-3bd2-b7e6-c06d-970af82cc7c2",
+            "name": "Real3Adv",
+            "type": "adversarial"
+          },
+          {
+            "basicInterfaces": [
+              {
+                "idOfBasic": "7eb7e795-9b61-9f5f-fa8a-b33c8992efdd",
+                "idOfInstance": "8e7f7649-fcb6-7a62-ad99-1ac64d62d98f",
+                "name": "Real3Dir"
+              },
+              {
+                "idOfBasic": "afc2b795-c3c3-51a4-551c-271f990ab6cb",
+                "idOfInstance": "61bdc503-1e97-e63f-4434-e87cb2f6cfe5",
+                "name": "P1Dir"
+              },
+              {
+                "idOfBasic": "dbcd6917-b85a-8e69-73d5-b60d4c7c3880",
+                "idOfInstance": "a4e86838-dc6a-ccfc-aa01-3562e55fdd98",
+                "name": "P2Dir"
+              }
+            ],
+            "id": "c55816f1-c714-51d0-89f6-e51bb539afc5",
+            "name": "Real3Dir",
+            "type": "direct"
+          }
+        ],
+        "basicInters": [
+          {
+            "id": "59d27394-5ada-e616-aa69-b3c0d0ce345b",
+            "messages": [
+              "faa9be6d-2985-1fbd-3ee5-40c36fff19b7",
+              "44ba555a-c74b-0248-ce18-25b0e3929d5c",
+              "94ec8fc0-a89e-eae9-2cdf-976ad70ab9f0",
+              "648137dc-499b-9acd-17d9-9f167c4d0206"
+            ],
+            "name": "Ideal3DirBasic",
+            "type": "direct"
+          },
+          {
+            "id": "3189cf6c-a5f6-d569-39e2-22f92eb2cdc4",
+            "messages": [
+              "29020c7c-81d2-af4f-6dcc-f709dd6c9978",
+              "f17397aa-6971-b307-5457-04d2ab3981f9"
+            ],
+            "name": "Real3AdvBasic",
+            "type": "adversarial"
+          },
+          {
+            "id": "9dac0522-64bc-6cf6-8675-3bef95024063",
+            "messages": [
+              "cc56197a-8c30-d1d2-b993-b869a28e01c7",
+              "f69ad9a4-d2c6-1448-cadc-47fa26dff3cf"
+            ],
+            "name": "Sim3AdvBasic",
+            "type": "adversarial"
+          },
+          {
+            "id": "59861a1c-a51e-6a5d-72e0-cf9b95c70803",
+            "messages": [
+              "aecdd375-21d4-9034-c4cd-7b7591eb64af",
+              "b1e10ee1-eed8-c3c2-faf6-242d39b96e91"
+            ],
+            "name": "Ideal3AdvBasic",
+            "type": "adversarial"
+          },
+          {
+            "id": "7eb7e795-9b61-9f5f-fa8a-b33c8992efdd",
+            "messages": [
+              "de8cc245-5ac2-872a-038b-cc95fd689401",
+              "137e0a8c-a6eb-63cb-90da-501fe582ce8b"
+            ],
+            "name": "Real3DirBasic",
+            "type": "direct"
+          },
+          {
+            "id": "afc2b795-c3c3-51a4-551c-271f990ab6cb",
+            "messages": [
+              "2a4feba0-6c17-77d0-9391-927c95c5813b",
+              "a43d8e91-4c47-156d-ab75-269063aca509"
+            ],
+            "name": "P1DirBasic",
+            "type": "direct"
+          },
+          {
+            "id": "c78673d8-3c0b-990d-cd98-6af8a6829072",
+            "messages": [
+              "b09d40dd-f5e7-fa2a-a88b-b775a7ecff45",
+              "a89a73b7-865f-6577-8fe1-c56e43c88d86"
+            ],
+            "name": "P1AdvBasic",
+            "type": "adversarial"
+          },
+          {
+            "id": "dbcd6917-b85a-8e69-73d5-b60d4c7c3880",
+            "messages": [
+              "96afcbc3-25da-f808-87fe-d7033c8b1d33",
+              "09665c75-860c-e368-82ca-600aae6840bd"
+            ],
+            "name": "P2DirBasic",
+            "type": "direct"
+          },
+          {
+            "id": "301f048e-937b-723e-92db-f54b622f0967",
+            "messages": [
+              "96db4774-fc48-ba44-75d2-6d48f1130104",
+              "6c6048a8-e43e-9974-d126-18f581bfbe65"
+            ],
+            "name": "P2AdvBasic",
+            "type": "adversarial"
+          }
+        ],
+        "messages": [
+          {
+            "id": "faa9be6d-2985-1fbd-3ee5-40c36fff19b7",
+            "name": "idealmess301",
+            "parameters": [],
+            "port": "pt1",
+            "type": "in"
+          },
+          {
+            "id": "44ba555a-c74b-0248-ce18-25b0e3929d5c",
+            "name": "idealmess302",
+            "parameters": [],
+            "port": "pt1",
+            "type": "out"
+          },
+          {
+            "id": "94ec8fc0-a89e-eae9-2cdf-976ad70ab9f0",
+            "name": "idealmess303",
+            "parameters": [],
+            "port": "pt2",
+            "type": "in"
+          },
+          {
+            "id": "648137dc-499b-9acd-17d9-9f167c4d0206",
+            "name": "idealmess304",
+            "parameters": [],
+            "port": "pt2",
+            "type": "out"
+          },
+          {
+            "id": "29020c7c-81d2-af4f-6dcc-f709dd6c9978",
+            "name": "advmess301",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "f17397aa-6971-b307-5457-04d2ab3981f9",
+            "name": "advmess302",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          },
+          {
+            "id": "cc56197a-8c30-d1d2-b993-b869a28e01c7",
+            "name": "advmess303",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "f69ad9a4-d2c6-1448-cadc-47fa26dff3cf",
+            "name": "advmess304",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          },
+          {
+            "id": "aecdd375-21d4-9034-c4cd-7b7591eb64af",
+            "name": "advmess305",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "b1e10ee1-eed8-c3c2-faf6-242d39b96e91",
+            "name": "advmess306",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          },
+          {
+            "id": "de8cc245-5ac2-872a-038b-cc95fd689401",
+            "name": "realmess301",
+            "parameters": [],
+            "port": "pt3",
+            "type": "in"
+          },
+          {
+            "id": "137e0a8c-a6eb-63cb-90da-501fe582ce8b",
+            "name": "realmess302",
+            "parameters": [],
+            "port": "pt3",
+            "type": "out"
+          },
+          {
+            "id": "2a4feba0-6c17-77d0-9391-927c95c5813b",
+            "name": "partymess301",
+            "parameters": [],
+            "port": "pt4",
+            "type": "in"
+          },
+          {
+            "id": "a43d8e91-4c47-156d-ab75-269063aca509",
+            "name": "partymess302",
+            "parameters": [],
+            "port": "pt4",
+            "type": "out"
+          },
+          {
+            "id": "b09d40dd-f5e7-fa2a-a88b-b775a7ecff45",
+            "name": "partymess303",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "a89a73b7-865f-6577-8fe1-c56e43c88d86",
+            "name": "partymess304",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          },
+          {
+            "id": "96afcbc3-25da-f808-87fe-d7033c8b1d33",
+            "name": "partymess305",
+            "parameters": [],
+            "port": "pt5",
+            "type": "in"
+          },
+          {
+            "id": "09665c75-860c-e368-82ca-600aae6840bd",
+            "name": "partymess306",
+            "parameters": [],
+            "port": "pt5",
+            "type": "out"
+          },
+          {
+            "id": "96db4774-fc48-ba44-75d2-6d48f1130104",
+            "name": "partymess307",
+            "parameters": [],
+            "port": "",
+            "type": "in"
+          },
+          {
+            "id": "6c6048a8-e43e-9974-d126-18f581bfbe65",
+            "name": "partymess308",
+            "parameters": [],
+            "port": "",
+            "type": "out"
+          }
+        ]
+      },
+      "parties": {
+        "parties": [
+          {
+            "basicAdversarialInterface": "f8cdc22a-e2ea-b0e3-cbbc-ed000f208ded",
+            "basicDirectInterface": "61bdc503-1e97-e63f-4434-e87cb2f6cfe5",
+            "color": "#c4dd88",
+            "id": "9cee6b92-e6d3-04fb-49ee-008832ca669d",
+            "left": 417,
+            "name": "P1",
+            "stateMachine": "6e259bf5-8866-6bb1-83e4-57ac9caab971",
+            "top": 204
+          },
+          {
+            "basicAdversarialInterface": "8ef897ea-df2f-4ebd-2a82-009bc87d4ea8",
+            "basicDirectInterface": "a4e86838-dc6a-ccfc-aa01-3562e55fdd98",
+            "color": "#c4dd88",
+            "id": "2495bb7b-5602-060c-e631-6bc9a5125e17",
+            "left": 511,
+            "name": "P2",
+            "stateMachine": "efb2fe8f-7eba-03d3-5597-8a393f82e365",
+            "top": 407
+          }
+        ]
+      },
+      "subfunctionalities": {
+        "subfunctionalities": [
+          {
+            "color": "#8a6996",
+            "id": "1e63e90e-4517-b331-ec12-32c98f6a16e4",
+            "idealFuncModel": "IdealOnly2",
+            "idealFunctionalityId": "d87abfe0-2d07-b29f-3624-f4d3ed530b09",
+            "idealFunctionalityName": "IF",
+            "left": 838,
+            "name": "Ideal2",
+            "top": 511
+          },
+          {
+            "color": "#8a6996",
+            "id": "beccb27f-6925-4295-9507-aabc7522563f",
+            "idealFuncModel": "IdealOnly1",
+            "idealFunctionalityId": "4272dfb5-66d5-520a-c454-a67085c4aa37",
+            "idealFunctionalityName": "IF",
+            "left": 691,
+            "name": "Ideal1",
+            "top": 316
+          }
+        ]
+      },
+      "realFunctionality": {
+        "parties": [
+          "9cee6b92-e6d3-04fb-49ee-008832ca669d",
+          "2495bb7b-5602-060c-e631-6bc9a5125e17"
+        ],
+        "subfunctionalities": [
+          "1e63e90e-4517-b331-ec12-32c98f6a16e4",
+          "beccb27f-6925-4295-9507-aabc7522563f"
+        ],
+        "id": "68d83c34-c0ec-a7e9-d5f2-7f4e4b0c9d66",
+        "name": "Real_Functionality",
+        "compositeDirectInterface": "c55816f1-c714-51d0-89f6-e51bb539afc5",
+        "compositeAdversarialInterface": "313eefa2-3bd2-b7e6-c06d-970af82cc7c2",
+        "parameterInterfaces": [
+          {
+            "color": "#DE8989",
+            "compInterName": "Ideal2Dir",
+            "id": "0418562b-b989-29d7-6d2c-4c969f00c1f4",
+            "idOfInterface": "25517052-5c75-80f9-1b56-f07a21cc6251",
+            "left": 377,
+            "modelName": "IdealOnly2",
+            "name": "Param1",
+            "top": 345
+          }
+        ]
+      },
+      "simulator": {
+        "id": "91ed3158-c8ce-f332-936e-e8c187a5983e",
+        "name": "Sim",
+        "basicAdversarialInterface": "9dac0522-64bc-6cf6-8675-3bef95024063",
+        "realFunctionality": "68d83c34-c0ec-a7e9-d5f2-7f4e4b0c9d66",
+        "stateMachine": "08aebac1-5958-5935-a0a3-495ddd36d0ef",
+        "color": "#6bb45c",
+        "left": 450,
+        "top": 201
+      },
+      "idealFunctionality": {
+        "id": "2f95b6f0-4ce5-0882-5da6-d1e7c653a855",
+        "name": "IF",
+        "basicAdversarialInterface": "59861a1c-a51e-6a5d-72e0-cf9b95c70803",
+        "compositeDirectInterface": "70ae80fe-5fb4-ca4c-2f4c-fd2c8c7a7970",
+        "stateMachine": "133377c5-57c6-ddbc-7ce1-3cddb33534d8",
+        "color": "#3e88c7",
+        "left": 250,
+        "top": 250
+      },
+      "stateMachines": {
+        "stateMachines": [
+          {
+            "id": "133377c5-57c6-ddbc-7ce1-3cddb33534d8",
+            "initState": "82917560-5eef-2dd4-3f98-4f84c9ba1843",
+            "states": [
+              "82917560-5eef-2dd4-3f98-4f84c9ba1843"
+            ],
+            "transitions": []
+          },
+          {
+            "id": "08aebac1-5958-5935-a0a3-495ddd36d0ef",
+            "initState": "1cd4628b-7114-b830-eb12-36a3b416896f",
+            "states": [
+              "1cd4628b-7114-b830-eb12-36a3b416896f"
+            ],
+            "transitions": []
+          },
+          {
+            "id": "6e259bf5-8866-6bb1-83e4-57ac9caab971",
+            "initState": "cd1a3d27-7d98-84f8-f0c2-019fc0e96a88",
+            "states": [
+              "cd1a3d27-7d98-84f8-f0c2-019fc0e96a88",
+              "c6d82a0e-53b5-eb7e-ff94-4cbde46d5b43",
+              "66513f61-ab1c-2067-4df4-afcd21705052"
+            ],
+            "transitions": [
+              "b43cbb92-4844-2ca7-50d4-c5a2ccd60092",
+              "b7813cf3-70f4-cfb0-80fa-38633c18f78e",
+              "744587d5-450c-40ba-f691-459e33bd45b6",
+              "ac488183-f51a-a53b-c9d0-6303900acdbf"
+            ]
+          },
+          {
+            "id": "efb2fe8f-7eba-03d3-5597-8a393f82e365",
+            "initState": "5200847e-18dc-69ee-cdbd-01216cb9b760",
+            "states": [
+              "5200847e-18dc-69ee-cdbd-01216cb9b760"
+            ],
+            "transitions": []
+          }
+        ],
+        "states": [
+          {
+            "color": "#e3c85b",
+            "id": "82917560-5eef-2dd4-3f98-4f84c9ba1843",
+            "left": 25,
+            "name": "InitState",
+            "parameters": [],
+            "top": 50
+          },
+          {
+            "color": "#e3c85b",
+            "id": "1cd4628b-7114-b830-eb12-36a3b416896f",
+            "left": 25,
+            "name": "InitState",
+            "parameters": [],
+            "top": 50
+          },
+          {
+            "color": "#e3c85b",
+            "id": "cd1a3d27-7d98-84f8-f0c2-019fc0e96a88",
+            "left": 25,
+            "name": "InitState",
+            "parameters": [],
+            "top": 50
+          },
+          {
+            "color": "#e3c85b",
+            "id": "5200847e-18dc-69ee-cdbd-01216cb9b760",
+            "left": 25,
+            "name": "InitState",
+            "parameters": [],
+            "top": 50
+          },
+          {
+            "color": "#e3c85b",
+            "id": "c6d82a0e-53b5-eb7e-ff94-4cbde46d5b43",
+            "left": 254,
+            "name": "S1",
+            "parameters": [],
+            "top": 156
+          },
+          {
+            "color": "#e3c85b",
+            "id": "66513f61-ab1c-2067-4df4-afcd21705052",
+            "left": 525,
+            "name": "Main",
+            "parameters": [],
+            "top": 293
+          }
+        ],
+        "transitions": [
+          {
+            "fromState": "cd1a3d27-7d98-84f8-f0c2-019fc0e96a88",
+            "guard": "",
+            "id": "b43cbb92-4844-2ca7-50d4-c5a2ccd60092",
+            "inMessage": "de170c70-8ef6-5eac-b016-7816d50b62be/beccb27f-6925-4295-9507-aabc7522563f",
+            "name": "",
+            "outMessage": "01a44501-5a7a-7a27-72a9-1df6e29cdf1b/beccb27f-6925-4295-9507-aabc7522563f",
+            "outMessageArguments": [
+              {
+                "argValue": "FLOAT_VALUE",
+                "paraID": "7d91d517-16f8-2587-e836-c82d63a88736"
+              },
+              {
+                "argValue": "FLOAT_VALUE",
+                "paraID": "483cfefa-ce2b-0fe7-33f4-1801919c6fad"
+              }
+            ],
+            "sourceHandle": "12",
+            "targetHandle": "3",
+            "targetPort": "",
+            "toState": "c6d82a0e-53b5-eb7e-ff94-4cbde46d5b43",
+            "toStateArguments": []
+          },
+          {
+            "fromState": "c6d82a0e-53b5-eb7e-ff94-4cbde46d5b43",
+            "guard": "",
+            "id": "b7813cf3-70f4-cfb0-80fa-38633c18f78e",
+            "inMessage": "04ca6f74-5fc6-0ed7-c347-9abb092dd692/1e63e90e-4517-b331-ec12-32c98f6a16e4",
+            "name": "",
+            "outMessage": "cec66b51-47eb-8c77-37d6-49d77bb0a6b4/1e63e90e-4517-b331-ec12-32c98f6a16e4",
+            "outMessageArguments": [],
+            "sourceHandle": "12",
+            "targetHandle": "2",
+            "targetPort": "",
+            "toState": "66513f61-ab1c-2067-4df4-afcd21705052",
+            "toStateArguments": []
+          },
+          {
+            "fromState": "66513f61-ab1c-2067-4df4-afcd21705052",
+            "guard": "",
+            "id": "744587d5-450c-40ba-f691-459e33bd45b6",
+            "inMessage": "2a4feba0-6c17-77d0-9391-927c95c5813b",
+            "name": "",
+            "outMessage": "a43d8e91-4c47-156d-ab75-269063aca509",
+            "outMessageArguments": [],
+            "sourceHandle": "13",
+            "targetHandle": "1",
+            "targetPort": "pt4",
+            "toState": "66513f61-ab1c-2067-4df4-afcd21705052",
+            "toStateArguments": []
+          },
+          {
+            "fromState": "66513f61-ab1c-2067-4df4-afcd21705052",
+            "guard": "",
+            "id": "ac488183-f51a-a53b-c9d0-6303900acdbf",
+            "inMessage": "04ca6f74-5fc6-0ed7-c347-9abb092dd692/0418562b-b989-29d7-6d2c-4c969f00c1f4",
+            "name": "",
+            "outMessage": "cec66b51-47eb-8c77-37d6-49d77bb0a6b4/0418562b-b989-29d7-6d2c-4c969f00c1f4",
+            "outMessageArguments": [],
+            "sourceHandle": "9",
+            "targetHandle": "12",
+            "targetPort": "",
+            "toState": "66513f61-ab1c-2067-4df4-afcd21705052",
+            "toStateArguments": []
+          }
+        ]
+      },
+      "id": "b1db12cb-56f3-50ce-b932-05a665a7bca6",
+      "name": "FullModel1",
+      "readOnly": false,
+      "modelVersion": "1.2"
+    }
+  ]
+}
