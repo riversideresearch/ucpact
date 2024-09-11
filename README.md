@@ -41,7 +41,7 @@ Navigate to [http://localhost/](http://localhost/) and sign in to UC-PACT with t
 
 You can contact the UC-PACT team by reaching out to harden@riversideresearch.org
 
-For more information about Universal Composability and the UC DSL see the [EasyUC](https://github.com/easyuc) repository.
+For more information about Universal Composability and the UC DSL see the [EasyUC](https://github.com/easyuc) repository and the EasyUC User Guide in the docs folder of this repository.
 
 ---
 
