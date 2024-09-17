@@ -25,6 +25,21 @@ def validation_check(id):
     else:
         return True
 
+def wait_exists(filename, wait_time=0.25, wait_max=1):
+    """wait_exists(filename, wait_time=0.25, wait_max=1) -> bool
+
+       This functions waits for the specified max time (sleeping for the
+       specified wait time each iteration until either the time expires or
+       the file exists. If the file exists, this returns true.
+    """
+    wait_counter = 0
+    while not os.path.exists(filename):
+        time.sleep(wait_time)
+        wait_counter += wait_time
+        if wait_counter > wait_max:break
+
+    return os.path.exists(filename)
+
 @contextmanager
 def locked_open(filename, mode, lock_type):
     """locked_open(filename, mode='r') -> <open file object>
@@ -239,7 +254,7 @@ def put_model(id):
         filename = os.path.join('models', id) + '.json'
         
         # if file exists, retrieve modelVersion from the JSON
-        if os.path.exists(filename):
+        if wait_exists(filename):
             try:
                 with locked_open(filename, 'r', fcntl.LOCK_EX) as fp:
                     old_data = json.load(fp)
