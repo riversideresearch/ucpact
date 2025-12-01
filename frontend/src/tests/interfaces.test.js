@@ -126,7 +126,7 @@ describe('Tests basic interface funtionality', () => {
         fireEvent.change(input, {target: {value: 'InterfaceOne'}});
         const displayHeaderParent = screen.getByTestId('accorBasicHeaderButton');
         const displayHeader = displayHeaderParent.querySelector('button');
-        waitFor(() => {
+        await waitFor(() => {
             expect(displayHeader).toHaveTextContent('InterfaceOne');
         });        
     });
@@ -145,7 +145,7 @@ describe('Tests basic interface funtionality', () => {
         fireEvent.change(input, {target: {value: 'InterfaceOne'}});
         const displayHeaderParent = screen.getByTestId('accorBasicHeaderButton');
         const displayHeader = displayHeaderParent.querySelector('button');
-        waitFor(() => {
+        await waitFor(() => {
             expect(displayHeader).toHaveTextContent('InterfaceOne');
         });
 
@@ -159,14 +159,14 @@ describe('Tests basic interface funtionality', () => {
         // Header should still be there
         expect(displayHeader).toBeInTheDocument();
         // Body should be shown
-        waitFor(() => {
+        await waitFor(() => {
             expect(accorBody.classList.contains('show')).toBe(true);
         });
         
         // Click on the header again
         fireEvent.click(displayHeader);
         // Body should be hidden
-        waitFor(() => {
+        await waitFor(() => {
             expect(accorBody.classList.contains('show')).toBe(false);
         });        
     });
@@ -213,7 +213,7 @@ describe('Tests basic interface funtionality', () => {
         // Check message header
         const displayHeaderParent = screen.getByTestId('accorHeaderMessageButton');
         const displayHeader = displayHeaderParent.querySelector('button');
-        waitFor(() => {
+        await waitFor(() => {
             expect(displayHeader).toHaveTextContent('messageOne');
         });
     });
@@ -265,7 +265,7 @@ describe('Tests basic interface funtionality', () => {
         // Check message header
         const displayHeaderParent = screen.getByTestId('accorHeaderMessageButton');
         const displayHeader = displayHeaderParent.querySelector('button');
-        waitFor(() => {
+        await waitFor(() => {
             expect(displayHeader).toHaveTextContent('messageOne');
         });
 
@@ -279,14 +279,14 @@ describe('Tests basic interface funtionality', () => {
         // Header should still be there
         expect(displayHeader).toBeInTheDocument();
         // Body should be shown
-        waitFor(() => {
+        await waitFor(() => {
             expect(accorBody.classList.contains('show')).toBe(true);
         });
         
         // Click on the header again
         fireEvent.click(displayHeader);
         // Body should be hidden
-        waitFor(() => {
+        await waitFor(() => {
             expect(accorBody.classList.contains('show')).toBe(false);
         });        
     });
@@ -469,7 +469,7 @@ describe('Tests composite interface functionality', () => {
         fireEvent.change(input, {target: {value: 'CompositeInt'}});
         const displayHeaderParent = screen.getByTestId('accorCompHeaderButton');
         const displayHeader = displayHeaderParent.querySelector('button');
-        waitFor(() => {
+        await waitFor(() => {
             expect(displayHeader).toHaveTextContent('CompositeInt');
         });        
     });
@@ -488,7 +488,7 @@ describe('Tests composite interface functionality', () => {
         fireEvent.change(input, {target: {value: 'CompositeInt'}});
         const displayHeaderParent = screen.getByTestId('accorCompHeaderButton');
         const displayHeader = displayHeaderParent.querySelector('button');
-        waitFor(() => {
+        await waitFor(() => {
             expect(displayHeader).toHaveTextContent('CompositeInt');
         });
 
@@ -502,14 +502,14 @@ describe('Tests composite interface functionality', () => {
         // Header should still be there
         expect(displayHeader).toBeInTheDocument();
         // Body should be shown
-        waitFor(() => {
+        await waitFor(() => {
             expect(accorBody.classList.contains('show')).toBe(true);
         });
         
         // Click on the header again
         fireEvent.click(displayHeader);
         // Body should be hidden
-        waitFor(() => {
+        await waitFor(() => {
             expect(accorBody.classList.contains('show')).toBe(false);
         });        
     });
@@ -576,7 +576,7 @@ describe('Tests composite interface functionality', () => {
         fireEvent.change(basicInput, {target: {value: basicName}});
         const displayHeaderParent = screen.getByTestId('accorBasicHeaderButton');
         const displayHeader = displayHeaderParent.querySelector('button');
-        waitFor(() => {
+        await waitFor(() => {
             expect(displayHeader).toHaveTextContent('InterfaceOne');
         });   
 
@@ -613,9 +613,9 @@ describe('Tests composite interface functionality', () => {
         fireEvent.change(basicInput, {target: {value: basicName}});
         const displayHeaderParent = screen.getByTestId('accorBasicHeaderButton');
         const displayHeader = displayHeaderParent.querySelector('button');
-        waitFor(() => {
+        await waitFor(() => {
             expect(displayHeader).toHaveTextContent('InterfaceOne');
-        });  
+        });
 
         // Grab basic adversarial button
         const basicAdvButton = screen.getByTitle('adversarialBasicButton');

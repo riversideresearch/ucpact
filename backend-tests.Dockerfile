@@ -5,12 +5,10 @@ COPY requirements.txt requirements.txt
 
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade pytest
-RUN pip install --no-cache-dir --upgrade slipcover
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-RUN mkdir models
-
 # Copy over the python files
+COPY interpreter_parser.py interpreter_parser.py
 COPY backend.py backend.py
 COPY test_backend.py test_backend.py
 COPY ./tests/ ./tests

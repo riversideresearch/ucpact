@@ -12,6 +12,7 @@ from flask_cors import CORS
 import jwt
 from jwt.exceptions import InvalidTokenError
 import requests
+from interpreter_parser import get_events, ParsingError
 import time
 import datetime
 from pathlib import Path
@@ -174,6 +175,24 @@ def validate_token(auth_token, test_username: str="user1") -> str:
         return data["username"]
     else:
         raise AuthenticationError(f'Error: token status = {data["token_status"]}!')
+
+@app.route('/parser/<filename>', methods=['POST'])
+def parse_file(filename: str):
+    """
+    Flask `POST` endpoint that accepts an uploaded text file and its filename.
+    Response is a JSON object based on a predefined schema, with the parsed output.
+    """
+    token = request.headers.get('Authorization')
+    try:
+        validate_token(token)
+    except AuthenticationError as e:
+        return str(e), status.HTTP_401_UNAUTHORIZED
+    uct_file = request.files[filename]
+    try:
+        data = get_events(filename, uploaded_file=uct_file)
+    except ParsingError as e:
+        return str(e), status.HTTP_400_BAD_REQUEST
+    return jsonify(data), status.HTTP_200_OK
 
 @app.route('/model', methods=['GET'])
 def index():
@@ -486,7 +505,6 @@ def return_model(id):
                 return 'Not authorized to unlock this model', status.HTTP_403_FORBIDDEN
         else:
             return 'No model of the supplied identifier exists on the server', status.HTTP_404_NOT_FOUND
-
 
 @app.route('/model/idealFunctionalities', methods=['GET'])
 def get_IFs():

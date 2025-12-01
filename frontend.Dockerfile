@@ -1,5 +1,5 @@
 # First we will build the webapp
-FROM node AS buildstage
+FROM node:25.2.1 AS buildstage
 ARG ENVFILES_DIR="."
 
 WORKDIR /webapp-build

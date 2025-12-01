@@ -7,7 +7,8 @@ COPY requirements.txt requirements.txt
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-# Copy over the python file
+# Copy over the python files
+COPY interpreter_parser.py interpreter_parser.py
 COPY backend.py backend.py
 COPY reconciliationScript.py reconciliationScript.py
 

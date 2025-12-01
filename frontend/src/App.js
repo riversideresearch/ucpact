@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import LandingPage from './components/landingPage';
 import LoadingPage from './components/loadingPage';
+import Interpreter from './components/interpreter/interpreter';
 import 'react-notifications-component/dist/theme.css'
 import './App.css';
 import { useSelector } from 'react-redux';
@@ -10,7 +11,7 @@ import axios from 'axios';
 import { changeModelReadOnlyDispatch } from './features/model/modelSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faCodeCompare } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from "react-oidc-context";
 
 function App(props) {
@@ -18,6 +19,7 @@ function App(props) {
   const reduxSelector = useSelector(state => state);
 
   const [modelIsActive, setModelIsActive] = useState(false);
+  const [interpreterCompActive, setInterpreterCompActive] = useState(false);
   const [modelModalShow, setModelModalShow] = useState(false);
   const auth = useAuth();
   const handleShow = () => setModelModalShow(true);
@@ -88,6 +90,10 @@ function App(props) {
     }
   });
 
+  const navToInterpreterPage = () => {
+    setInterpreterCompActive(true)
+    window.location.assign('/interpreter/')
+  }
   window.addEventListener('pagehide', (event) => {
     event.preventDefault();
 
@@ -134,6 +140,7 @@ function App(props) {
               <Route index element={<LandingPage />} />
               <Route path="new/:name" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>}/>
               <Route path="model/:id" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>} />
+              <Route path="interpreter/" element={<Interpreter setActive={setInterpreterCompActive}/>}/>
           </Routes>
         </BrowserRouter>
         {modelIsActive && 
@@ -143,6 +150,10 @@ function App(props) {
         {modelIsActive && 
         <div className='modelSettings'>
             <FontAwesomeIcon data-testid="modelSettingsBtn" className='modelSettingsBtn' icon={faGear} size="2x" onClick={handleShow}/>
+        </div>}
+        {!modelIsActive && !interpreterCompActive &&
+        <div className='interpreterLink'>
+            <FontAwesomeIcon className='interpreterLinkBtn' title={"Launch Interpreter Compare"} icon={faCodeCompare} size='2x' onClick={() => navToInterpreterPage()}/>
         </div>}
         {(process.env.NODE_ENV !== 'test' && process.env.REACT_APP_AUTH_DISABLED !== 'TRUE') && <div className='logout'>
             <FontAwesomeIcon className='logoutBtn' title={"Logout"} icon={faRightFromBracket} size="2x" onClick={handleLogout}/>
@@ -158,7 +169,8 @@ function App(props) {
           <Routes>
               <Route index element={<LandingPage />} />
               <Route path="new/:name" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>}/>
-              <Route path="model/:id" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>}/>
+              <Route path="model/:id" element={<LoadingPage setModelIsActive={setModelIsActive} show={modelModalShow} setShow={setModelModalShow}/>} />
+              <Route path="interpreter/" element={<Interpreter/>}/>
           </Routes>
         </BrowserRouter>
         {modelIsActive && 

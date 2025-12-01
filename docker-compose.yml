@@ -64,6 +64,7 @@ services:
             - 3000:3000
         networks:
             - nginx-network
+        stdin_open: true
         volumes:
             - type: bind
               source: ./frontend/public
