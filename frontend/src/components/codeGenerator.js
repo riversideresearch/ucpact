@@ -30,7 +30,7 @@ function CodeGenerator(props) {
 
   const auth = useAuth();
 
-  const { subFuncMessages, paramInterMessages } = props;
+  const { subFuncMessages, paramInterMessages, clickCount } = props;
   const [idealFuncApiData, setIdealFuncApiData] = useState();
   const [isLight, changeIsLight] = useState(true);
 
@@ -75,7 +75,7 @@ function CodeGenerator(props) {
   useEffect(() => {
     // refresh editor whenever a new section might need to be rendered
     editorRef.current.editor.renderer.updateFull();
-  }, [partySelector, subfuncSelector, simSelector]);
+  }, [partySelector, subfuncSelector, simSelector, interSelector, realFuncSelector, clickCount]);
 
   const copyCode = (code) => {
     navigator.clipboard.writeText(code);
@@ -354,11 +354,11 @@ function CodeGenerator(props) {
           thisInitStateInMessageInfo[currentInMessage].forEach((transition, idx, arr) => {
             if (idx === 0) {
               finalString += (
-                "        if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                "        if (" + (transition.guard) +") { \n"
               );
             } else {
               finalString += (
-                " elif () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                " elif (" + (transition.guard) + ") { \n"
               )
             }
 
@@ -537,7 +537,7 @@ function CodeGenerator(props) {
           let nameComment = genTransitionNameComment(transition, "         ");
           finalString += nameComment;
           finalString += (
-            "          if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+            "          if (" + (transition.guard) +") { \n"
           );
 
           // Out Message Info
@@ -936,11 +936,11 @@ function CodeGenerator(props) {
             thisStateInMessageInfo[currentInMessage].forEach((transition, idx, arr) => {
               if (idx === 0) {
                 finalString += (
-                  "        if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                  "        if (" + (transition.guard) +") { \n"
                 );
               } else {
                 finalString += (
-                  " elif () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                  " elif (" + (transition.guard) + ") { \n"
                 )
               }
   
@@ -1129,7 +1129,7 @@ function CodeGenerator(props) {
               let nameComment = genTransitionNameComment(transition, "         ");
               finalString += nameComment;
               finalString += (
-                "          if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                "          if (" + (transition.guard) +") { \n"
               );
 
               // Out Message Info
@@ -1564,11 +1564,11 @@ function CodeGenerator(props) {
           thisInitStateInMessageInfo[currentInMessage].forEach((transition, idx, arr) => {
             if (idx === 0) {
               finalString += (
-                "        if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                "        if (" + (transition.guard) +") { \n"
               );
             } else {
               finalString += (
-                " elif () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                " elif (" + (transition.guard) + ") { \n"
               )
             }
 
@@ -1772,7 +1772,7 @@ function CodeGenerator(props) {
           let nameComment = genTransitionNameComment(transition, "         ");
           finalString += nameComment;
           finalString += (
-            "          if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+            "          if (" + (transition.guard) +") { \n"
           );
 
           // Out Message Info
@@ -2240,11 +2240,11 @@ function CodeGenerator(props) {
             thisStateInMessageInfo[currentInMessage].forEach((transition, idx, arr) => {
               if (idx === 0) {
                 finalString += (
-                  "        if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                  "        if (" + (transition.guard) +") { \n"
                 );
               } else {
                 finalString += (
-                  " elif () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                  " elif (" + (transition.guard) + ") { \n"
                 )
               }
   
@@ -2456,7 +2456,7 @@ function CodeGenerator(props) {
             let nameComment = genTransitionNameComment(transition, "         ");
             finalString += nameComment;
             finalString += (
-              "          if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+              "          if (" + (transition.guard) +") { \n"
             );
 
             // Out Message Info
@@ -2968,11 +2968,11 @@ function CodeGenerator(props) {
             thisInitStateInMessageInfo[currentInMessage].forEach((transition, idx, arr) => {
               if (idx === 0) {
                 finalString += (
-                  "          if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                  "          if (" + (transition.guard) +") { \n"
                 );
               } else {
                 finalString += (
-                  " elif () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                  " elif (" + (transition.guard) + ") { \n"
                 )
               }
   
@@ -3175,7 +3175,7 @@ function CodeGenerator(props) {
             let nameComment = genTransitionNameComment(transition, "         ");
             finalString += nameComment;
             finalString += (
-              "          if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+              "          if (" + (transition.guard) +") { \n"
             );
 
             // Out Message Info
@@ -3646,11 +3646,11 @@ function CodeGenerator(props) {
                 thisStateInMessageInfo[currentInMessage].forEach((transition, idx, arr) => {
                   if (idx === 0) {
                     finalString += (
-                      "          if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                      "          if (" + (transition.guard) +") { \n"
                     );
                   } else {
                     finalString += (
-                      " elif () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                      " elif (" + (transition.guard) + ") { \n"
                     )
                   }
       
@@ -3853,7 +3853,7 @@ function CodeGenerator(props) {
                 let nameComment = genTransitionNameComment(transition, "         ");
                 finalString += nameComment;
                 finalString += (
-                  "          if () { (* " + (transition.guard || "Guard Description") + " *)\n"
+                  "          if (" + (transition.guard) +") { \n"
                 );
 
                 // Out Message Info
@@ -4268,6 +4268,7 @@ function CodeGenerator(props) {
             theme={isLight ? "pastel_on_dark" : "chrome"}
             name="ucDSLEditor"
             fontSize={14}
+            focus="true"
             showPrintMargin={true}
             showGutter={true}
             highlightActiveLine={true}

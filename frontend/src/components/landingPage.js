@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './landingPage.css';
 import { Link } from 'react-router-dom';
 import { Button, Modal } from "react-bootstrap";
@@ -11,13 +11,13 @@ import { Store } from "react-notifications-component";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from "react-oidc-context";
-import { FileUploader } from "react-drag-drop-files";
 import ModelList from './modelList';
+import {useDropzone} from 'react-dropzone'
 
 function LandingPage(props) {
 
     const [apiData, setApiData] = useState();
-    const [file, setFile] = useState(null);
+    const [files, setFiles] = useState(null);
     const [newModelName, setNewModelName] = useState("");
     const navigate = useNavigate();
     const auth = useAuth();
@@ -56,7 +56,7 @@ function LandingPage(props) {
                 console.log(err.response.headers);
             }
         });
-    }, []);
+    }, [show]);
 
     const modelNameCheck = (e) => {
         e.preventDefault();
@@ -227,89 +227,96 @@ function LandingPage(props) {
             });
         }
     }
-    const handleFile = (newFile) => setFile(newFile);
+    const onDrop = useCallback(acceptedFiles => {
+        setFiles(acceptedFiles)
+      }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, accept: {'application/json': ['.json']}})
+
     const saveImportInfo = (e) => {
         e.preventDefault();
-        let urlPath = `${process.env.REACT_APP_SERVER_PREFIX}/import/${file.name}`;
-        let token = "none";
-        if (process.env.NODE_ENV !== 'test' && process.env.REACT_APP_AUTH_DISABLED !== 'TRUE') {
-            token = auth.user?.access_token;
-        }
-        var bodyFormData = new FormData();
-        bodyFormData.append(file.name, file);
-        axios({
-            method: "POST",
-            url: urlPath,
-            headers: {
-                Authorization: `Bearer ${token}`,
-                SessionTabId: `${localStorage.sessionID}/${sessionStorage.tabID}`,
-                "Content-type": "multipart/form-data",
-            },
-            data: bodyFormData
-        })
-        .then((response) => {
-            if (response.status === 201) {
-                const res = response.data;
-                const metadata = res["meta"];
-                if (metadata.original.model_name !== metadata.new.model_name) {
-                    let notiMessage = `Timestamp (in UTC) added/updated! New name: ${metadata.new.model_name}`;
-                    window.alert(notiMessage)
-                }
+        files.forEach(file => {
+            let urlPath = `${process.env.REACT_APP_SERVER_PREFIX}/import/${file.name}`;
+            let token = "none";
+            if (process.env.NODE_ENV !== 'test' && process.env.REACT_APP_AUTH_DISABLED !== 'TRUE') {
+                token = auth.user?.access_token;
             }
-            setShowImport(false);
-            let urlPath2 = process.env.REACT_APP_SERVER_PREFIX;
+            var bodyFormData = new FormData();
+            bodyFormData.append(file.name, file);
             axios({
-                method: "GET",
-                url: urlPath2,
+                method: "POST",
+                url: urlPath,
                 headers: {
-                    Authorization: `Bearer ${token}`, SessionTabId: `${localStorage.sessionID}/${sessionStorage.tabID}`,
-                }
+                    Authorization: `Bearer ${token}`,
+                    SessionTabId: `${localStorage.sessionID}/${sessionStorage.tabID}`,
+                    "Content-type": "multipart/form-data",
+                },
+                data: bodyFormData
             })
             .then((response) => {
-                const res2 = response.data;
-                setApiData(res2);
+                if (response.status === 201) {
+                    const res = response.data;
+                    const metadata = res["meta"];
+                    if (metadata.original.model_name !== metadata.new.model_name) {
+                        let notiMessage = `Timestamp (in UTC) added/updated! New name: ${metadata.new.model_name}`;
+                        window.alert(notiMessage)
+                    }
+                }
+                setShowImport(false);
+                let urlPath2 = process.env.REACT_APP_SERVER_PREFIX;
+                axios({
+                    method: "GET",
+                    url: urlPath2,
+                    headers: {
+                        Authorization: `Bearer ${token}`, SessionTabId: `${localStorage.sessionID}/${sessionStorage.tabID}`,
+                    }
+                })
+                .then((response) => {
+                    const res2 = response.data;
+                    setApiData(res2);
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        console.log(err.response);
+                        console.log(err.response.status);
+                        console.log(err.response.headers);
+                    }
+                });
             })
             .catch((err) => {
+                let notiType = 'danger';
+                let notification = {
+                    title: "",
+                    message: "",
+                    type: notiType,
+                    insert:  "top",
+                    container: "top-right",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                        duration: 10000,
+                        onScreen: true
+                    }
+                };
+                if (err.response && err.response.status === 500) {
+                    // Corrupted JSON file
+                    notification.message = "Message: Can't import model; JSON file is corrupted!";
+                    notification.title = file.name +" Corrupted JSON File";
+                } else if (err.response && err.response.status === 400) {
+                    // Invalid model name
+                    notification.message = "Message: Model could not be imported due to an invalid name!";
+                    notification.title = file.name +" Invalid Model Name";
+                }
                 if (err.response) {
                     console.log(err.response);
                     console.log(err.response.status);
                     console.log(err.response.headers);
+                    if (notification.message && notification.title) {
+                        Store.addNotification(notification);
+                    }
                 }
-            });
+            })
         })
-        .catch((err) => {
-            let notiType = 'danger';
-            let notification = {
-                title: "",
-                message: "",
-                type: notiType,
-                insert:  "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                    duration: 10000,
-                    onScreen: true
-                }
-            };
-            if (err.response && err.response.status === 500) {
-                // Corrupted JSON file
-                notification.message = "Message: Can't import model; JSON file is corrupted!";
-                notification.title = file.name +" Corrupted JSON File";
-            } else if (err.response && err.response.status === 400) {
-                // Invalid model name
-                notification.message = "Message: Model could not be imported due to an invalid name!";
-                notification.title = file.name +" Invalid Model Name";
-            }
-            if (err.response) {
-                console.log(err.response);
-                console.log(err.response.status);
-                console.log(err.response.headers);
-                if (notification.message && notification.title) {
-                    Store.addNotification(notification);
-                }
-            }
-        })
+        
     }
     const hideTabId = (model) => {
         if (!model['readOnly']) {
@@ -374,9 +381,18 @@ function LandingPage(props) {
                     <Modal.Title>Import a Model JSON File</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <FileUploader onDrop={handleFile} handleChange={handleFile} name="file" types={['json']} label="Add UC Model JSON File" multiple={false} uploadedLabel="Upload Successful! Hit Save Changes to complete the Import!"></FileUploader>
+                    <div {...getRootProps()} className='dropService'>
+                        <input {...getInputProps()}/>
+                        {
+                            isDragActive ?
+                            <h2>Drag the Files Here</h2>
+                            :<h2> Drag and Drop files here, or click to select some files</h2>  
+                        }
+                    </div>
                     <br></br>
-                    {file ? <h3> {file.name} is currently loaded</h3> : <h3> No file is loaded </h3>}
+                    <div className='filesLoaded'>
+                        {files ? <h3> Files are currently loaded </h3> : <h3> No files are currently loaded </h3>}
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={saveImportInfo}>Save Changes</Button>

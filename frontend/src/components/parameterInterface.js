@@ -31,6 +31,8 @@ function ParameterInterface(props) {
     const dispatch = useDispatch();
     const auth = useAuth();
 
+    let [myHeight, setMyHeight] = useState(0)
+
     const colorPalette = ["#DE8989", "#89D7DE", "#9F89DE","#E2A82B", "#8998DE", "#89DE91", "#FFFF9C", "#DE89D4", "#65A588", "#A58365", "#AEAEFF", "#EFC3CA"]; 
 
     const nameRef = React.createRef();
@@ -65,10 +67,32 @@ function ParameterInterface(props) {
     // eslint-disable-next-line no-unused-vars
     const updateXarrow = useXarrow();
     // arrow display parameters
-    const anchorSpacing = index => {
-        const multiplier = index % 2 ? -1 : 1;
-        return Math.ceil(index/2) * 20 * multiplier;
-    };
+    const anchorAdv = () => {
+        if (document.getElementById(props.id) !== null) {
+            if(myHeight === 0 || (document.getElementById(props.id).offsetHeight !== myHeight && document.getElementById(props.id).offsetHeight !== 0)){
+                setMyHeight(document.getElementById(props.id).offsetHeight)
+            }
+            let advLength = 500
+            let advTop = 115
+            let advCenter = advTop + advLength / 2
+            let advBot = advTop + advLength
+            let curPosTop = props.disp.top
+            let curHeight = myHeight
+            let offSet = curHeight / 2 //account for box size
+            curPosTop = curPosTop + offSet
+            if (curPosTop < advTop) {
+                return -advLength / 2 + 40 //Offset the value from the absolute end and take the - value as 0 is the center of the box
+            } else if (advCenter > curPosTop && curPosTop >= advTop) {
+                return (curPosTop - advCenter)
+
+            } else if (advBot > curPosTop && curPosTop >= advCenter) {
+                return -(advCenter - curPosTop)
+            }
+            else {
+                return (advLength / 2) - 5
+            }
+        }
+    }
     //Deletes the component of the modal and closes the modal
     const handleDeleteComponent = () => {
         //Do we want to have a confirm before we delete?
@@ -248,6 +272,7 @@ function ParameterInterface(props) {
     }, [paramInterAPIData]);
     
 
+
     return (
         <div>
             { /* Parameter Interface Box */ }
@@ -327,10 +352,10 @@ function ParameterInterface(props) {
             </Modal>
             { paramInterSelector &&
                 <Xarrow key={ props.id + "-adversarial-connector" } start={ props.id } end="realFunctionality-environment-right" 
-                        showHead={false} color="red" path="grid" startAnchor="right" 
-                        endAnchor={{position: "left", offset: { y: anchorSpacing(props.index) }}} zIndex= {-1} 
+                        showHead={false} color="red" path="smooth" startAnchor="right" 
+                        endAnchor={{position: "left", offset: { y: anchorAdv() }}} zIndex= {-1} 
                         data-testid="partyAdversarialArrow"
-                />
+                /> // Offset is to move the Adv arrow up on the box by a set amount
             }
         </div>
     )

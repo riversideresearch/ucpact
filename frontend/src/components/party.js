@@ -35,6 +35,10 @@ function Party(props) {
     const compAdvSelector = useSelector((state) => state.interfaces.compInters.find(basicInt => (basicInt.type === "adversarial") && (basicInt.id === realFuncSelector.compositeAdversarialInterface)));
     const compDirSelector = useSelector((state) => state.interfaces.compInters.find(basicInt => (basicInt.type === "direct") && (basicInt.id === realFuncSelector.compositeDirectInterface)));
 
+    let [myWidth, setMyWidth] = useState(0)
+    let [myHeight, setMyHeight] = useState(0)
+
+
     // Name constants for shortening
     const partyInterfaceMaxLength = 28;
     const partyModalDisplayLength = 21;
@@ -52,9 +56,63 @@ function Party(props) {
     // aarow display parameters
     const anchorSpacing = index => {
         const multiplier = index % 2 ? -1 : 1;
-        return Math.ceil(index/2) * 20 * multiplier;
+        return Math.ceil(index/2) * 10 * multiplier;
     };
 
+    const anchorEnv = () => {
+        if (document.getElementById(props.id) !== null){
+            if(myWidth === 0 || (document.getElementById(props.id).offsetWidth !== myWidth && document.getElementById(props.id).offsetWidth !== 0)){
+                setMyWidth(document.getElementById(props.id).offsetWidth)
+            }
+            let envLength = 775
+            let envLeft = 450
+            let envCenter = envLeft + envLength / 2
+            let envRight = envLeft + envLength
+            let curPosLeft = props.disp.left
+            let curWidth = myWidth
+            let offSet = curWidth / 2 //account for box size
+            curPosLeft = curPosLeft + offSet
+            if (curPosLeft < envLeft) {
+                return -envLength / 2 + 5 //Offset the value from the absolute end and take the - value as 0 is the center of the box
+            } else if (envCenter > curPosLeft && curPosLeft >= envLeft) {
+                return (curPosLeft - envCenter)
+
+            } else if (envRight > curPosLeft && curPosLeft >= envCenter) {
+                return -(envCenter - curPosLeft)
+            }
+            else {
+                return (envLength / 2) - 40
+            }
+        }
+        
+
+    }
+    const anchorAdv = () => {
+        if (document.getElementById(props.id) !== null) {
+            if(myHeight === 0 || (document.getElementById(props.id).offsetHeight !== myHeight && document.getElementById(props.id).offsetHeight !== 0)){
+                setMyHeight(document.getElementById(props.id).offsetHeight)
+            }
+            let advLength = 500
+            let advTop = 115
+            let advCenter = advTop + advLength / 2
+            let advBot = advTop + advLength
+            let curPosTop = props.disp.top
+            let curHeight = myHeight
+            let offSet = curHeight / 2 //account for box size
+            curPosTop = curPosTop + offSet
+            if (curPosTop < advTop) {
+                return -advLength / 2 + 40 //Offset the value from the absolute end and take the - value as 0 is the center of the box
+            } else if (advCenter > curPosTop && curPosTop >= advTop) {
+                return (curPosTop - advCenter)
+
+            } else if (advBot > curPosTop && curPosTop >= advCenter) {
+                return -(advCenter - curPosTop)
+            }
+            else {
+                return (advLength / 2) - 5
+            }
+        }
+    }
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "ucComp",
         item: { type: "party", id: props.id },
@@ -120,6 +178,7 @@ function Party(props) {
         let updatedTempColor = {
             "color" : state.colorTemp,
         };
+        
         if(upperCaseValidation(nameRef.current.value) && checkPartyName(nameRef.current.value) && commentValidation(commentRef.current.value)){
             setState(prevState => ({
                 ...prevState,
@@ -421,27 +480,25 @@ function Party(props) {
             { partySelector && partySelector.basicDirectInterface &&
                 <Xarrow key={ props.id + "-direct-connector" } start={ props.id } end="realFunctionality-environment-upper" 
                         showHead={false} path="grid" startAnchor="top" 
-                        endAnchor={{position: "bottom", offset: { x: anchorSpacing(props.index) }}}  zIndex= {-1}
+                        endAnchor={{position: "bottom", offset: { x: anchorEnv() }}}  zIndex= {-1}
                         data-testid="partyDirectArrow"
                 />
             }
             { partySelector && partySelector.basicAdversarialInterface &&
                 <Xarrow key={ props.id + "-adversarial-connector" } start={ props.id } end="realFunctionality-environment-right" 
-                        showHead={false} color="red" path="grid" startAnchor="right" 
-                        endAnchor={{position: "left", offset: { y: anchorSpacing(props.index) }}} zIndex= {-1} 
+                        showHead={false} color="red" path="smooth" startAnchor="right" 
+                        endAnchor={{position: "left", offset: { y: anchorAdv() }}} zIndex= {-1} 
                         data-testid="partyAdversarialArrow"
                 />
             }
             { subfuncsToConnect && props.id &&
             (subfuncsToConnect.filter((value, index) => subfuncsToConnect.indexOf(value) === index).map((subfunc) => (
-                <Xarrow key={ props.id + subfunc } start={ props.id } end={ subfunc }
-                        showHead={false} color="purple" path="grid"
+                <Xarrow key={props.id + subfunc} start={props.id} end={subfunc} startAnchor={{ position: "bottom", offset: { x: anchorSpacing(subfuncsToConnect.indexOf(subfunc)) + myWidth / 2 - myWidth / 4 } }} endAnchor={{ position: "top", offset: { x: anchorSpacing(props.index) } }} showHead={false} color={subfuncSelector.subfunctionalities.find((subFunc) => subFunc.id === subfunc).color || "purple"} path="grid" zIndex={-1} 
                 />
             )))}
             { paramIntersToConnect && props.id &&
             (paramIntersToConnect.filter((value, index) => paramIntersToConnect.indexOf(value) === index).map((param) => (
-                <Xarrow key={ props.id + param } start={ props.id } end={ param }
-                        showHead={false} color="purple" path="grid"
+                <Xarrow key={props.id + param} start={props.id} end={param} startAnchor={{ position: "bottom", offset: { x: anchorSpacing(paramIntersToConnect.indexOf(param)) - myWidth / 2 + myWidth / 4 } }} endAnchor={{ position: "top", offset: { x: anchorSpacing(props.index) } }} showHead={false} color={realFuncSelector.parameterInterfaces.find((inter) => inter.id === param).color || "green"} path="grid" zIndex={-1} 
                 />
             )))}
         </div>

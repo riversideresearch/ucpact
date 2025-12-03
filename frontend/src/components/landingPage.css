@@ -58,3 +58,13 @@
   left: 50%;
   transform: translate(-50%, 0%);
 }
+.dropService:hover{
+  cursor: pointer;
+  background-color:antiquewhite;
+}
+.dropService{
+  outline: dashed;
+  outline-color: black;
+  padding-left: 20px;
+
+}

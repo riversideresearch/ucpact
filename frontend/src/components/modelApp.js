@@ -50,7 +50,7 @@ function ModelApp(props) {
     const [isDone, setIsDone] = useState(false);
     const [subFuncMessages, setSubFuncMessages] = useState([]); // State used for subfunc messages in State Machines
     const [paramInterMessages, setParamInterMessages] = useState([]); // State used for parameter interface messages in State Machines
-
+    const [clickCount, setClickCount] = useState(0)
     const subfuncSelector = useSelector(state => state.subfunctionalities);
     const realFuncSelector = useSelector(state => state.realFunctionality);
     const modelSelector = useSelector(state => state.model);
@@ -862,6 +862,9 @@ function ModelApp(props) {
                     onSelect={(k) => {
                     // need to update the arrows
                     updateXarrow();
+                    if(k === "aceEditor"){
+                        setClickCount(prev => prev + 1);
+                    }
                     }}
                 >
                     <div title={<Link to="/"><img src="/images/favicon.ico" alt="logo" width="30" onClick={e => homeLink(e)} data-testid="home-link"/></Link>}></div>
@@ -883,7 +886,7 @@ function ModelApp(props) {
                         <StateMachines subFuncMessages={subFuncMessages} paramInterMessages={paramInterMessages}/>
                     </Tab>
                     <Tab eventKey="aceEditor" title="Code">
-                        <CodeGenerator subFuncMessages={subFuncMessages} paramInterMessages={paramInterMessages}/>
+                        <CodeGenerator subFuncMessages={subFuncMessages} paramInterMessages={paramInterMessages} clickCount={clickCount}/>
                     </Tab>
                 </Tabs>
                 <Modal show={modelModalShow} onHide={handleModelModalClose} animation={false} data-testid="model-modal">

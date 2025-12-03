@@ -481,8 +481,8 @@ function ReactFlowBox(props) {
         });
 
         if (idealFuncCompInter) { // check existence
-            interSelector.basicInters.forEach((basicInter) => {
-                idealFuncCompInter.basicInterfaces.forEach((basicInterfaceInComp) => {
+            idealFuncCompInter.basicInterfaces.forEach((basicInterfaceInComp) => {
+                interSelector.basicInters.forEach((basicInter) => {
                     if (basicInterfaceInComp.idOfBasic === basicInter.id) {
                         if (basicInter.messages.includes(mes.id)) {
                             idealFuncPath = idealFuncCompInter.name + "." + basicInterfaceInComp.name + "." + mes.name;
@@ -849,8 +849,13 @@ function ReactFlowBox(props) {
   useEffect(() => {
         let optionsArray = [{key : "inMessage", value : "", label : "Select an In Message..."}];
         interSelector.messages.filter(messageFilterIn).forEach(message => {
+            // let basicInter = interSelector.basicInters.find(inter => inter.messages.includes(message.id))
+            // let compInter = interSelector.compInters.filter(inter => inter.basicInterfaces.find(instance => instance.idOfBasic === basicInter.id))
+            // compInter.forEach(comp => comp.basicInterfaces.forEach())
+            //TODO add check for comp inter and loop through the instances
             optionsArray.push({key : "message-" + message.id, value : message.id, label : messagePathConstruction(message, "misc")});
         });
+        //console.log(optionsArray)
         // Options for subfunc out messages
         partySelector.parties.findIndex(element => element.stateMachine === thisStateMachineSelector.id) !== -1 && subFuncMessages.forEach(message => {
             (message.type === "out" && subfuncSelector.subfunctionalities.find(element => element.id === message.subfuncId) && message.basicInter.type === "direct" &&
@@ -873,7 +878,7 @@ function ReactFlowBox(props) {
         });
         setInMessageOptions(optionsArray);
 
-  }, [interSelector, partySelector, paramInterMessages, subFuncMessages]);
+  }, [interSelector, partySelector, paramInterMessages, subFuncMessages, transitionSelector]);
 
   useEffect(() => {
         let optionsArray = [{key : "outMessage", value : "", label : "Select an Out Message..."}];
@@ -901,7 +906,7 @@ function ReactFlowBox(props) {
             optionsArray.push({key : "message-" + message.id + message.paramInterId, value : message.id, label : messagePathConstruction(message, "paramInter")}));
         });
         setOutMessageOptions(optionsArray);
-  }, [interSelector, partySelector, subFuncMessages, paramInterMessages]);
+  }, [interSelector, partySelector, subFuncMessages, paramInterMessages, transitionSelector]);
 
   useEffect(() => {
         let optionsArray = [{key : "toState", value : "", label : "Select a To State..."}];
